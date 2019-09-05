@@ -1,9 +1,11 @@
 # rpn-tile-calculator
 
 
-## Import Module to Android Studio
+## Import project
 
-File -> New -> Import Module -> Ordner: "FileCalculator"
+git clone --single-branch --branch develop https://github.com/JellyFilledNuts/rpn-tile-calculator tilecalc
+
+In Android studio -> Import Project -> ^
 
 ## Create Android Emulator Device
 
