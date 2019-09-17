@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
-      <y>180</y>
-      <w>144</w>
-      <h>63</h>
+      <x>208</x>
+      <y>136</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Element
 --
@@ -18,10 +18,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>180</x>
-      <y>387</y>
-      <w>144</w>
-      <h>63</h>
+      <x>72</x>
+      <y>320</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Operator
 --
@@ -32,24 +32,25 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
-      <y>387</y>
-      <w>144</w>
-      <h>63</h>
+      <x>448</x>
+      <y>320</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
-    <panel_attributes>Operant
+    <panel_attributes>/Operant/
 --
--object:Object
---</panel_attributes>
+
+--
++draw()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>387</y>
-      <w>144</w>
-      <h>63</h>
+      <x>248</x>
+      <y>320</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Function 
 --
@@ -60,10 +61,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>189</y>
-      <w>144</w>
-      <h>90</h>
+      <x>488</x>
+      <y>112</y>
+      <w>128</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Stack &lt;Operant&gt;
 --
@@ -77,32 +78,21 @@ push(Operant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>180</y>
-      <w>171</w>
-      <h>27</h>
+      <x>312</x>
+      <y>184</y>
+      <w>216</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;250.0;60.0;250.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>234</y>
-      <w>27</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>297</x>
-      <y>234</y>
-      <w>99</w>
-      <h>171</h>
+      <x>176</x>
+      <y>184</y>
+      <w>88</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;110.0;10.0;110.0;10.0;170.0</additional_attributes>
@@ -110,32 +100,21 @@ push(Operant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>423</x>
-      <y>234</y>
-      <w>99</w>
-      <h>171</h>
+      <x>288</x>
+      <y>184</y>
+      <w>24</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;90.0;110.0;90.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>144</y>
-      <w>90</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>SimpleClass</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>360</x>
-      <y>522</y>
-      <w>90</w>
-      <h>108</h>
+      <x>232</x>
+      <y>440</y>
+      <w>80</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>/Action/
 --
@@ -147,10 +126,10 @@ call(List)</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>198</x>
-      <y>351</y>
-      <w>90</w>
-      <h>27</h>
+      <x>88</x>
+      <y>288</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>z.B. +, -, sin()</panel_attributes>
     <additional_attributes/>
@@ -158,10 +137,10 @@ call(List)</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>333</x>
-      <y>351</y>
-      <w>144</w>
-      <h>27</h>
+      <x>448</x>
+      <y>288</y>
+      <w>128</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>z.B. 1, "Hallo", Graph()</panel_attributes>
     <additional_attributes/>
@@ -169,10 +148,10 @@ call(List)</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>513</x>
-      <y>351</y>
-      <w>225</w>
-      <h>27</h>
+      <x>224</x>
+      <y>288</y>
+      <w>200</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>z.B. CalcFunctions: setLayout..., reset</panel_attributes>
     <additional_attributes/>
@@ -180,10 +159,10 @@ call(List)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
-      <y>441</y>
-      <w>153</w>
-      <h>99</h>
+      <x>136</x>
+      <y>368</y>
+      <w>136</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 -action</panel_attributes>
@@ -192,22 +171,22 @@ call(List)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>441</y>
-      <w>153</w>
-      <h>99</h>
+      <x>280</x>
+      <y>368</y>
+      <w>56</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 -action</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;50.0;150.0;50.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>333</x>
-      <y>54</y>
-      <w>144</w>
-      <h>63</h>
+      <x>208</x>
+      <y>24</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>CustomButton
 --
@@ -218,10 +197,10 @@ call(List)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
-      <y>108</y>
-      <w>72</w>
-      <h>90</h>
+      <x>264</x>
+      <y>72</y>
+      <w>64</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 -element</panel_attributes>
@@ -230,12 +209,96 @@ call(List)</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>486</x>
-      <y>63</y>
-      <w>99</w>
-      <h>27</h>
+      <x>344</x>
+      <y>32</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Android Button</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>392</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Number
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>536</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Matrix
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>464</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Vector
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>536</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Graph
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>392</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Set
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>464</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Fraction
+--
+
+--</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
