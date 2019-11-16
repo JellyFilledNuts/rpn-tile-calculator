@@ -1,0 +1,121 @@
+package com.fhdw.wip.rpntilecalculator.core.calculation;
+
+import com.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.OSet;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.OTuple;
+import com.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@SuppressWarnings({"unused", "WeakerAccess"})
+public class Times extends Action {
+
+    @NotNull private static final Times TIMES = new Times();
+
+    @Contract(pure = true) @NotNull public static Times getInstance() { return TIMES; }
+    private Times() { }
+
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        positionDoesNotMatter = true;
+        scopedAction = this;
+        return super.with(operands);
+    }
+
+    //region Double
+    //------------------------------------------------------------------------------------
+
+    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble1, @NotNull ODouble oDouble2) {
+        return new ODouble(oDouble1.getDouble() * oDouble2.getDouble());
+    }
+
+    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble, @NotNull OFraction oFraction) {
+        return new ODouble(oDouble.getDouble() * oFraction.getDouble());
+    }
+
+    @Contract(pure = true) @NotNull OSet on(@NotNull ODouble oDouble, @NotNull OSet oSet) {
+        Set<Double> newSet = new HashSet<>();
+        for (double d : oSet.getDoubleSet())
+            newSet.add(d * oDouble.getDouble());
+        return new OSet(newSet);
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull ODouble oDouble, @NotNull OMatrix oMatrix) {
+        return new OMatrix(oMatrix.getMatrix().scalarMultiply(oDouble.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull ODouble oDouble, @NotNull OPolynom oPolynom) {
+        double[] d = oPolynom.getPolynom().getCoefficients();
+        d[0] *= oDouble.getDouble();
+        return new OPolynom(new PolynomialFunction(d));
+    }
+
+    @Contract(pure = true) @NotNull OTuple on(@NotNull ODouble oDouble, @NotNull OTuple oTuple) {
+        List<Double> tuple = new ArrayList<>();
+        for (double d : oTuple.getTuple())
+            tuple.add(oDouble.getDouble() * d);
+        return new OTuple(tuple);
+    }
+
+    //endregion
+
+    //region Fraction
+    //------------------------------------------------------------------------------------
+
+    @Contract(pure = true) @NotNull OFraction on(@NotNull OFraction oFraction1, @NotNull OFraction oFraction2) {
+        return new OFraction(oFraction1.getFraction().multiply(oFraction2.getFraction()));
+    }
+
+    @Contract(pure = true) @NotNull OSet on(@NotNull OFraction oFraction, @NotNull OSet oSet) {
+        return on(new ODouble(oFraction.getDouble()), oSet);
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OFraction oFraction, @NotNull OMatrix oMatrix) {
+        return new OMatrix(oMatrix.getMatrix().scalarAdd(oFraction.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull OFraction oFraction, @NotNull OPolynom oPolynom) {
+        return on(new ODouble(oFraction.getDouble()), oPolynom);
+    }
+
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OFraction oFraction, @NotNull OTuple oTuple) {
+        return on(new ODouble(oFraction.getDouble()), oTuple);
+    }
+
+    //endregion
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix1, @NotNull OMatrix oMatrix2) {
+        return new OMatrix(oMatrix1.getMatrix().multiply(oMatrix2.getMatrix()));
+    }
+
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull OPolynom oPolynom1, @NotNull OPolynom oPolynom2) {
+        return new OPolynom(oPolynom1.getPolynom().multiply(oPolynom2.getPolynom()));
+    }
+
+    @Contract(pure = true)
+    @NotNull OTuple on(@NotNull OTuple oTuple1, @NotNull OTuple oTuple2) {
+        List<Double> tuple1 = oTuple1.getTuple();
+        List<Double> tuple2 = oTuple2.getTuple();
+        List<Double> tupleSum = new ArrayList<>();
+
+        if (tuple1.size() != tuple2.size())
+            throw new IllegalArgumentException("Tuples must have matching size.");
+
+        for (int i = 0; i < tuple1.size(); i++) {
+            tupleSum.add(tuple1.get(i) * tuple2.get(i));
+        }
+
+        return new OTuple(tupleSum);
+    }
+
+}
