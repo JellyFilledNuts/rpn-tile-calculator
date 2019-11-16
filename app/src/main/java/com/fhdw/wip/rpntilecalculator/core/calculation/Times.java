@@ -12,9 +12,7 @@ import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -61,10 +59,11 @@ public class Times extends Action {
     }
 
     @Contract(pure = true) @NotNull OTuple on(@NotNull ODouble oDouble, @NotNull OTuple oTuple) {
-        List<Double> tuple = new ArrayList<>();
-        for (double d : oTuple.getTuple())
-            tuple.add(oDouble.getDouble() * d);
-        return new OTuple(tuple);
+        double[] oldTuple = oTuple.getTuple();
+        double[] newTuple = new double[oldTuple.length];
+        for (int i = 0; i < newTuple.length; i++)
+            newTuple[i] = oldTuple[i] * oDouble.getDouble();
+        return new OTuple(newTuple);
     }
 
     //endregion
@@ -102,18 +101,16 @@ public class Times extends Action {
         return new OPolynom(oPolynom1.getPolynom().multiply(oPolynom2.getPolynom()));
     }
 
-    @Contract(pure = true)
-    @NotNull OTuple on(@NotNull OTuple oTuple1, @NotNull OTuple oTuple2) {
-        List<Double> tuple1 = oTuple1.getTuple();
-        List<Double> tuple2 = oTuple2.getTuple();
-        List<Double> tupleSum = new ArrayList<>();
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple oTuple1, @NotNull OTuple oTuple2) {
+        double[] tuple1 = oTuple1.getTuple();
+        double[] tuple2 = oTuple2.getTuple();
+        double[] tupleSum = new double[tuple2.length];
 
-        if (tuple1.size() != tuple2.size())
+        if (tuple1.length != tuple2.length)
             throw new IllegalArgumentException("Tuples must have matching size.");
 
-        for (int i = 0; i < tuple1.size(); i++) {
-            tupleSum.add(tuple1.get(i) * tuple2.get(i));
-        }
+        for (int i = 0; i < tuple1.length; i++)
+            tupleSum[i] = tuple1[i] * tuple2[i];
 
         return new OTuple(tupleSum);
     }

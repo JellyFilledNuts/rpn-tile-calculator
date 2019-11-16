@@ -7,13 +7,19 @@ import java.util.List;
 
 public class OTuple extends Operand {
 
-    @NotNull private List<@NotNull Double> tuple;
+    @NotNull private double[] tuple;
 
-    public OTuple(@NotNull List<Double> tuple) {
+    public OTuple(@NotNull double[] tuple) {
         this.tuple = tuple;
     }
 
-    public @NotNull List<Double> getTuple() {
+    private OTuple(@NotNull List<Double> tuple) {
+        this.tuple = new double[tuple.size()];
+        for (int i = 0; i < this.tuple.length; i++)
+            this.tuple[i] = tuple.get(i);
+    }
+
+    public @NotNull double[] getTuple() {
         return tuple;
     }
 
