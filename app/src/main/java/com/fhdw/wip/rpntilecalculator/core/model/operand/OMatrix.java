@@ -52,4 +52,21 @@ public class OMatrix extends Operand {
         return new OMatrix(MatrixUtils.inverse(matrix));
     }
 
+    @NotNull @Override public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (double[] doubles : matrix.getData()) {
+            builder.append("[");
+            for (double d : doubles) {
+                builder.append(DoubleFormatter.format(d));
+                builder.append(", ");
+            }
+            builder.delete(builder.length() - 2, builder.length());
+            builder.append("], ");
+        }
+        builder.delete(builder.length() - 2, builder.length());
+        builder.append("]");
+        return builder.toString();
+    }
+
 }

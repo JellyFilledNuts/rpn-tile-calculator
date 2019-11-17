@@ -28,4 +28,8 @@ public class ODouble extends Operand {
         return new ODouble(1 / aDouble);
     }
 
+    @NotNull @Override public String toString() {
+        return DoubleFormatter.format(aDouble);
+    }
+
 }

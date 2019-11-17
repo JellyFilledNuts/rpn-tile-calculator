@@ -11,6 +11,10 @@ public class OFraction extends Operand {
         this.fraction = fraction;
     }
 
+    public OFraction(int nom, int den) {
+        this.fraction = new Fraction(nom, den);
+    }
+
     public @NotNull Fraction getFraction() {
         return fraction;
     }
@@ -32,6 +36,13 @@ public class OFraction extends Operand {
 
     @Override public @NotNull OFraction inverseValue() {
         return new OFraction(fraction.reciprocal());
+    }
+
+    @NotNull @Override public String toString() {
+        return String.format("(%s/%s)",
+                DoubleFormatter.format(fraction.getNumerator()),
+                DoubleFormatter.format(fraction.getDenominator())
+        );
     }
 
 }

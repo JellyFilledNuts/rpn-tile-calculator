@@ -45,4 +45,16 @@ public class OTuple extends Operand {
         return new OTuple(newTuple);
     }
 
+    @NotNull @Override public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        for (double d : tuple) {
+            builder.append(DoubleFormatter.format(d));
+            builder.append(", ");
+        }
+        builder.delete(builder.length() - 2, builder.length());
+        builder.append(")");
+        return builder.toString();
+    }
+
 }
