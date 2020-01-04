@@ -1,19 +1,19 @@
 package de.fhdw.wip.rpntilecalculator.core.calculation;
 
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.OSet;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.OTuple;
-        import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.OSet;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.OTuple;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
-        import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-        import org.jetbrains.annotations.Contract;
-        import org.jetbrains.annotations.NotNull;
+import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-        import java.util.HashSet;
-        import java.util.Set;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Summary: Defines the Sinus action.
@@ -40,7 +40,6 @@ public class Sinus extends Action {
      */
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = true;
         scopedAction = this;
         return super.with(operands);
     }
@@ -54,9 +53,18 @@ public class Sinus extends Action {
      * @param oDouble2 second operand
      * @return product of params
      */
-    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble1, @NotNull ODouble oDouble2) {
+    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
+        return new ODouble(Math.sin(angle.getDouble()));
+    }
 
-        return new ODouble(oDouble1.getDouble() * oDouble2.getDouble());
+    /*
+     * Multiplying ODouble and ODouble
+     * @param oDouble1 first operand
+     * @param oDouble2 second operand
+     * @return product of params
+     */
+    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble adjacentSide, @NotNull ODouble reversedSide) {
+        return new ODouble(Math.asin(adjacentSide.getDouble() / reversedSide.getDouble()));
     }
 
     //endregion
