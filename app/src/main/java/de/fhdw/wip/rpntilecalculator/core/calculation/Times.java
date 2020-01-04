@@ -83,7 +83,7 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OSet on(@NotNull ODouble oDouble, @NotNull OSet oSet) {
         Set<Double> newSet = new HashSet<>();
-        for (double d : oSet.getDoubleSet())
+        for (double d : oSet.getSet())
             newSet.add(d * oDouble.getDouble());
         return new OSet(newSet);
     }

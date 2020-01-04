@@ -13,7 +13,7 @@ public class OSet extends Operand {
         this.set = set;
     }
 
-    @NotNull public Set<Double> getDoubleSet() {
+    @NotNull public Set<Double> getSet() {
         return set;
     }
 
@@ -36,6 +36,13 @@ public class OSet extends Operand {
         for (double d : set)
             newSet.add(1 / d);
         return new OSet(newSet);
+    }
+
+    @Override public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OSet)) return false;
+
+        return set.containsAll(((OSet) operand).getSet());
     }
 
     @NotNull @Override public String toString() {

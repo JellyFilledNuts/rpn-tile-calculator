@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OTuple extends Operand {
@@ -43,6 +44,14 @@ public class OTuple extends Operand {
         for (double d : tuple)
             newTuple.add(1 / d);
         return new OTuple(newTuple);
+    }
+
+    @Override
+    public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OTuple)) return false;
+
+        return Arrays.equals(tuple, ((OTuple) operand).getTuple());
     }
 
     @NotNull @Override public String toString() {
