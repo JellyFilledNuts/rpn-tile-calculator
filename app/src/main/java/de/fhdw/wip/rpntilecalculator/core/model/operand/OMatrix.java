@@ -5,7 +5,6 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -58,7 +57,7 @@ public class OMatrix extends Operand {
         if (operand == this) return true;
         if (!(operand instanceof OMatrix)) return false;
 
-        return Arrays.deepEquals(
+        return DoubleComparator.isEqual(
                 matrix.getData(),
                 ((OMatrix) operand).getMatrix().getData()
         );

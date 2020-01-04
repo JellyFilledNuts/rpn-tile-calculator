@@ -42,7 +42,7 @@ public class OSet extends Operand {
         if (operand == this) return true;
         if (!(operand instanceof OSet)) return false;
 
-        return set.containsAll(((OSet) operand).getSet());
+        return DoubleComparator.isEqual(set, ((OSet) operand).getSet());
     }
 
     @NotNull @Override public String toString() {

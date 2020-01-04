@@ -20,7 +20,7 @@ import java.util.Set;
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public class Times extends Action {
 
     @NotNull private static final Times TIMES = new Times();

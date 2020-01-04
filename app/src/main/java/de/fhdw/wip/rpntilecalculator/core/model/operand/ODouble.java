@@ -39,7 +39,7 @@ public class ODouble extends Operand {
 
         double bDouble = ((ODouble) operand).getDouble();
 
-        return 0.00001 > Math.abs(aDouble - bDouble) / Math.max(Math.abs(aDouble), Math.abs(bDouble));
+        return DoubleComparator.isEqual(aDouble, bDouble);
     }
 
 }

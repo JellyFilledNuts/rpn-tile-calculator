@@ -3,15 +3,14 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class OTuple extends Operand {
 
     @NotNull private double[] tuple;
 
-    public OTuple(@NotNull double[] tuple) {
-        this.tuple = tuple;
+    public OTuple(@NotNull double... doubles) {
+        this.tuple = doubles;
     }
 
     private OTuple(@NotNull List<Double> tuple) {
@@ -51,7 +50,7 @@ public class OTuple extends Operand {
         if (operand == this) return true;
         if (!(operand instanceof OTuple)) return false;
 
-        return Arrays.equals(tuple, ((OTuple) operand).getTuple());
+        return DoubleComparator.isEqual(tuple, ((OTuple) operand).getTuple());
     }
 
     @NotNull @Override public String toString() {

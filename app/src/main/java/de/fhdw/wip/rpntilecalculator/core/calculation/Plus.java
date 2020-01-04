@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public class Plus extends Action {
 
     @NotNull private static final Plus PLUS = new Plus();
