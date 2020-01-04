@@ -3,6 +3,8 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+
 public class OPolynom extends Operand {
 
     @NotNull private PolynomialFunction function;
@@ -38,6 +40,17 @@ public class OPolynom extends Operand {
         for (int i = 0; i < doubles.length; i++)
             doubles[i] = 1 / doubles[i];
         return new OPolynom(new PolynomialFunction(doubles));
+    }
+
+    @Override
+    public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OPolynom)) return false;
+
+        return Arrays.equals(
+                function.getCoefficients(),
+                ((OPolynom) operand).getPolynom().getCoefficients()
+        );
     }
 
     @NotNull @Override public String toString() {

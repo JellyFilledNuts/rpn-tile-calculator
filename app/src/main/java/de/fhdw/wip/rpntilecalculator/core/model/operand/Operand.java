@@ -18,4 +18,6 @@ public abstract class Operand extends Element {
 
     public abstract @NotNull Operand inverseValue();
 
+    public abstract boolean equalsValue(Operand operand);
+
 }
