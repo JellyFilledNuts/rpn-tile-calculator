@@ -9,6 +9,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executer functions.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class Action {
 

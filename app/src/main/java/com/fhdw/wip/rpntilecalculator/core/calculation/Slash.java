@@ -15,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 public class Slash extends Action {
 
     @NotNull private static final Times TIMES = Times.getInstance();
-
     @NotNull private static final Slash SLASH = new Slash();
 
     @Contract(pure = true) @NotNull public static Slash getInstance() { return SLASH; }
