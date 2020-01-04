@@ -15,6 +15,8 @@ public class OFraction extends Operand {
         this.fraction = new Fraction(nom, den);
     }
 
+    public OFraction(@NotNull double doubleValue) {this.fraction = new Fraction(doubleValue); }
+
     public @NotNull Fraction getFraction() {
         return fraction;
     }

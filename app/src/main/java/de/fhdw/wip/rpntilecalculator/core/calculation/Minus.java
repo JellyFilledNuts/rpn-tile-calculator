@@ -23,7 +23,6 @@ public class Minus extends Action {
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = false;
         scopedAction = this;
         return super.with(operands);
     }
