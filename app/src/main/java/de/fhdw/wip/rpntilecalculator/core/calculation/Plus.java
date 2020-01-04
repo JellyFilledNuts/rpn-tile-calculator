@@ -15,6 +15,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ * Summary: Defines the Plus action. Lets the user add operands.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class Plus extends Action {
 

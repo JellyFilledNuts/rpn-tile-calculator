@@ -7,6 +7,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
+
+/*
+ * Summary: Wrapper for the Matrix Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 @SuppressWarnings("unused")
 public class OMatrix extends Operand {
 
