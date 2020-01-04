@@ -3,6 +3,8 @@ package de.fhdw.wip.rpntilecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import de.fhdw.wip.rpntilecalculator.core.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
@@ -14,6 +16,9 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import de.fhdw.wip.rpntilecalculator.core.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.core.ui.Tile;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileLayout;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         test();
+
+        drawLayout(new TileLayout("DEFAULT"));
     }
 
     public void test(){
@@ -68,5 +75,15 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println();
         OPERAND_STACK.print();
+    }
+
+    public void drawLayout(TileLayout tileLayout) {
+        TableRow tableLayout = findViewById(R.id.tableLayout);
+        new Tile(this);
+
+    }
+
+    public void give(String text, TileType type) {
+        // Typ.Action.do(text)
     }
 }

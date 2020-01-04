@@ -3,4 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="operatorBlueBackground">#dae3f3</color>
+    <color name="operatorBlueBorder">#4472c4</color>
+    <color name="operandWhiteBackground">#ffffff</color>
+    <color name="operandWhiteBorder">#000000</color>
+    <color name="operandOrangeBackground">#fbe5d6</color>
+    <color name="operandOrangeBorder">#ed7d31</color>
+    <color name="stackGreenBackground">#e2f0d9</color>
+    <color name="stackGreenBorder">#70ad47</color>
+
 </resources>
