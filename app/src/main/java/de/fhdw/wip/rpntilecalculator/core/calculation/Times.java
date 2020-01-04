@@ -39,7 +39,6 @@ public class Times extends Action {
      */
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = true;
         scopedAction = this;
         return super.with(operands);
     }
@@ -67,6 +66,15 @@ public class Times extends Action {
         return new ODouble(oDouble.getDouble() * oFraction.getDouble());
     }
 
+    @Contract(pure = true) @NotNull ODouble on(@NotNull OFraction oFraction, @NotNull ODouble oDouble) {
+        return on(oDouble, oFraction);
+    }
+
+    // endregion
+
+    //region OSet
+    //------------------------------------------------------------------------------------
+
     /*
      * Multiplying ODouble and oSet
      * @param oDouble first operand
@@ -80,6 +88,10 @@ public class Times extends Action {
         return new OSet(newSet);
     }
 
+    @Contract(pure = true) @NotNull OSet on(@NotNull OSet oSet, @NotNull ODouble oDouble) {
+        return on(oDouble, oSet);
+    }
+
     /*
      * Multiplying ODouble and oMatrix
      * @param oDouble first operand
@@ -88,6 +100,10 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OMatrix on(@NotNull ODouble oDouble, @NotNull OMatrix oMatrix) {
         return new OMatrix(oMatrix.getMatrix().scalarMultiply(oDouble.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull ODouble oDouble) {
+        return on(oDouble, oMatrix);
     }
 
     /*
@@ -102,6 +118,10 @@ public class Times extends Action {
         return new OPolynom(new PolynomialFunction(d));
     }
 
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull OPolynom oPolynom, @NotNull ODouble oDouble) {
+        return on(oDouble, oPolynom);
+    }
+
     /*
      * Multiplying ODouble and oTuple
      * @param oDouble first operand
@@ -114,6 +134,10 @@ public class Times extends Action {
         for (int i = 0; i < newTuple.length; i++)
             newTuple[i] = oldTuple[i] * oDouble.getDouble();
         return new OTuple(newTuple);
+    }
+
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple oTuple, @NotNull ODouble oDouble) {
+        return on(oDouble, oTuple);
     }
 
     //endregion
@@ -149,6 +173,10 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OFraction oFraction, @NotNull OMatrix oMatrix) {
         return new OMatrix(oMatrix.getMatrix().scalarAdd(oFraction.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull OFraction oFraction) {
+        return on(oFraction, oMatrix);
     }
 
     /*

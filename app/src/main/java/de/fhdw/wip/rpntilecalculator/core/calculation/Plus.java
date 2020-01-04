@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Plus extends Action {
 
     @NotNull private static final Plus PLUS = new Plus();
@@ -25,13 +25,9 @@ public class Plus extends Action {
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = true;
         scopedAction = this;
         return super.with(operands);
     }
-
-    //region Double
-    //------------------------------------------------------------------------------------
 
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble1, @NotNull ODouble oDouble2) {
         return new ODouble(oDouble1.getDouble() + oDouble2.getDouble());
@@ -41,6 +37,10 @@ public class Plus extends Action {
         return new ODouble(oDouble.getDouble() + oFraction.getDouble());
     }
 
+    @Contract(pure = true) @NotNull ODouble on(@NotNull OFraction oFraction, @NotNull ODouble oDouble) {
+        return on(oDouble, oFraction);
+    }
+
     @Contract(pure = true) @NotNull OSet on(@NotNull ODouble oDouble, @NotNull OSet oSet) {
         Set<Double> newSet = new HashSet<>();
         for (double d : oSet.getDoubleSet())
@@ -48,14 +48,26 @@ public class Plus extends Action {
         return new OSet(newSet);
     }
 
+    @Contract(pure = true) @NotNull OSet on(@NotNull OSet oSet, @NotNull ODouble oDouble) {
+        return on(oDouble, oSet);
+    }
+
     @Contract(pure = true) @NotNull OMatrix on(@NotNull ODouble oDouble, @NotNull OMatrix oMatrix) {
         return new OMatrix(oMatrix.getMatrix().scalarAdd(oDouble.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull ODouble oDouble) {
+        return on(oDouble, oMatrix);
     }
 
     @Contract(pure = true) @NotNull OPolynom on(@NotNull ODouble oDouble, @NotNull OPolynom oPolynom) {
         double[] d = oPolynom.getPolynom().getCoefficients();
         d[0] += oDouble.getDouble();
         return new OPolynom(new PolynomialFunction(d));
+    }
+
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull OPolynom oPolynom, @NotNull ODouble oDouble) {
+        return on(oDouble, oPolynom);
     }
 
     @Contract(pure = true) @NotNull OTuple on(@NotNull ODouble oDouble, @NotNull OTuple oTuple) {
@@ -66,10 +78,9 @@ public class Plus extends Action {
         return new OTuple(newTuple);
     }
 
-    //endregion
-
-    //region Fraction
-    //------------------------------------------------------------------------------------
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple oTuple, @NotNull ODouble oDouble) {
+        return on(oDouble, oTuple);
+    }
 
     @Contract(pure = true) @NotNull OFraction on(@NotNull OFraction oFraction1, @NotNull OFraction oFraction2) {
         return new OFraction(oFraction1.getFraction().add(oFraction2.getFraction()));
@@ -82,14 +93,26 @@ public class Plus extends Action {
         return new OSet(newSet);
     }
 
+    @Contract(pure = true) @NotNull OSet on(@NotNull OSet oSet, @NotNull OFraction oFraction) {
+        return on(oFraction, oSet);
+    }
+
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OFraction oFraction, @NotNull OMatrix oMatrix) {
         return new OMatrix(oMatrix.getMatrix().scalarAdd(oFraction.getDouble()));
+    }
+
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull OFraction oFraction) {
+        return on(oFraction, oMatrix);
     }
 
     @Contract(pure = true) @NotNull OPolynom on(@NotNull OFraction oFraction, @NotNull OPolynom oPolynom) {
         double[] d = oPolynom.getPolynom().getCoefficients();
         d[0] += oFraction.getDouble();
         return new OPolynom(new PolynomialFunction(d));
+    }
+
+    @Contract(pure = true) @NotNull OPolynom on(@NotNull OPolynom oPolynom, @NotNull OFraction oFraction) {
+        return on(oFraction, oPolynom);
     }
 
     @Contract(pure = true) @NotNull OTuple on(@NotNull OFraction oFraction, @NotNull OTuple oTuple) {
@@ -101,7 +124,9 @@ public class Plus extends Action {
         return new OTuple(newTuple);
     }
 
-    //endregion
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple oTuple, @NotNull OFraction oFraction) {
+        return on(oFraction, oTuple);
+    }
 
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix1, @NotNull OMatrix oMatrix2) {
         return new OMatrix(oMatrix1.getMatrix().add(oMatrix2.getMatrix()));
