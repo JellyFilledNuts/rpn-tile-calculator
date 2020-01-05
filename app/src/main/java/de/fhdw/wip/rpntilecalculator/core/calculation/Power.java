@@ -22,6 +22,7 @@ public class Power extends Action{
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

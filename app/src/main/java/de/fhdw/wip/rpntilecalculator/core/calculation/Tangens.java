@@ -31,7 +31,8 @@ import java.util.Set;
          * @return singleton object
          */
         @Contract(pure = true) @NotNull public static Tangens getInstance() { return TANGENS; }
-        private Tangens() { }
+        private Tangens() {
+        }
 
         /*
          * Multiplying ODouble and ODouble

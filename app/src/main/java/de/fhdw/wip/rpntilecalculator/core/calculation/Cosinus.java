@@ -20,7 +20,7 @@ import java.util.Set;
      * Author:  Jannis Luca Keienburg
      * Date:    2020/01/04
      */
-    @SuppressWarnings({"unused", "WeakerAccess"})
+    @SuppressWarnings({"unused"})
     public class Cosinus extends Action {
 
         @NotNull
