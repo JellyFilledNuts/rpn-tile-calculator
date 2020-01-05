@@ -1,8 +1,13 @@
 package de.fhdw.wip.rpntilecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         test();
 
         drawLayout(new TileLayout("DEFAULT"));
@@ -78,9 +84,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void drawLayout(TileLayout tileLayout) {
-        TableRow tableLayout = findViewById(R.id.tableLayout);
-        new Tile(this);
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
 
+        tileLayout.setHeight(6);
+        tileLayout.setWidth(8);
+
+        TableLayout columns = new TableLayout(this);
+        columns.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        columns.setStretchAllColumns(true);
+        columns.setBackgroundColor(Color.BLUE);
+        for(int i = 0; i < tileLayout.getHeight(); i++) {
+            TableRow row = new TableRow(this);
+            row.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            row.setBackgroundColor(Color.BLACK);
+            for(int j = 0; j < tileLayout.getWidth(); j++) {
+                Button tile = new Tile(this);
+                tile.setText("#" + i + j);
+                tile.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                row.addView(tile, j);
+            }
+            columns.addView(row, i);
+        }
+        constraintLayout.addView(columns);
     }
 
     public void give(String text, TileType type) {

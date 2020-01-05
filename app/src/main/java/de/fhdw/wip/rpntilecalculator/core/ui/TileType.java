@@ -12,7 +12,7 @@ public enum TileType {
     O_MINUS("-", Minus.getInstance()),
     O_PLUS("+", Plus.getInstance()),
     O_SLASH("/", Slash.getInstance()),
-    O_Times("*", Times.getInstance());
+    O_TIMES("*", Times.getInstance());
 
     private String text;
     private Action action;
@@ -22,6 +22,21 @@ public enum TileType {
         this.action = action;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
 
 
 }
