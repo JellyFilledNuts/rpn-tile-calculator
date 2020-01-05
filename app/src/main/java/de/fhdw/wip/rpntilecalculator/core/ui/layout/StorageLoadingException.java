@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.core.ui;
+package de.fhdw.wip.rpntilecalculator.core.ui.layout;
 
 public class StorageLoadingException extends Exception {
 

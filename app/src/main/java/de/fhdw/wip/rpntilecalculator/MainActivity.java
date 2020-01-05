@@ -3,13 +3,7 @@ package de.fhdw.wip.rpntilecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import de.fhdw.wip.rpntilecalculator.core.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
@@ -21,9 +15,8 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import de.fhdw.wip.rpntilecalculator.core.stack.OperandStack;
-import de.fhdw.wip.rpntilecalculator.core.ui.Tile;
-import de.fhdw.wip.rpntilecalculator.core.ui.TileLayout;
-import de.fhdw.wip.rpntilecalculator.core.ui.TileScheme;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayout;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayoutLoader;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -43,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
         test();
 
-        drawLayout(new TileLayout("TEST2"));
+        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "TEST2");
+        drawLayout(testLayout);
     }
 
     public void test(){
@@ -86,33 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-
-        //Create table by first creating one column as TableLayout
-        TableLayout columns = new TableLayout(this);
-        columns.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        columns.setBackgroundColor(Color.BLUE);
-
-        //Creating the in tileLayout defined amount of rows
-        for(int i = 0; i < tileLayout.getTileLayout().length; i++) {
-
-            //Rows are of type TableRow, Layout is important!
-            TableRow row = new TableRow(this);
-            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
-            row.setGravity(Gravity.CENTER);
-            row.setBackgroundColor(Color.BLACK);
-
-            //Creating buttons which amount defines the amount of columns
-            for(int j = 0; j < tileLayout.getTileLayout()[i].length; j++) {
-
-                //For the design of the Button TileScheme is used and for the button itself Tile
-                TileScheme tileScheme = tileLayout.getTileLayout()[i][j];
-                Button tile = new Tile(this, tileScheme.getType(), tileScheme.getContent());
-                tile.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
-                row.addView(tile, j);
-            }
-            columns.addView(row, i);
-        }
-        constraintLayout.addView(columns);
+        constraintLayout.addView(tileLayout.createView(this));
     }
 
     public void execute(String text, TileType type) {

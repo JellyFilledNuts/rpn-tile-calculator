@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.core.ui;
+package de.fhdw.wip.rpntilecalculator.core.ui.layout;
 
 /*
  * Summary: TileScheme contains the information about tiles and is used to create tiles and save them
@@ -7,6 +7,8 @@ package de.fhdw.wip.rpntilecalculator.core.ui;
 
 
 import org.jetbrains.annotations.NotNull;
+
+import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 
 public class TileScheme {
 
