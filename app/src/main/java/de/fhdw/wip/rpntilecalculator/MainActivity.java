@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
         test();
 
-        drawLayout(new TileLayout("TEST"));
+        drawLayout(new TileLayout("TEST2"));
     }
 
     public void test(){
@@ -87,17 +87,24 @@ public class MainActivity extends AppCompatActivity {
     public void drawLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
 
+        //Create table by first creating one column as TableLayout
         TableLayout columns = new TableLayout(this);
         columns.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         columns.setBackgroundColor(Color.BLUE);
 
+        //Creating the in tileLayout defined amount of rows
         for(int i = 0; i < tileLayout.getTileLayout().length; i++) {
+
+            //Rows are of type TableRow, Layout is important!
             TableRow row = new TableRow(this);
             row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
             row.setGravity(Gravity.CENTER);
             row.setBackgroundColor(Color.BLACK);
 
+            //Creating buttons which amount defines the amount of columns
             for(int j = 0; j < tileLayout.getTileLayout()[i].length; j++) {
+
+                //For the design of the Button TileScheme is used and for the button itself Tile
                 TileScheme tileScheme = tileLayout.getTileLayout()[i][j];
                 Button tile = new Tile(this, tileScheme.getType(), tileScheme.getContent());
                 tile.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
@@ -108,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.addView(columns);
     }
 
-    public void give(String text, TileType type) {
+    public void execute(String text, TileType type) {
+        // TODO
         // Typ.Action.do(text)
     }
 }

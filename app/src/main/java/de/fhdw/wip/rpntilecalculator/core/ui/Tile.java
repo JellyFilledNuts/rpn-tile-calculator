@@ -8,6 +8,11 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 
+/*
+ * Summary: Tile acts as button and forwards the connected type and action to the handler
+ * Author:  Tom Bockhorn
+ */
+
 public class Tile extends AppCompatButton {
 
     private TileType type;
@@ -35,6 +40,6 @@ public class Tile extends AppCompatButton {
     }
 
     private void give() {
-        this.context.give(getText().toString(), type);
+        this.context.execute(getText().toString(), type);
     }
 }

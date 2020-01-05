@@ -9,26 +9,26 @@ import de.fhdw.wip.rpntilecalculator.core.calculation.Times;
 public enum TileType {
 
     STACK("", null),
-    OPERATOR("0", null),
+    OPERAND("0", null),
     O_MINUS("-", Minus.getInstance()),
     O_PLUS("+", Plus.getInstance()),
     O_SLASH("/", Slash.getInstance()),
     O_TIMES("*", Times.getInstance());
 
-    private String text;
+    private String displayText;
     private Action action;
 
     TileType(String text, Action action) {
-        this.text = text;
+        this.displayText = text;
         this.action = action;
     }
 
-    public String getText() {
-        return text;
+    public String getDisplayText() {
+        return displayText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDisplayText(String displayText) {
+        this.displayText = displayText;
     }
 
     public Action getAction() {
@@ -38,6 +38,5 @@ public enum TileType {
     public void setAction(Action action) {
         this.action = action;
     }
-
 
 }
