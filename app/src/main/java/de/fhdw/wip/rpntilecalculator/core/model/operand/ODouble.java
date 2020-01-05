@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ODouble extends Operand {
 
@@ -30,6 +31,15 @@ public class ODouble extends Operand {
 
     @NotNull @Override public String toString() {
         return DoubleFormatter.format(aDouble);
+    }
+
+    @Override public boolean equalsValue(@Nullable Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof ODouble)) return false;
+
+        double bDouble = ((ODouble) operand).getDouble();
+
+        return DoubleComparator.isEqual(aDouble, bDouble);
     }
 
 }

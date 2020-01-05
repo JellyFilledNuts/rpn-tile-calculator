@@ -29,6 +29,7 @@ public class Power extends Action{
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }
@@ -58,7 +59,7 @@ public class Power extends Action{
     //region Matrix
     //------------------------------------------------------------------------------------
 
-    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix base, @NotNull ODouble exponent) throws CalculationException{
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix base, @NotNull ODouble exponent) {
         if(base.getMatrix().isSquare()) {
             OMatrix resultMatrix = TIMES.on(base, base);
 
@@ -69,7 +70,7 @@ public class Power extends Action{
             return resultMatrix;
         }else
         {
-            throw new CalculationException("You need a square matrix for power operation.");
+            throw new IllegalArgumentException("You need a square matrix for power operation.");
         }
     }
 
@@ -80,7 +81,7 @@ public class Power extends Action{
     //region Vector
     //------------------------------------------------------------------------------------
 
-    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple base, @NotNull ODouble exponent) throws CalculationException{
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple base, @NotNull ODouble exponent) {
         double[] arrayTuple = base.getTuple();
         if(arrayTuple.length == 1)
         {
@@ -88,11 +89,11 @@ public class Power extends Action{
             return new OTuple(arrayTuple);
         }else
         {
-            throw new CalculationException("You need a square matrix for power operation.");
+            throw new IllegalArgumentException("You need a square matrix for power operation.");
         }
     }
 
-    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple base, @NotNull OFraction exponent) throws CalculationException{
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple base, @NotNull OFraction exponent) {
         return on(base, new ODouble(exponent.getDouble()));
     }
 }

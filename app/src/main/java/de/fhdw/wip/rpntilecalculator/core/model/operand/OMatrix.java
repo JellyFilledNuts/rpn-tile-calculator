@@ -5,6 +5,8 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -16,20 +18,20 @@ public class OMatrix extends Operand {
         this.matrix = matrix;
     }
 
-    public OMatrix(@NotNull List<List<Double>> doubleMatrix) {
-        int longestColumn = 0;
+    public OMatrix(@NotNull double[][] doubleMatrix) {
+        int longest = 0;
 
-        // Get longest second dimension
-        for (List<Double> column : doubleMatrix)
-            if (column.size() > longestColumn) longestColumn = column.size();
+        for (double[] dim1 : doubleMatrix)
+            if (dim1.length > longest) longest = dim1.length;
 
-        // Fill up all second dimensions to match length of longest dimension
-        for (List<Double> column : doubleMatrix)
-            if (column.size() < longestColumn)
-                while (column.size() < longestColumn)
-                    column.add(0d);
+        double[][] modified = new double[doubleMatrix.length][longest];
+        for (int i = 0; i < doubleMatrix.length; i++)
+            System.arraycopy(
+                    doubleMatrix[i], 0,
+                    modified[i], 0, doubleMatrix[i].length
+            );
 
-        matrix = new Array2DRowRealMatrix();
+        matrix = new Array2DRowRealMatrix(modified);
     }
 
     public @NotNull RealMatrix getMatrix() {
@@ -50,6 +52,17 @@ public class OMatrix extends Operand {
 
     @Override public @NotNull OMatrix inverseValue() {
         return new OMatrix(MatrixUtils.inverse(matrix));
+    }
+
+    @Override
+    public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OMatrix)) return false;
+
+        return DoubleComparator.isEqual(
+                matrix.getData(),
+                ((OMatrix) operand).getMatrix().getData()
+        );
     }
 
     @NotNull @Override public String toString() {

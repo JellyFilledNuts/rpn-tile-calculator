@@ -20,7 +20,7 @@ import java.util.Set;
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public class Times extends Action {
 
     @NotNull private static final Times TIMES = new Times();
@@ -39,6 +39,7 @@ public class Times extends Action {
      */
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }
@@ -83,7 +84,7 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OSet on(@NotNull ODouble oDouble, @NotNull OSet oSet) {
         Set<Double> newSet = new HashSet<>();
-        for (double d : oSet.getDoubleSet())
+        for (double d : oSet.getSet())
             newSet.add(d * oDouble.getDouble());
         return new OSet(newSet);
     }
@@ -114,7 +115,8 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OPolynom on(@NotNull ODouble oDouble, @NotNull OPolynom oPolynom) {
         double[] d = oPolynom.getPolynom().getCoefficients();
-        d[0] *= oDouble.getDouble();
+        for (int i = 0; i < d.length; i++)
+            d[i] *= oDouble.getDouble();
         return new OPolynom(new PolynomialFunction(d));
     }
 
@@ -172,7 +174,7 @@ public class Times extends Action {
      * @return product of params
      */
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OFraction oFraction, @NotNull OMatrix oMatrix) {
-        return new OMatrix(oMatrix.getMatrix().scalarAdd(oFraction.getDouble()));
+        return new OMatrix(oMatrix.getMatrix().scalarMultiply(oFraction.getDouble()));
     }
 
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull OFraction oFraction) {

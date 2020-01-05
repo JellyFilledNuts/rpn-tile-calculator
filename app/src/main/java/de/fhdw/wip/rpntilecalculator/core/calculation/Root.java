@@ -24,6 +24,7 @@ public class Root extends Action{
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }
@@ -51,11 +52,11 @@ public class Root extends Action{
 
     //region Matrix
     //------------------------------------------------------------------------------------
-    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix radicand, @NotNull ODouble exponent) throws CalculationException{
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix radicand, @NotNull ODouble exponent) {
         return POWER.on(radicand, new ODouble(1/exponent.getDouble()));
     }
 
-    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix radicand, @NotNull OFraction exponent) throws CalculationException{
+    @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix radicand, @NotNull OFraction exponent) {
         return POWER.on(radicand, new ODouble(1/exponent.getDouble()));
     }
 
