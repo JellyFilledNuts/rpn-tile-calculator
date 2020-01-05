@@ -12,7 +12,7 @@ import java.util.Set;
 public class DoubleComparator {
 
     @Contract(pure = true) public static boolean isEqual(double d1, double d2) {
-        return Math.abs(d1 - d2) < 0.00001;
+        return Math.abs(d1 - d2) < 0.000001;
     }
 
     @Contract(pure = true) public static boolean isEqual(

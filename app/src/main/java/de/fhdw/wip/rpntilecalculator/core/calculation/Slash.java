@@ -67,7 +67,7 @@ public class Slash extends Action {
     @Contract(pure = true) @NotNull OSet on(@NotNull OSet oSet, @NotNull ODouble oDouble) {
         if (DoubleComparator.isZero(oDouble.getDouble()))
             throw new IllegalArgumentException("Division by Zero not allowed");
-        return TIMES.on(oDouble.turnAroundSign(), oSet);
+        return TIMES.on(oDouble.inverseValue(), oSet);
     }
 
     @Contract(pure = true) @NotNull OSet on(@NotNull OSet oSet, @NotNull OFraction oFraction) {
@@ -99,6 +99,9 @@ public class Slash extends Action {
     //------------------------------------------------------------------------------------
 
     @Contract(pure = true) @NotNull OPolynom on(@NotNull OPolynom oPolynom1, @NotNull OPolynom oPolynom2) {
+        for (double d : oPolynom2.getPolynom().getCoefficients())
+            if (DoubleComparator.isZero(d))
+                throw new IllegalArgumentException("Division by Zero not allowed");
         return new OPolynom(oPolynom1.getPolynom().multiply(oPolynom2.inverseValue().getPolynom()));
     }
 
@@ -120,6 +123,9 @@ public class Slash extends Action {
     //------------------------------------------------------------------------------------
 
     @Contract(pure = true) @NotNull OTuple on(@NotNull OTuple oTuple1, @NotNull OTuple oTuple2) {
+        for (double d : oTuple2.getTuple())
+            if (DoubleComparator.isZero(d))
+                throw new IllegalArgumentException("Division by Zero not allowed");
         return TIMES.on(oTuple1, oTuple2.inverseValue());
     }
 

@@ -114,7 +114,8 @@ public class Times extends Action {
      */
     @Contract(pure = true) @NotNull OPolynom on(@NotNull ODouble oDouble, @NotNull OPolynom oPolynom) {
         double[] d = oPolynom.getPolynom().getCoefficients();
-        d[0] *= oDouble.getDouble();
+        for (int i = 0; i < d.length; i++)
+            d[i] *= oDouble.getDouble();
         return new OPolynom(new PolynomialFunction(d));
     }
 
@@ -172,7 +173,7 @@ public class Times extends Action {
      * @return product of params
      */
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OFraction oFraction, @NotNull OMatrix oMatrix) {
-        return new OMatrix(oMatrix.getMatrix().scalarAdd(oFraction.getDouble()));
+        return new OMatrix(oMatrix.getMatrix().scalarMultiply(oFraction.getDouble()));
     }
 
     @Contract(pure = true) @NotNull OMatrix on(@NotNull OMatrix oMatrix, @NotNull OFraction oFraction) {
