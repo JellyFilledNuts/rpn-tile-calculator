@@ -20,16 +20,14 @@ public class PlusTest {
         assertTrue(PLUS.on(
                 new ODouble(5),
                 new ODouble(5)
-                ).equalsValue(new ODouble(10))
-        );
+                ).equalsValue(new ODouble(10)));
     }
 
     @Test public void on_DoubleFraction_isCorrect() {
         assertTrue(PLUS.on(
                 new OFraction(2, 4),
                 new OFraction(2, 4)
-                ).equalsValue(new OFraction(1, 1))
-        );
+                ).equalsValue(new OFraction(1, 1)));
     }
 
     @Test public void on_FractionDouble_isCorrect() {
