@@ -8,6 +8,13 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Contract;
 
+/*
+ * Summary: Defines the Root action.
+ * Author:  Getuart Istogu
+ * Date:    2020/01/04
+ */
+
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Root extends Action{
     @NotNull private static final Root ROOT = new Root();
     @NotNull private static final Power POWER = Power.getInstance();
@@ -17,7 +24,6 @@ public class Root extends Action{
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = true;
         scopedAction = this;
         return super.with(operands);
     }

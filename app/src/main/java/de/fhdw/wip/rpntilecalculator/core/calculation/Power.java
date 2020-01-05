@@ -12,6 +12,13 @@ import java.lang.reflect.Array;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Contract;
 
+/*
+ * Summary: Defines the Power action.
+ * Author:  Getuart Istogu
+ * Date:    2020/01/04
+ */
+
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Power extends Action{
 
     @NotNull private static final Power POWER = new Power();
@@ -22,7 +29,6 @@ public class Power extends Action{
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = true;
         scopedAction = this;
         return super.with(operands);
     }
