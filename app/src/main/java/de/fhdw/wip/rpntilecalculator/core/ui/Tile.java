@@ -13,19 +13,17 @@ public class Tile extends AppCompatButton {
     private TileType type;
     private MainActivity context;
 
-    public Tile(Context context) {
+    public Tile(Context context, TileType type, String text) {
         super(context);
         this.context = (MainActivity) context;
+        this.type = type;
+        this.setText(text);
 
         setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 give();
             }
         });
-    }
-
-    public void setText(String text) {
-        this.setText(text);
     }
 
     public TileType getType() {

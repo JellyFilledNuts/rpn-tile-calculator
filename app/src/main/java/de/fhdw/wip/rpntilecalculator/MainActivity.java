@@ -5,7 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -23,6 +23,7 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import de.fhdw.wip.rpntilecalculator.core.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.core.ui.Tile;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileLayout;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileScheme;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_main);
         test();
 
-        drawLayout(new TileLayout("DEFAULT"));
+        drawLayout(new TileLayout("TEST"));
     }
 
     public void test(){
@@ -86,21 +87,20 @@ public class MainActivity extends AppCompatActivity {
     public void drawLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
 
-        tileLayout.setHeight(6);
-        tileLayout.setWidth(8);
-
         TableLayout columns = new TableLayout(this);
-        columns.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        columns.setStretchAllColumns(true);
+        columns.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         columns.setBackgroundColor(Color.BLUE);
-        for(int i = 0; i < tileLayout.getHeight(); i++) {
+
+        for(int i = 0; i < tileLayout.getTileLayout().length; i++) {
             TableRow row = new TableRow(this);
-            row.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
+            row.setGravity(Gravity.CENTER);
             row.setBackgroundColor(Color.BLACK);
-            for(int j = 0; j < tileLayout.getWidth(); j++) {
-                Button tile = new Tile(this);
-                tile.setText("#" + i + j);
-                tile.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            for(int j = 0; j < tileLayout.getTileLayout()[i].length; j++) {
+                TileScheme tileScheme = tileLayout.getTileLayout()[i][j];
+                Button tile = new Tile(this, tileScheme.getType(), tileScheme.getContent());
+                tile.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
                 row.addView(tile, j);
             }
             columns.addView(row, i);
