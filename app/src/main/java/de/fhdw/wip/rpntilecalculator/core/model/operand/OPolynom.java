@@ -11,7 +11,7 @@ public class OPolynom extends Operand {
         this.polynom = polynom;
     }
 
-    public OPolynom(@NotNull double[] coefficients) {
+    public OPolynom(@NotNull double... coefficients) {
         this.polynom = new PolynomialFunction(coefficients);
     }
 

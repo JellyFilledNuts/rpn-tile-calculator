@@ -61,4 +61,9 @@ public class DoubleComparator {
         return isEqual(d1ArrayPrim, d2ArrayPrim);
     }
 
+    @Contract(pure = true) public static boolean isZero(double d) {
+        double delta = 0.00001;
+        return d < delta && d > -1d * delta;
+    }
+
 }

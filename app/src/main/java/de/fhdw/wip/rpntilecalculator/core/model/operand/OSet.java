@@ -2,6 +2,8 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +13,14 @@ public class OSet extends Operand {
 
     public OSet(@NotNull Set<Double> set) {
         this.set = set;
+    }
+
+    public OSet(@NotNull double... doubles) {
+        ArrayList<Double> list = new ArrayList<>();
+        for (double d : doubles) list.add(d);
+
+        this.set = new HashSet<>();
+        this.set.addAll(list);
     }
 
     @NotNull public Set<Double> getSet() {
