@@ -67,8 +67,8 @@ public class TileLayoutLoader {
 
     private static TileScheme[][] decryptLayout(@NotNull String layoutText) throws StorageLoadingException {
         //Format is:
-        //OPERAND;1;;OPERAND;2;;OPERAND;3;;;
-        //OPERAND;4;;O_MINUS;-;;O_PLUS;;;
+        //O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;
+        //O_DOUBLE;4;;A_MINUS;-;;A_PLUS;;;
 
         ArrayList<ArrayList<TileScheme>> tileRows = new ArrayList<>();
 
@@ -81,15 +81,19 @@ public class TileLayoutLoader {
                 String[] values = column.split(VALUE_SEPERATOR);
 
                 //Convert string enum to real enum
-                TileType type = null;
+                TileMapping mappedTile = null;
                 try{
-                    type = Enum.valueOf(TileType.class, values[0]);
+                    mappedTile = Enum.valueOf(TileMapping.class, values[0]);
                 } catch (Exception e) {
                     throw new StorageLoadingException("The value " + values[0] + " could not be deciphered.");
                 }
 
                 //Add tilescheme to tilerow
-                tileRow.add(new TileScheme(type, values[1]));
+                if(TileType.isAction(mappedTile.getType())) {
+                    tileRow.add(new TileScheme(mappedTile.getType(), mappedTile.getActionText(), mappedTile.getActionType()));
+                } else if(TileType.isOperand(mappedTile.getType())) {
+                    //LOAD ENUM AND SHIT
+                }
             }
             //Add tilerow to tilerows
             tileRows.add(tileRow);

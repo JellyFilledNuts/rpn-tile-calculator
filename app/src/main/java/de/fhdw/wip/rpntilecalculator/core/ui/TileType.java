@@ -1,42 +1,25 @@
 package de.fhdw.wip.rpntilecalculator.core.ui;
 
-import de.fhdw.wip.rpntilecalculator.core.calculation.Action;
-import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
-import de.fhdw.wip.rpntilecalculator.core.calculation.Plus;
-import de.fhdw.wip.rpntilecalculator.core.calculation.Slash;
-import de.fhdw.wip.rpntilecalculator.core.calculation.Times;
-
 public enum TileType {
 
-    STACK("", null),
-    OPERAND("0", null),
-    O_MINUS("-", Minus.getInstance()),
-    O_PLUS("+", Plus.getInstance()),
-    O_SLASH("/", Slash.getInstance()),
-    O_TIMES("*", Times.getInstance());
+    STACK,
+    OPERAND,
+    ACTION,
+    SETTING;
 
-    private String displayText;
-    private Action action;
-
-    TileType(String text, Action action) {
-        this.displayText = text;
-        this.action = action;
+    public static boolean isStack(TileType type) {
+        return type == STACK;
     }
 
-    public String getDisplayText() {
-        return displayText;
+    public static boolean isOperand(TileType type) {
+        return type == OPERAND;
     }
 
-    public void setDisplayText(String displayText) {
-        this.displayText = displayText;
+    public static boolean isAction(TileType type) {
+        return type == ACTION;
     }
 
-    public Action getAction() {
-        return action;
+    public static boolean isSetting(TileType type) {
+        return type == SETTING;
     }
-
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
 }
