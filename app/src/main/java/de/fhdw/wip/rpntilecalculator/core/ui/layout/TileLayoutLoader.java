@@ -14,19 +14,24 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileMapping;
 
 public class TileLayoutLoader {
 
-    private final static String VALUE_SEPERATOR = ";";
+    final static String VALUE_SEPERATOR = ";";
     private final static String COLUMN_SEPERATOR = ";;";
     private final static String ROW_SEPERATOR = ";;;";
 
-    @NotNull
+    /**
+     * Loads a saved or hard coded layout
+     * @param context activity, from which to access storage
+     * @param indicator name of the layout
+     * @return TileLayout
+     */
     public static TileLayout loadLayout(@NotNull Context context, @NotNull String indicator) {
         String layout = "";
         if(indicator.equals("TEST2")) {
-            layout = "OPERAND;1;;OPERAND;2;;OPERAND;3;;;OPERAND;5;;O_MINUS;-;;O_PLUS;+";
+            layout = "O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;O_DOUBLE;5;;A_MINUS;-;;A_PLUS;+";
         } else if(indicator.equals("TEST3")) {
             layout = readFromFile(context, "TEST3FROMSTRING");
         }
@@ -53,18 +58,29 @@ public class TileLayoutLoader {
         }
     }
 
+    /**
+     * Transforms the layout array into a string
+     * @param tileLayout layout to be transformed
+     * @return text of layout
+     */
     private static String encryptLayout(@NotNull TileScheme[][] tileLayout) {
         StringBuilder layoutText = new StringBuilder();
         for(int i = 0; i < tileLayout.length; i++) {
             for(int j = 0; j < tileLayout[i].length; j++) {
-                layoutText.append(tileLayout[i][j].getType().toString()).append(";");
-                layoutText.append(tileLayout[i][j].getContent()).append(";;");
+                TileScheme scheme = tileLayout[i][j];
+                layoutText.append(scheme.toString()).append(COLUMN_SEPERATOR);
             }
             layoutText.append(";");
         }
         return layoutText.toString();
     }
 
+    /**
+     * Transforms the layout text into a layout array consisting of TileSchemes
+     * @param layoutText layoutText from file
+     * @return TileScheme[][] layout
+     * @throws StorageLoadingException if a tile in the file could not be read
+     */
     private static TileScheme[][] decryptLayout(@NotNull String layoutText) throws StorageLoadingException {
         //Format is:
         //O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;
@@ -79,21 +95,21 @@ public class TileLayoutLoader {
             ArrayList<TileScheme> tileRow = new ArrayList<>();
             for(String column : columns) {
                 String[] values = column.split(VALUE_SEPERATOR);
+                //value[0] = Enum Object (TileMapping)
+                //value[1] = display text / operand value
 
                 //Convert string enum to real enum
-                TileMapping mappedTile = null;
+                TileMapping tileType = null;
                 try{
-                    mappedTile = Enum.valueOf(TileMapping.class, values[0]);
+                    tileType = Enum.valueOf(TileMapping.class, values[0]);
                 } catch (Exception e) {
                     throw new StorageLoadingException("The value " + values[0] + " could not be deciphered.");
                 }
 
                 //Add tilescheme to tilerow
-                if(TileType.isAction(mappedTile.getType())) {
-                    tileRow.add(new TileScheme(mappedTile.getType(), mappedTile.getActionText(), mappedTile.getActionType()));
-                } else if(TileType.isOperand(mappedTile.getType())) {
-                    //LOAD ENUM AND SHIT
-                }
+                System.out.println("Creating TileScheme <" + tileType + ":" + values[1] + ">");
+                TileScheme scheme = TileScheme.createTileScheme(tileType, values[1]);
+                tileRow.add(scheme);
             }
             //Add tilerow to tilerows
             tileRows.add(tileRow);

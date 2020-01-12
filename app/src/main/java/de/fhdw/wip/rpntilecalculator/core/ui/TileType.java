@@ -7,19 +7,19 @@ public enum TileType {
     ACTION,
     SETTING;
 
-    public static boolean isStack(TileType type) {
-        return type == STACK;
+    public boolean isStack() {
+        return this == STACK;
     }
 
-    public static boolean isOperand(TileType type) {
-        return type == OPERAND;
+    public boolean isOperand() {
+        return this == OPERAND;
     }
 
-    public static boolean isAction(TileType type) {
-        return type == ACTION;
+    public boolean isAction() {
+        return this == ACTION;
     }
 
-    public static boolean isSetting(TileType type) {
-        return type == SETTING;
+    public boolean isSetting() {
+        return this== SETTING;
     }
 }

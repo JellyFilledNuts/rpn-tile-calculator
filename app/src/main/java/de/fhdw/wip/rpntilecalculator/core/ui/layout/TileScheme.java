@@ -6,44 +6,45 @@ package de.fhdw.wip.rpntilecalculator.core.ui.layout;
  */
 
 
+import androidx.annotation.NonNull;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import de.fhdw.wip.rpntilecalculator.core.calculation.Action;
-import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileMapping;
 
-public class TileScheme {
+public abstract class TileScheme {
 
-    @NotNull private TileType type;
-    @NotNull private String content;
-    @Nullable private Action action;
-    @Nullable private Operand operand;
+    @NotNull private TileMapping tileType;
+    @Nullable private String content;
 
-    TileScheme(@NotNull TileType type, @NotNull String content, @NotNull Operand operand) {
-        this(type, content, null, operand);
-    }
-
-    TileScheme(@NotNull TileType type, @NotNull String content, @NotNull Action action) {
-        this(type, content, action, null);
-    }
-
-    TileScheme(@NotNull TileType type, @NotNull String content, @Nullable Action action, @Nullable Operand operand) {
-        this.type = type;
+    TileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+        this.tileType = tileType;
         this.content = content;
-        this.action = action;
-        this.operand = operand;
+    }
+
+    /**
+     * Factory method that creates a TileScheme depending on the type
+     * @param tileType exact type of the scheme (determines the subclass)
+     * @param content content
+     * @return Type of TileScheme that inherits TileScheme.class
+     */
+    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+        if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
+        else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
+        else {return null;}
     }
 
     @NotNull
-    public TileType getType() {
-        return type;
+    public TileMapping getTileType() {
+        return tileType;
     }
 
-    public void setType(@NotNull TileType type) {
-        this.type = type;
+    public void setTileType(@NotNull TileMapping tileType) {
+        this.tileType = tileType;
     }
 
-    @NotNull
+    @Nullable
     public String getContent() {
         return content;
     }
@@ -52,19 +53,11 @@ public class TileScheme {
         this.content = content;
     }
 
-    public Action getAction() {
-        return action;
-    }
-
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
-    public Operand getOperand() {
-        return operand;
-    }
-
-    public void setOperand(Operand operand) {
-        this.operand = operand;
+    @NonNull
+    @Override
+    public String toString() {
+        //O_DOUBLE;20
+        //A_MINUS;-
+        return tileType.toString() + TileLayoutLoader.VALUE_SEPERATOR + content;
     }
 }

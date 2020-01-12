@@ -18,6 +18,7 @@ import de.fhdw.wip.rpntilecalculator.core.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayoutLoader;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileScheme;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
@@ -83,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.addView(tileLayout.createView(this));
     }
 
-    public void execute(String text, TileType type) {
+    public void execute(String text, TileScheme scheme) {
         // TODO
-        // Typ.Action.do(text)
+        System.out.println("Clicked: " + text + " from " + scheme.getTileType());
     }
 }

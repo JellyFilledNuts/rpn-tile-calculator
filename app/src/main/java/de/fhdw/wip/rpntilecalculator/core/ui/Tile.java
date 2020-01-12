@@ -5,8 +5,12 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatButton;
 
+import org.jetbrains.annotations.NotNull;
+
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileScheme;
 
 /*
  * Summary: Tile acts as button and forwards the connected type and action to the handler
@@ -15,28 +19,14 @@ import de.fhdw.wip.rpntilecalculator.core.calculation.Action;
 
 public class Tile extends AppCompatButton {
 
-    private TileType type;
     private MainActivity context;
+    private TileScheme scheme;
 
-    // Depending on the TileType, one of the following is filled
-    private Action action;
-    private Operand operand;
-
-    public Tile(Context context, TileType type, String text, Operand operand) {
-        this(context, type, text, null, operand);
-    }
-
-    public Tile(Context context, TileType type, String text, Action action) {
-        this(context, type, text, action, null);
-    }
-
-    public Tile(Context context, TileType type, String text, Action action, Operand operand) {
+    public Tile(@NotNull Context context, @NotNull TileScheme scheme) {
         super(context);
         this.context = (MainActivity) context;
-        this.type = type;
-        this.setText(text);
-        this.action = action;
-        this.operand = operand;
+        this.scheme = scheme;
+        this.setText(scheme.getContent());
 
         setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -45,15 +35,11 @@ public class Tile extends AppCompatButton {
         });
     }
 
-    public TileType getType() {
-        return type;
-    }
-
-    public void setType(TileType type) {
-        this.type = type;
-    }
-
     private void give() {
-        this.context.execute(getText().toString(), type);
+        this.context.execute(getText().toString(), scheme);
+    }
+
+    public TileScheme getScheme() {
+        return scheme;
     }
 }

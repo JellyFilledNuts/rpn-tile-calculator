@@ -52,7 +52,7 @@ public class TileLayout {
 
                 //For the design of the Button TileScheme is used and for the button itself Tile
                 TileScheme tileScheme = getTileLayout()[i][j];
-                Button tile = new Tile(context, tileScheme.getType(), tileScheme.getContent(), tileScheme.getAction(), tileScheme.getOperand());
+                Button tile = new Tile(context, tileScheme);
                 tile.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
                 row.addView(tile, j);
             }

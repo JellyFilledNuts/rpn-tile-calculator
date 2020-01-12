@@ -1,19 +1,24 @@
-package de.fhdw.wip.rpntilecalculator.core.ui.layout;
+package de.fhdw.wip.rpntilecalculator.core.ui;
 
 import de.fhdw.wip.rpntilecalculator.core.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
+import de.fhdw.wip.rpntilecalculator.core.calculation.Plus;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 
 public enum TileMapping {
 
-    O_DOUBLE(TileType.OPERAND, "ODouble"),
-    A_MINUS(TileType.ACTION, Minus.getInstance(), "-");
+    O_DOUBLE(TileType.OPERAND, ODouble.class, Double.class),
+    A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
+    A_PLUS(TileType.ACTION, Plus.getInstance(), "+");
 
 
     private TileType type;
     private Action actionType;
     private String actionText;
-    private String operandType;
+    private Class<? extends Operand> operandType;
+    private Class<?> operandValueType;
 
     TileMapping(TileType type, Action actionType, String actionText) {
         this.type = type;
@@ -21,9 +26,10 @@ public enum TileMapping {
         this.actionText = actionText;
     }
 
-    TileMapping(TileType type, String operandType) {
+    TileMapping(TileType type, Class<? extends Operand>  operandType, Class<?> operandValueType) {
         this.type = type;
         this.operandType = operandType;
+        this.operandValueType = operandValueType;
     }
 
     public TileType getType() {
@@ -34,7 +40,7 @@ public enum TileMapping {
         this.type = type;
     }
 
-    public String getOperandType() {
+    public Class<? extends Operand> getOperandType() {
         return operandType;
     }
 
@@ -44,5 +50,9 @@ public enum TileMapping {
 
     public String getActionText() {
         return actionText;
+    }
+
+    public Class<?> getOperandValueType() {
+        return operandValueType;
     }
 }
