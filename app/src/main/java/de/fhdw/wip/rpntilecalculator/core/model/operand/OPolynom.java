@@ -64,4 +64,11 @@ public class OPolynom extends Operand {
         return builder.toString();
     }
 
+
+    @NotNull public OPolynom getDerivative()
+    {
+        PolynomialFunction polynomialDerivative = polynom.polynomialDerivative();
+        return new OPolynom(polynomialDerivative);
+    }
+
 }

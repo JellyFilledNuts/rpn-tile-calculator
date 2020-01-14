@@ -2,6 +2,8 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
+import org.apache.commons.math3.primes.Primes;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +42,21 @@ public class ODouble extends Operand {
         double bDouble = ((ODouble) operand).getDouble();
 
         return DoubleComparator.isEqual(aDouble, bDouble);
+    }
+
+    /*
+    If number has a decimal part it returns false
+     */
+    public boolean isPrime()
+    {
+        if(this.aDouble % 1 == 0)
+        {
+            return Primes.isPrime((int) this.aDouble);
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

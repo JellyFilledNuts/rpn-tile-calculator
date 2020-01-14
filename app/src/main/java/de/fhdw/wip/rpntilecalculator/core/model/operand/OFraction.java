@@ -1,6 +1,7 @@
 package de.fhdw.wip.rpntilecalculator.core.model.operand;
 
 import org.apache.commons.math3.fraction.Fraction;
+import org.apache.commons.math3.primes.Primes;
 import org.jetbrains.annotations.NotNull;
 
 public class OFraction extends Operand {
@@ -53,6 +54,23 @@ public class OFraction extends Operand {
                 DoubleFormatter.format(fraction.getNumerator()),
                 DoubleFormatter.format(fraction.getDenominator())
         );
+    }
+
+    /*
+    If number has a decimal part it returns false
+    For the case if the Fraction is natural number
+     */
+    public boolean isPrime()
+    {
+        double doubleValue = getDouble();
+        if(doubleValue % 1 == 0)
+        {
+            return Primes.isPrime((int) doubleValue);
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }
