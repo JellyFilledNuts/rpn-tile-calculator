@@ -35,6 +35,9 @@ public class TileLayoutLoader {
         } else if(indicator.equals("TEST3")) {
             layout = readFromFile(context, "TEST3FROMSTRING");
         }
+        else if(indicator.equals("Standardlayout")) {
+            layout = "";
+        }
         try {
             return new TileLayout(indicator, decryptLayout(layout));
         } catch (StorageLoadingException e) {
