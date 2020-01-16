@@ -10,8 +10,16 @@ import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
 public enum TileMapping {
 
     O_DOUBLE(TileType.OPERAND, ODouble.class, Double.class),
+    O_FRACTION(TileType.OPERAND, OFraction.class, Fraction.class),
+    O_MATRIX(TileType.OPERAND, OMatrix.class, Matrix.class),
+    O_POLYNOM(TileType.OPERAND, OPolynom.class, Polynom.class),
+    O_SET(TileType.OPERAND, OSet.class, Set.class),
+    O_TUPLE(TileType.OPERAND, OTuple.class, Tuple.class),
+    
     A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
-    A_PLUS(TileType.ACTION, Plus.getInstance(), "+");
+    A_PLUS(TileType.ACTION, Plus.getInstance(), "+"),
+    A_Slash(TileType.ACTION, Slash.getInstance(), "/");
+    A_Times(TileType.ACTION, Times.getInstance(), "*");
 
 
     private TileType type;
