@@ -4,6 +4,11 @@ import de.fhdw.wip.rpntilecalculator.core.model.Element;
 
 import org.jetbrains.annotations.NotNull;
 
+/*
+ * Summary: Main class for all operands that can be used for calculating
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public abstract class Operand extends Element {
 
     /**

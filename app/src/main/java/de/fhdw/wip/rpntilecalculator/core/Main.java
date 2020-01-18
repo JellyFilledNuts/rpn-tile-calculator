@@ -15,6 +15,11 @@ import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
 import java.util.List;
 
+/* KANN GELÖSCHT WERDEN
+ * Summary: Wrapper for the Double Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class Main {
 
     private static final OperandStack OPERAND_STACK = new OperandStack();

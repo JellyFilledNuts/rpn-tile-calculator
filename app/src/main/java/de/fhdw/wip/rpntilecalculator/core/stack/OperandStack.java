@@ -10,6 +10,11 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+ * Summary: The Stack for the operands that is used for calculating
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public final class OperandStack implements StackInterface<Operand> {
 
     private final LinkedList<Operand> linkedList = new LinkedList<>();

@@ -3,6 +3,13 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.apache.commons.math3.fraction.Fraction;
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
+
+/*
+ * Summary: Wrapper for the Fraction Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class OFraction extends Operand {
 
     @NotNull private Fraction fraction;

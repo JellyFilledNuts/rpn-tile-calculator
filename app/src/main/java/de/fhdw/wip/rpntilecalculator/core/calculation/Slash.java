@@ -11,6 +11,11 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+/*
+ * Summary: Defines the Slash action. Lets the user divide operands.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Slash extends Action {
 

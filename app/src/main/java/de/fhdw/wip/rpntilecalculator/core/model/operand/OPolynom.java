@@ -3,6 +3,13 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
+
+/*
+ * Summary: Wrapper for the Polynom Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class OPolynom extends Operand {
 
     @NotNull private PolynomialFunction function;
@@ -15,7 +22,7 @@ public class OPolynom extends Operand {
         this.function = new PolynomialFunction(coefficients);
     }
 
-    public @NotNull PolynomialFunction getPolynom() {
+    @NotNull public PolynomialFunction getPolynom() {
         return function;
     }
 
@@ -33,7 +40,7 @@ public class OPolynom extends Operand {
         return new OPolynom(new PolynomialFunction(doubles));
     }
 
-    @Override public @NotNull OPolynom inverseValue() {
+    @NotNull @Override public OPolynom inverseValue() {
         double[] doubles = function.getCoefficients();
         for (int i = 0; i < doubles.length; i++)
             doubles[i] = 1 / doubles[i];

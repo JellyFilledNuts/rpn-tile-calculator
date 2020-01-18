@@ -11,6 +11,11 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+/*
+ * Summary: Defines the Minus action. Lets the user subtract operands.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class Minus extends Action {
 
@@ -21,9 +26,7 @@ public class Minus extends Action {
     @Contract(pure = true) @NotNull public static Minus getInstance() { return MINUS; }
     private Minus() { }
 
-    @NotNull @Override
-    public Operand with(@NotNull Operand... operands) throws CalculationException {
-        positionDoesNotMatter = false;
+    @NotNull @Override public Operand with(@NotNull Operand... operands) throws CalculationException {
         scopedAction = this;
         return super.with(operands);
     }

@@ -1,10 +1,16 @@
 package de.fhdw.wip.rpntilecalculator.core.model.operand;
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.HashSet;
 import java.util.Set;
 
+import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
+
+/*
+ * Summary: Wrapper for the Set Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class OSet extends Operand {
 
     @NotNull private Set<Double> set;
