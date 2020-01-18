@@ -3,7 +3,10 @@ package de.fhdw.wip.rpntilecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import de.fhdw.wip.rpntilecalculator.core.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
@@ -34,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
         test();
 
-        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "TEST2");
+        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "Standardlayout");
         drawLayout(testLayout);
     }
 
@@ -81,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout.setBackgroundColor(Color.WHITE);
         constraintLayout.addView(tileLayout.createView(this));
+        setRequestedOrientation(tileLayout.getOrientation().getOrientation());
     }
 
     public void execute(String text, TileScheme scheme) {

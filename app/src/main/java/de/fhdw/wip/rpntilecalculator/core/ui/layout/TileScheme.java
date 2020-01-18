@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.core.ui.TileMapping;
 
 public abstract class TileScheme {
@@ -33,6 +34,11 @@ public abstract class TileScheme {
         if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
         else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
         else {return null;}
+    }
+
+    // gives back a drawable resource
+    public int getStyle() {
+        return tileType == TileMapping.X_ERROR ? R.drawable.tile_error : tileType.getType().getStyle();
     }
 
     @NotNull
