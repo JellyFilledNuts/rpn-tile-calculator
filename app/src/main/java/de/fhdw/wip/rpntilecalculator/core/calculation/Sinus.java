@@ -48,20 +48,14 @@ public class Sinus extends Action {
     //------------------------------------------------------------------------------------
 
     /*
-     * Multiplying ODouble and ODouble
-     * @param oDouble1 first operand
-     * @param oDouble2 second operand
-     * @return product of params
+     *
      */
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
         return new ODouble(Math.sin(angle.getDouble()));
     }
 
     /*
-     * Multiplying ODouble and ODouble
-     * @param oDouble1 first operand
-     * @param oDouble2 second operand
-     * @return product of params
+     *
      */
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble adjacentSide, @NotNull ODouble reversedSide) {
         return new ODouble(Math.asin(adjacentSide.getDouble() / reversedSide.getDouble()));
