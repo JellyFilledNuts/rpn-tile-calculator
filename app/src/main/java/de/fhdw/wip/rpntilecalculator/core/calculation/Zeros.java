@@ -14,10 +14,10 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
  */
 public class Zeros extends Action {
 
-    @NotNull private static final Zeros ZEROS = new Zeros();
+    @NotNull public static final Zeros ZEROS = new Zeros();
 
     @Contract(pure = true) @NotNull public static Zeros getInstance() { return ZEROS; }
-    private Zeros() { }
+    public Zeros() { }
 
 
     // Structure: via the method getCoefficients()

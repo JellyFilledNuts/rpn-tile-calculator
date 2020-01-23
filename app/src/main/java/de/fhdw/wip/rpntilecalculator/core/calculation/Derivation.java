@@ -15,10 +15,10 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
 
 public class Derivation extends Action {
 
-    @NotNull private static final Derivation DERIVATION = new Derivation();
+    @NotNull public static final Derivation DERIVATION = new Derivation();
 
     @Contract(pure = true) @NotNull public static Derivation getInstance() { return DERIVATION; }
-    private Derivation() { }
+    public Derivation() {    }
 
 
     // Structure: via the method getCoefficients()
