@@ -1,8 +1,12 @@
 package de.fhdw.wip.rpntilecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import de.fhdw.wip.rpntilecalculator.core.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.core.calculation.Minus;
@@ -14,6 +18,10 @@ import de.fhdw.wip.rpntilecalculator.core.model.operand.OFraction;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OMatrix;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 import de.fhdw.wip.rpntilecalculator.core.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayout;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileLayoutLoader;
+import de.fhdw.wip.rpntilecalculator.core.ui.TileType;
+import de.fhdw.wip.rpntilecalculator.core.ui.layout.TileScheme;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
@@ -29,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.setContentView(R.layout.activity_main);
         test();
+
+        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "Standardlayout");
+        drawLayout(testLayout);
     }
 
     public void test(){
@@ -68,5 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println();
         OPERAND_STACK.print();
+    }
+
+    public void drawLayout(TileLayout tileLayout) {
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout.setBackgroundColor(Color.WHITE);
+        constraintLayout.addView(tileLayout.createView(this));
+        setRequestedOrientation(tileLayout.getOrientation().getOrientation());
+    }
+
+    public void execute(String text, TileScheme scheme) {
+        // TODO
+        System.out.println("Clicked: " + text + " from " + scheme.getTileType());
     }
 }
