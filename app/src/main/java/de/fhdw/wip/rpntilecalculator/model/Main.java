@@ -1,11 +1,4 @@
-package de.fhdw.wip.rpntilecalculator;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.WindowManager;
+package de.fhdw.wip.rpntilecalculator.model;
 
 import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
@@ -17,33 +10,25 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileScheme;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+/* KANN GELÖSCHT WERDEN
+ * Summary: Wrapper for the Double Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
+public class Main {
+
     private static final OperandStack OPERAND_STACK = new OperandStack();
     private static final Plus PLUS = Plus.getInstance();
     private static final Minus MINUS = Minus.getInstance();
     private static final Slash SLASH = Slash.getInstance();
     private static final Times TIMES = Times.getInstance();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.setContentView(R.layout.activity_main);
-        test();
-
-        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "Standardlayout");
-        drawLayout(testLayout);
-    }
-
-    public void test(){
+    public static void main(String[] args) {
         ODouble oDouble1 = new ODouble(1);
         ODouble oDouble2 = new ODouble(2);
         ODouble oDouble3 = new ODouble(3);
@@ -81,15 +66,4 @@ public class MainActivity extends AppCompatActivity {
         OPERAND_STACK.print();
     }
 
-    public void drawLayout(TileLayout tileLayout) {
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setBackgroundColor(Color.WHITE);
-        constraintLayout.addView(tileLayout.createView(this));
-        setRequestedOrientation(tileLayout.getOrientation().getOrientation());
-    }
-
-    public void execute(String text, TileScheme scheme) {
-        // TODO
-        System.out.println("Clicked: " + text + " from " + scheme.getTileType());
-    }
 }
