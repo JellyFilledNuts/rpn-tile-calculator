@@ -14,10 +14,18 @@ import java.util.List;
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public abstract class Action {
 
+    /**
+     * Must be set by inheriting classes of {@link Action} for reflection to work.
+     */
     protected Action scopedAction;
+
+    /**
+     * Must be overridden in case the required number of operands is a fixed amount.
+     */
+    protected int requiredNumOfOperands = -1;
 
     @Contract(pure = true)
     public @NotNull Operand with(@NotNull List<Operand> operands) throws CalculationException {
@@ -50,6 +58,14 @@ public abstract class Action {
 
         if (resultOperand != null) return resultOperand;
         else throw new CalculationException();
+    }
+
+    /**
+     * @return Number of required operands for the concrete {@link Action}. If {@code -1}
+     * the number of operands required is variable.
+     */
+    public int getRequiredNumOfOperands() {
+        return requiredNumOfOperands;
     }
 
 }

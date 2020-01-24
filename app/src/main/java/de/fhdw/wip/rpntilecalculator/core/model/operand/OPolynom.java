@@ -3,53 +3,57 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
-
-/*
- * Summary: Wrapper for the Polynom Operand
- * Author:  Tim Schwenke
- * Date:    2020/01/04
- */
 public class OPolynom extends Operand {
 
-    @NotNull private PolynomialFunction function;
+    @NotNull private PolynomialFunction polynom;
 
-    public OPolynom(@NotNull PolynomialFunction function) {
-        this.function = function;
+    public OPolynom(@NotNull PolynomialFunction polynom) {
+        this.polynom = polynom;
     }
 
-    public OPolynom(@NotNull double[] coefficients) {
-        this.function = new PolynomialFunction(coefficients);
+    public OPolynom(@NotNull double... coefficients) {
+        this.polynom = new PolynomialFunction(coefficients);
     }
 
-    @NotNull public PolynomialFunction getPolynom() {
-        return function;
+    public @NotNull PolynomialFunction getPolynom() {
+        return polynom;
     }
 
     @NotNull @Override public OPolynom turnAroundSign() {
-        double[] doubles = function.getCoefficients();
+        double[] doubles = polynom.getCoefficients();
         for (int i = 0; i < doubles.length; i++)
             doubles[i] *= -1;
         return new OPolynom(new PolynomialFunction(doubles));
     }
 
     @NotNull @Override public OPolynom negateValue() {
-        double[] doubles = function.getCoefficients();
+        double[] doubles = polynom.getCoefficients();
         for (int i = 0; i < doubles.length; i++)
             doubles[i] = Math.abs(doubles[i]) * -1;
         return new OPolynom(new PolynomialFunction(doubles));
     }
 
-    @NotNull @Override public OPolynom inverseValue() {
-        double[] doubles = function.getCoefficients();
+    @Override public @NotNull OPolynom inverseValue() {
+        double[] doubles = polynom.getCoefficients();
         for (int i = 0; i < doubles.length; i++)
             doubles[i] = 1 / doubles[i];
         return new OPolynom(new PolynomialFunction(doubles));
     }
 
+    @Override
+    public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OPolynom)) return false;
+
+        return DoubleComparator.isEqual(
+                polynom.getCoefficients(),
+                ((OPolynom) operand).getPolynom().getCoefficients()
+        );
+    }
+
     @NotNull @Override public String toString() {
         StringBuilder builder = new StringBuilder();
-        double[] doubles = function.getCoefficients();
+        double[] doubles = polynom.getCoefficients();
         for (int i = 0; i < doubles.length; i++) {
             builder.append(DoubleFormatter.format(doubles[i]));
             builder.append("x^");
@@ -58,6 +62,13 @@ public class OPolynom extends Operand {
         }
         builder.delete(builder.length() - 3, builder.length());
         return builder.toString();
+    }
+
+
+    @NotNull public OPolynom getDerivative()
+    {
+        PolynomialFunction polynomialDerivative = polynom.polynomialDerivative();
+        return new OPolynom(polynomialDerivative);
     }
 
 }

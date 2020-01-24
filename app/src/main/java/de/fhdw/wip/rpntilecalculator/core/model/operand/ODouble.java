@@ -2,7 +2,10 @@ package de.fhdw.wip.rpntilecalculator.core.model.operand;
 
 import de.fhdw.wip.rpntilecalculator.core.model.DoubleFormatter;
 
+import org.apache.commons.math3.primes.Primes;
+
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /*
  * Summary: Wrapper for the Double Operand
@@ -60,6 +63,30 @@ public class ODouble extends Operand {
      */
     @NotNull @Override public String toString() {
         return DoubleFormatter.format(aDouble);
+    }
+
+    @Override public boolean equalsValue(@Nullable Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof ODouble)) return false;
+
+        double bDouble = ((ODouble) operand).getDouble();
+
+        return DoubleComparator.isEqual(aDouble, bDouble);
+    }
+
+    /*
+    If number has a decimal part it returns false
+     */
+    public boolean isPrime()
+    {
+        if(this.aDouble % 1 == 0)
+        {
+            return Primes.isPrime((int) this.aDouble);
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

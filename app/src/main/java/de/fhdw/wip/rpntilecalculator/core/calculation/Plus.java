@@ -15,12 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
- * Summary: Defines the Plus action. Lets the user add operands.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
- */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused"})
 public class Plus extends Action {
 
     @NotNull private static final Plus PLUS = new Plus();
@@ -30,6 +25,7 @@ public class Plus extends Action {
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }
@@ -48,7 +44,7 @@ public class Plus extends Action {
 
     @Contract(pure = true) @NotNull OSet on(@NotNull ODouble oDouble, @NotNull OSet oSet) {
         Set<Double> newSet = new HashSet<>();
-        for (double d : oSet.getDoubleSet())
+        for (double d : oSet.getSet())
             newSet.add(d + oDouble.getDouble());
         return new OSet(newSet);
     }
@@ -93,7 +89,7 @@ public class Plus extends Action {
 
     @Contract(pure = true) @NotNull OSet on(@NotNull OFraction oFraction, @NotNull OSet oSet) {
         Set<Double> newSet = new HashSet<>();
-        for (double d : oSet.getDoubleSet())
+        for (double d : oSet.getSet())
             newSet.add(d + oFraction.getDouble());
         return new OSet(newSet);
     }

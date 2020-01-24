@@ -15,8 +15,8 @@ public class OTuple extends Operand {
 
     @NotNull private double[] tuple;
 
-    public OTuple(@NotNull double[] tuple) {
-        this.tuple = tuple;
+    public OTuple(@NotNull double... doubles) {
+        this.tuple = doubles;
     }
 
     private OTuple(@NotNull List<Double> tuple) {
@@ -49,6 +49,14 @@ public class OTuple extends Operand {
         for (double d : tuple)
             newTuple.add(1 / d);
         return new OTuple(newTuple);
+    }
+
+    @Override
+    public boolean equalsValue(Operand operand) {
+        if (operand == this) return true;
+        if (!(operand instanceof OTuple)) return false;
+
+        return DoubleComparator.isEqual(tuple, ((OTuple) operand).getTuple());
     }
 
     @NotNull @Override public String toString() {

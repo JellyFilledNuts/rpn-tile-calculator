@@ -26,7 +26,9 @@ public class Minus extends Action {
     @Contract(pure = true) @NotNull public static Minus getInstance() { return MINUS; }
     private Minus() { }
 
-    @NotNull @Override public Operand with(@NotNull Operand... operands) throws CalculationException {
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }
