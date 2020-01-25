@@ -19,10 +19,6 @@ import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
 public class TileLayoutLoader {
 
-    final static String VALUE_SEPERATOR = ";";
-    private final static String COLUMN_SEPERATOR = ";;";
-    private final static String ROW_SEPERATOR = ";;;";
-
     /**
      * Loads a saved or hard coded layout
      * @param context activity, from which to access storage
@@ -39,19 +35,15 @@ public class TileLayoutLoader {
         else if(indicator.equals("Standardlayout")) {
             //wenn operand/action nicht verfügbar ist, kommt ein plus dort hin
             //layout = "vA_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
-            layout = "hA_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
+            layout = "hS_STACK;1;;S_STACK;2;;S_STACK;3;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_FRACTION;(1/2);;O_DOUBLE;2;;O_DOUBLE;3;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
         }
-        try {
-            return new TileLayout(indicator, decipherLayout(layout));
-        } catch (StorageLoadingException e) {
-            // TODO
-        }
-        return new TileLayout("-", null);
+
+        return new TileLayout(indicator, layout);
     }
 
     //Callable method to save a certain Layout
     public static boolean saveLayout(@NotNull Context context, @NotNull TileLayout tileLayout) {
-        String layoutText = encipherLayout(tileLayout.getTileLayout(), tileLayout.getOrientation());
+        String layoutText = tileLayout.encipherLayout();
         return writeToFile(context, layoutText, tileLayout.getIndicator());
     }
 
@@ -64,71 +56,6 @@ public class TileLayoutLoader {
         }
     }
 
-    /**
-     * Transforms the layout array into a string
-     * @param tileLayout layout to be transformed
-     * @return text of layout
-     */
-    private static String encipherLayout(@NotNull ArrayList<ArrayList<TileScheme>> tileLayout, ScreenOrientation orientation) {
-        StringBuilder layoutText = new StringBuilder();
-        layoutText.append(orientation.getIndicator());
-
-        for(ArrayList<TileScheme> row : tileLayout) {
-            for(TileScheme columnScheme : row) {
-                layoutText.append(columnScheme.toString()).append(COLUMN_SEPERATOR);
-            }
-        }
-        return layoutText.toString();
-    }
-
-    /**
-     * Transforms the layout text into a layout array consisting of TileSchemes
-     * @param layoutText layoutText from file
-     * @return TileScheme[][] layout
-     * @throws StorageLoadingException if a tile in the file could not be read
-     */
-    private static Pair<ScreenOrientation, ArrayList<ArrayList<TileScheme>>> decipherLayout(@NotNull String layoutText) throws StorageLoadingException {
-        //Format is:
-        //hO_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;
-        //O_DOUBLE;4;;A_MINUS;-;;A_PLUS;;;
-
-        //decipher the layout orientation first
-        ScreenOrientation orientation = ScreenOrientation.PORTRAIT;
-        if(ScreenOrientation.isOrientation(layoutText.charAt(0))) {
-            orientation = ScreenOrientation.getOrientation(layoutText.charAt(0));
-            layoutText = layoutText.substring(1);
-        }
-
-        ArrayList<ArrayList<TileScheme>> tileRows = new ArrayList<>();
-
-        // Read the string and place it into the arraylist
-        String[] rows = layoutText.split(ROW_SEPERATOR);
-        for(String row : rows) {
-            String[] columns = row.split(COLUMN_SEPERATOR);
-            ArrayList<TileScheme> tileRow = new ArrayList<>();
-            for(String column : columns) {
-                String[] values = column.split(VALUE_SEPERATOR);
-
-                //Convert string enum to real enum
-                TileMapping tileType = null;
-                try {
-                    tileType = Enum.valueOf(TileMapping.class, values[0]);
-                } catch (Exception e) {
-                    System.out.println("Exception occured: " + values[0] + ";" + values[1]);
-                    tileType = TileMapping.X_ERROR;
-                    values[1] = tileType.getActionText();
-                    //throw new StorageLoadingException("The value " + values[0] + " could not be deciphered.");
-                }
-
-                //Add tilescheme to tilerow
-                TileScheme scheme = TileScheme.createTileScheme(tileType, values[1]);
-                tileRow.add(scheme);
-            }
-            //Add tilerow to tilerows
-            tileRows.add(tileRow);
-        }
-        return new Pair<>(orientation, tileRows);
-    }
 
     private static boolean writeToFile(Context context, String layoutText, String indicator) {
         try {

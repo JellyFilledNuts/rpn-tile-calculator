@@ -17,9 +17,9 @@ import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 public abstract class TileScheme {
 
     @NotNull private TileMapping tileType;
-    @Nullable private String content;
+    @NotNull private String content;
 
-    TileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+    TileScheme(@NotNull TileMapping tileType, @NotNull String content) {
         this.tileType = tileType;
         this.content = content;
     }
@@ -33,6 +33,7 @@ public abstract class TileScheme {
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
         if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
         else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
+        else if (tileType.getType().isStack()) { return new StackTileScheme(content); }
         else {return null;}
     }
 
@@ -50,7 +51,7 @@ public abstract class TileScheme {
         this.tileType = tileType;
     }
 
-    @Nullable
+    @NotNull
     public String getContent() {
         return content;
     }
@@ -64,6 +65,6 @@ public abstract class TileScheme {
     public String toString() {
         //O_DOUBLE;20
         //A_MINUS;-
-        return tileType.toString() + TileLayoutLoader.VALUE_SEPERATOR + content;
+        return tileType.toString() + TileLayout.VALUE_SEPERATOR + content;
     }
 }

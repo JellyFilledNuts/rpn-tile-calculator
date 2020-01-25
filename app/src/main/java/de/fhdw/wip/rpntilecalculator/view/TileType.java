@@ -7,7 +7,9 @@ public enum TileType {
     STACK(R.drawable.tile_stack_green),
     OPERAND(R.drawable.tile_operand_white),
     ACTION(R.drawable.tile_operator_blue),
-    SETTING(R.drawable.tile_settings_grey);
+    SETTING(R.drawable.tile_settings_grey),
+
+    ERROR(R.drawable.tile_error);
 
     private int style;
 

@@ -22,27 +22,32 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 public enum TileMapping {
 
-    O_DOUBLE(TileType.OPERAND, ODouble.class, Double.class),
-    O_FRACTION(TileType.OPERAND, OFraction.class, Fraction.class),
-    O_MATRIX(TileType.OPERAND, OMatrix.class, Matrix.class),
-    O_POLYNOM(TileType.OPERAND, OPolynom.class, PolynomialFunction.class),
-    O_SET(TileType.OPERAND, OSet.class, Set.class),
-    O_TUPLE(TileType.OPERAND, OTuple.class, Double[].class),
+    O_DOUBLE(TileType.OPERAND, ODouble.class),
+    O_FRACTION(TileType.OPERAND, OFraction.class),
+    O_MATRIX(TileType.OPERAND, OMatrix.class),
+    O_POLYNOM(TileType.OPERAND, OPolynom.class),
+    O_SET(TileType.OPERAND, OSet.class),
+    O_TUPLE(TileType.OPERAND, OTuple.class),
     
     A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
     A_PLUS(TileType.ACTION, Plus.getInstance(), "+"),
-    A_Slash(TileType.ACTION, Slash.getInstance(), "/"),
-    A_Times(TileType.ACTION, Times.getInstance(), "*"),
+    A_SLASH(TileType.ACTION, Slash.getInstance(), "/"),
+    A_TIMES(TileType.ACTION, Times.getInstance(), "*"),
 
+    S_STACK(TileType.STACK, ""),
 
-    X_ERROR(TileType.ACTION, Minus.getInstance(), "N/A");
+    X_ERROR(TileType.ERROR, "N/A");
 
 
     private TileType type;
     private Action actionType;
     private String actionText;
     private Class<? extends Operand> operandType;
-    private Class<?> operandValueType;
+
+    TileMapping(TileType type, String actionText) {
+        this.type = type;
+        this.actionText = actionText;
+    }
 
     TileMapping(TileType type, Action actionType, String actionText) {
         this.type = type;
@@ -50,10 +55,9 @@ public enum TileMapping {
         this.actionText = actionText;
     }
 
-    TileMapping(TileType type, Class<? extends Operand>  operandType, Class<?> operandValueType) {
+    TileMapping(TileType type, Class<? extends Operand>  operandType) {
         this.type = type;
         this.operandType = operandType;
-        this.operandValueType = operandValueType;
     }
 
     public TileType getType() {
@@ -74,9 +78,5 @@ public enum TileMapping {
 
     public String getActionText() {
         return actionText;
-    }
-
-    public Class<?> getOperandValueType() {
-        return operandValueType;
     }
 }

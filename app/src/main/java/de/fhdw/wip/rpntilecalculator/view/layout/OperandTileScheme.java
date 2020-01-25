@@ -5,6 +5,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
 
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
@@ -17,41 +19,23 @@ public class OperandTileScheme extends TileScheme {
      * @param tileType exact type of the scheme
      * @param content operand value
      */
-    OperandTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
+    OperandTileScheme(@NotNull TileMapping tileType, @NotNull String content) {
         super(tileType, content);
 
         Class<? extends Operand> operandClass = tileType.getOperandType();
-        Class<?> operandValueClass = tileType.getOperandValueType();
 
-        //TODO Change this
-        if(content == null) content = "1";
+        //Tried to do this generically but there were too many options - so we did it manually
+        //it would have been really cool though
+        if(operandClass == ODouble.class) {
+            //1.0
+            this.operand = new ODouble(Double.valueOf(content));
+        } else if(operandClass == OFraction.class) {
+            //(1.0/2.0)
+            //TODO: Strange error with first of split
 
-        //Create operandValueClass type parameter of content
-        Object parameter = null;
-        try {
-            parameter = operandValueClass.getConstructor(String.class).newInstance(content);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
 
-        //Create operandClass and pass parameter
-        try {
-            //Change to finding the correct constructor (.getConstructor does not work on primitives!)
-            this.operand = (Operand) operandClass.getConstructors()[0].newInstance(parameter);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Created TileScheme: <Operand " + operandClass + ":" + parameter + ">");
+        System.out.println("Created TileScheme: <Operand " + operandClass + ":" + content + ">");
     }
 
     public Operand getOperand() {

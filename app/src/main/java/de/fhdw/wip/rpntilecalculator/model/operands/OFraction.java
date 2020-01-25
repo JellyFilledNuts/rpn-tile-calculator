@@ -23,6 +23,13 @@ public class OFraction extends Operand {
 
     public OFraction(@NotNull double doubleValue) {this.fraction = new Fraction(doubleValue); }
 
+    public OFraction(@NotNull String fraction) {
+        String[] variables = fraction.split("[(/)]");
+        int nom = Integer.valueOf(variables[1]);
+        int den = Integer.valueOf(variables[2]);
+        this.fraction = new Fraction(nom, den);
+    }
+
     public @NotNull Fraction getFraction() {
         return fraction;
     }
