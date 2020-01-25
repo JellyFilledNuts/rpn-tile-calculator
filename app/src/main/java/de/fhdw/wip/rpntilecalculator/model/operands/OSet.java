@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OSet extends Operand {
 
@@ -20,6 +22,16 @@ public class OSet extends Operand {
 
         this.set = new HashSet<>();
         this.set.addAll(list);
+    }
+
+    public OSet(@NotNull String set) {
+        this.set = new HashSet<>();
+        Pattern pat = Pattern.compile("[\\-0-9.]+");
+        Matcher mat = pat.matcher(set);
+
+        while(mat.find()) {
+            this.set.add(Double.valueOf(set.substring(mat.start(), mat.end())));
+        }
     }
 
     @NotNull public Set<Double> getSet() {

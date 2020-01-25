@@ -5,6 +5,10 @@ import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /*
  * Summary: Wrapper for the Matrix Operand
  * Author:  Tim Schwenke
@@ -33,6 +37,33 @@ public class OMatrix extends Operand {
             );
 
         matrix = new Array2DRowRealMatrix(modified);
+    }
+
+    public OMatrix(@NotNull String matrix) {
+        //[[1.23, 1.32], [0.23, 1.23]]
+        ArrayList<double[]> listMatrix = new ArrayList<>();
+        Pattern pat1 = Pattern.compile("\\[[^\\[\\]].*?\\]");
+        Matcher mat1 = pat1.matcher(matrix);
+
+        while(mat1.find()) {
+            String row = matrix.substring(mat1.start(), mat1.end());
+
+            ArrayList<Double> listArray = new ArrayList<>();
+            pat1 = Pattern.compile("[\\-0-9.]+");
+            Matcher mat2 = pat1.matcher(row);
+
+            while(mat2.find()) {
+                String value = row.substring(mat2.start(), mat2.end());
+                listArray.add(Double.valueOf(value));
+            }
+
+            double[] doubleArray = new double[listArray.size()];
+            for(int i = 0; i < listArray.size(); i++) doubleArray[i] = listArray.get(i);
+            listMatrix.add(doubleArray);
+        }
+        double[][] doubleMatrix = new double[listMatrix.size()][];
+        for(int i = 0; i < listMatrix.size(); i++) doubleMatrix[i] = listMatrix.get(i);
+        this.matrix = new Array2DRowRealMatrix(doubleMatrix);
     }
 
     public @NotNull RealMatrix getMatrix() {

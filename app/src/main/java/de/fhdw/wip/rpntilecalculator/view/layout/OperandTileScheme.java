@@ -34,7 +34,8 @@ public class OperandTileScheme extends TileScheme {
 
         }*/
         try {
-            this.operand = (Operand) operandClass.getConstructor(String.class).newInstance(content);
+            System.out.println("Trying: " + operandClass + " with " + content);
+            this.operand = operandClass.getConstructor(String.class).newInstance(content);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

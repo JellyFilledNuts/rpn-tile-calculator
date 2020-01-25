@@ -3,6 +3,8 @@ package de.fhdw.wip.rpntilecalculator.model.operands;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  * Summary: Wrapper for the Tuple Operand
@@ -21,6 +23,19 @@ public class OTuple extends Operand {
         this.tuple = new double[tuple.size()];
         for (int i = 0; i < this.tuple.length; i++)
             this.tuple[i] = tuple.get(i);
+    }
+
+    public OTuple(@NotNull String tuple) {
+        ArrayList<Double> listTuple = new ArrayList<>();
+        Pattern pat = Pattern.compile("[\\-0-9.]+");
+        Matcher mat = pat.matcher(tuple);
+
+        while(mat.find()) {
+            String value = tuple.substring(mat.start(), mat.end());
+            listTuple.add(Double.valueOf(value));
+        }
+        this.tuple = new double[2];
+        for(int i = 0; i < 2; i++) this.tuple[i] = listTuple.get(i);
     }
 
     public @NotNull double[] getTuple() {

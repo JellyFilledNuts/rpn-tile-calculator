@@ -24,6 +24,12 @@ public class ODouble extends Operand {
     }
 
     /*
+     * Create a new ODouble from a string
+     * @param aDouble content to be wrapped
+     */
+    public ODouble(String aDouble) { this.aDouble = Double.valueOf(aDouble); }
+
+    /*
      * Get the underlying content
      * @return the underlying content
      */

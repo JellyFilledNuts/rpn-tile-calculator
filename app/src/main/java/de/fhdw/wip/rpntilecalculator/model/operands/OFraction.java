@@ -24,9 +24,9 @@ public class OFraction extends Operand {
     public OFraction(@NotNull double doubleValue) {this.fraction = new Fraction(doubleValue); }
 
     public OFraction(@NotNull String fraction) {
-        String[] variables = fraction.split("[(/)]");
-        int nom = Integer.valueOf(variables[1]);
-        int den = Integer.valueOf(variables[2]);
+        String[] vars = fraction.split("[(/)]");
+        int nom = Integer.valueOf(vars[1]);
+        int den = Integer.valueOf(vars[2]);
         this.fraction = new Fraction(nom, den);
     }
 

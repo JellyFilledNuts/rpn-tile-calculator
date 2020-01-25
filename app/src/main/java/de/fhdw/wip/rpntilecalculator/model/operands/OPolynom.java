@@ -3,6 +3,8 @@ package de.fhdw.wip.rpntilecalculator.model.operands;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class OPolynom extends Operand {
 
     @NotNull private PolynomialFunction polynom;
@@ -12,6 +14,15 @@ public class OPolynom extends Operand {
     }
 
     public OPolynom(@NotNull double... coefficients) {
+        this.polynom = new PolynomialFunction(coefficients);
+    }
+
+    public OPolynom(@NotNull String polynom) {
+        //4.1x^0 + 2x^1 + -3.1x^2
+        String[] vars = polynom.trim().split("(x\\^[0-9])( \\+)*");
+        double[] coefficients = new double[vars.length];
+        for(int i = 0; i < vars.length; i++) coefficients[i] = Double.valueOf(vars[i].trim());
+        for(int i = 0; i < vars.length; i++) System.out.println("AAA" + coefficients[i]);
         this.polynom = new PolynomialFunction(coefficients);
     }
 
