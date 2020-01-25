@@ -26,13 +26,23 @@ public class OperandTileScheme extends TileScheme {
 
         //Tried to do this generically but there were too many options - so we did it manually
         //it would have been really cool though
-        if(operandClass == ODouble.class) {
+        /*if(operandClass == ODouble.class) {
             //1.0
             this.operand = new ODouble(Double.valueOf(content));
         } else if(operandClass == OFraction.class) {
             //(1.0/2.0)
-            //TODO: Strange error with first of split
 
+        }*/
+        try {
+            this.operand = (Operand) operandClass.getConstructor(String.class).newInstance(content);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
 
         System.out.println("Created TileScheme: <Operand " + operandClass + ":" + content + ">");
