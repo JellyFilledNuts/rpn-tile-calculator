@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Contract;
 
 /*
- * Summary: Defines the Power action.
+ * Summary: Defines the Power click.
  * Author:  Getuart Istogu
  * Date:    2020/01/04
  */

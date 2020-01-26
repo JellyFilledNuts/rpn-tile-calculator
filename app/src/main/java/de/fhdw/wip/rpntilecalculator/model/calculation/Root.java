@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Contract;
 
 /*
- * Summary: Defines the Root action.
+ * Summary: Defines the Root click.
  * Author:  Getuart Istogu
  * Date:    2020/01/04
  */

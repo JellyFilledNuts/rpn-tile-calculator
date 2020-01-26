@@ -18,7 +18,6 @@ public class ActionTileScheme extends TileScheme {
     ActionTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
         super(tileType, content);
         this.action = tileType.getActionType();
-        System.out.println("Created ActionScheme: <Action " + action.toString() + ">");
     }
 
     public Action getAction() {

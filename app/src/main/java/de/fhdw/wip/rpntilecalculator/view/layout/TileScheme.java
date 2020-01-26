@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
 public abstract class TileScheme {
@@ -33,7 +34,13 @@ public abstract class TileScheme {
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
         if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
         else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
-        else if (tileType.getType().isStack()) { return new StackTileScheme(content); }
+        else if(tileType.getType().isStack()) { return new StackTileScheme(content); }
+        else {return null;}
+    }
+
+    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @NotNull Operand operand, int rank) {
+        if(tileType.getType().isStack()) return new StackTileScheme(operand, rank);
+        else if(tileType.getType().isOperand()) return new OperandTileScheme(tileType, operand);
         else {return null;}
     }
 
@@ -65,6 +72,6 @@ public abstract class TileScheme {
     public String toString() {
         //O_DOUBLE;20
         //A_MINUS;-
-        return tileType.toString() + TileLayout.VALUE_SEPERATOR + content;
+        return tileType.toString() + TileLayoutFactory.VALUE_SEPERATOR + content;
     }
 }

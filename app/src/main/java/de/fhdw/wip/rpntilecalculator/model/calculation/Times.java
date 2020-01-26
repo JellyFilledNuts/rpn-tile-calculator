@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
- * Summary: Defines the Times action. Lets the user Multiplies operands.
+ * Summary: Defines the Times click. Lets the user Multiplies operands.
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */

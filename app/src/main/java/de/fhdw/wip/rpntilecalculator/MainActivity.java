@@ -7,30 +7,29 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import de.fhdw.wip.rpntilecalculator.controller.ClickHandlingException;
+import de.fhdw.wip.rpntilecalculator.controller.Controller;
 import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
-import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
-import de.fhdw.wip.rpntilecalculator.model.calculation.Slash;
-import de.fhdw.wip.rpntilecalculator.model.calculation.Times;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
+import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final OperandStack OPERAND_STACK = new OperandStack();
+    private Controller controller = new Controller();
+
     private static final Plus PLUS = Plus.getInstance();
-    private static final Minus MINUS = Minus.getInstance();
-    private static final Slash SLASH = Slash.getInstance();
-    private static final Times TIMES = Times.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +38,28 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
         test();
 
-        TileLayout testLayout = TileLayoutLoader.loadLayout(this, "Standardlayout");
+        TileLayout testLayout = TileLayoutFactory.createLayout(this, "Standardlayout");
+        controller.setDisplayEventListeners(testLayout);
+
         drawLayout(testLayout);
     }
+
+    public void drawLayout(TileLayout tileLayout) {
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout.setBackgroundColor(Color.WHITE);
+        constraintLayout.addView(tileLayout.createView(this));
+        setRequestedOrientation(tileLayout.getOrientation().getOrientation());
+    }
+
+    public void action(Tile tile) {
+        try {
+            controller.click(tile);
+        } catch (ClickHandlingException ignored) {
+            //TODO
+        }
+        System.out.println("Clicked: " + tile.getText() + " from " + tile.getScheme().getTileType());
+    }
+
 
     public void test(){
         ODouble oDouble1 = new ODouble(1);
@@ -79,17 +97,5 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println();
         OPERAND_STACK.print();
-    }
-
-    public void drawLayout(TileLayout tileLayout) {
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setBackgroundColor(Color.WHITE);
-        constraintLayout.addView(tileLayout.createView(this));
-        setRequestedOrientation(tileLayout.getOrientation().getOrientation());
-    }
-
-    public void execute(String text, TileScheme scheme) {
-        // TODO
-        System.out.println("Clicked: " + text + " from " + scheme.getTileType());
     }
 }

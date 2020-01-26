@@ -22,7 +22,6 @@ public class OPolynom extends Operand {
         String[] vars = polynom.trim().split("(x\\^[0-9])( \\+)*");
         double[] coefficients = new double[vars.length];
         for(int i = 0; i < vars.length; i++) coefficients[i] = Double.valueOf(vars[i].trim());
-        for(int i = 0; i < vars.length; i++) System.out.println("AAA" + coefficients[i]);
         this.polynom = new PolynomialFunction(coefficients);
     }
 

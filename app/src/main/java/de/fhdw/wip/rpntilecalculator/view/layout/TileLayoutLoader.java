@@ -2,7 +2,6 @@ package de.fhdw.wip.rpntilecalculator.view.layout;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -13,9 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-
-import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
 public class TileLayoutLoader {
 
@@ -25,7 +21,7 @@ public class TileLayoutLoader {
      * @param indicator name of the layout
      * @return TileLayout
      */
-    public static TileLayout loadLayout(@NotNull Context context, @NotNull String indicator) {
+    public String loadLayout(@NotNull Context context, @NotNull String indicator) {
         String layout = "";
         if(indicator.equals("TEST2")) {
             layout = "vO_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;O_DOUBLE;5;;A_MINUS;-;;A_PLUS;+";
@@ -33,17 +29,17 @@ public class TileLayoutLoader {
             layout = readFromFile(context, "TEST3FROMSTRING");
         }
         else if(indicator.equals("Standardlayout")) {
-            //wenn operand/action nicht verfügbar ist, kommt ein plus dort hin
+            //wenn operand/click nicht verfügbar ist, kommt ein plus dort hin
             //layout = "vA_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
             layout = "hS_STACK;1;;S_STACK;2;;S_STACK;3;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_FRACTION;(1/2);;O_MATRIX;[[1.23, 1.32], [0.23, 1.23]];;O_SET;[1231, -0.232];;O_TUPLE;(2, -1231.3);;O_POLYNOM;4.1x^0 + 2x^1 + -3.1x^2;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
         }
 
-        return new TileLayout(indicator, layout);
+        return layout;
     }
 
     //Callable method to save a certain Layout
     public static boolean saveLayout(@NotNull Context context, @NotNull TileLayout tileLayout) {
-        String layoutText = tileLayout.encipherLayout();
+        String layoutText = tileLayout.encipher();
         return writeToFile(context, layoutText, tileLayout.getIndicator());
     }
 

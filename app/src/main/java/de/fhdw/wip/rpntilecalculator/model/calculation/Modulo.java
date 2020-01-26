@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Contract;
 
 /*
- * Summary: Defines the Modulo action.
+ * Summary: Defines the Modulo click.
  * Author:  Getuart Istogu
  * Date:    2020/01/05
  */

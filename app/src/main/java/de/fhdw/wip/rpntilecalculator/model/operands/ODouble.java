@@ -92,5 +92,4 @@ public class ODouble extends Operand {
             return false;
         }
     }
-
 }

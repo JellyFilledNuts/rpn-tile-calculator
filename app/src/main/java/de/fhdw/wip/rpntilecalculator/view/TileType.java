@@ -2,7 +2,7 @@ package de.fhdw.wip.rpntilecalculator.view;
 
 import de.fhdw.wip.rpntilecalculator.R;
 
-public enum TileType {
+public enum TileType implements TypeQuestionable {
 
     STACK(R.drawable.tile_stack_green),
     OPERAND(R.drawable.tile_operand_white),

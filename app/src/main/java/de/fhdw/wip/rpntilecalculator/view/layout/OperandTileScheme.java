@@ -24,15 +24,6 @@ public class OperandTileScheme extends TileScheme {
 
         Class<? extends Operand> operandClass = tileType.getOperandType();
 
-        //Tried to do this generically but there were too many options - so we did it manually
-        //it would have been really cool though
-        /*if(operandClass == ODouble.class) {
-            //1.0
-            this.operand = new ODouble(Double.valueOf(content));
-        } else if(operandClass == OFraction.class) {
-            //(1.0/2.0)
-
-        }*/
         try {
             System.out.println("Trying: " + operandClass + " with " + content);
             this.operand = operandClass.getConstructor(String.class).newInstance(content);
@@ -46,7 +37,17 @@ public class OperandTileScheme extends TileScheme {
             e.printStackTrace();
         }
 
-        System.out.println("Created TileScheme: <Operand " + operandClass + ":" + content + ">");
+        //System.out.println("Created TileScheme: <Operand " + operandClass + ":" + content + ">");
+    }
+
+    OperandTileScheme(@NotNull TileMapping tileType, @NotNull Operand operand) {
+        super(tileType, operand.toString());
+        this.operand = operand;
+    }
+
+    @Override
+    public @NotNull String getContent() {
+        return operand.toString();
     }
 
     public Operand getOperand() {
