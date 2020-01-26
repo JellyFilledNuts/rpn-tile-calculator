@@ -16,7 +16,7 @@ public class ActionTileScheme extends TileScheme {
      * @param content display text (default is derived by type)
      */
     ActionTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
-        super(tileType, content);
+        super(tileType, tileType.getActionText());
         this.action = tileType.getActionType();
     }
 

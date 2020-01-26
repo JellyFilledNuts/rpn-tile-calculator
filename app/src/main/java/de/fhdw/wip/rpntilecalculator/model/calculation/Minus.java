@@ -24,11 +24,12 @@ public class Minus extends Action {
     @NotNull private static final Minus MINUS = new Minus();
 
     @Contract(pure = true) @NotNull public static Minus getInstance() { return MINUS; }
-    private Minus() { }
+    private Minus() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

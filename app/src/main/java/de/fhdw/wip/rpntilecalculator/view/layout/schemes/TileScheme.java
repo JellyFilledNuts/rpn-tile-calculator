@@ -36,6 +36,7 @@ public abstract class TileScheme {
         if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
         else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
         else if(tileType.getType().isStack()) { return new StackTileScheme(content); }
+        else if(tileType.getType().isSetting()) {return new SettingTileScheme(tileType, content); }
         else {return null;}
     }
 

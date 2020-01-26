@@ -24,7 +24,7 @@ public abstract class Action {
     /**
      * Must be overridden in case the required number of operands is a fixed amount.
      */
-    protected int requiredNumOfOperands = -1;
+    protected int[] requiredNumOfOperands = new int[]{-1};
 
     @Contract(pure = true)
     public @NotNull Operand with(@NotNull List<Operand> operands) throws CalculationException {
@@ -63,7 +63,7 @@ public abstract class Action {
      * @return Number of required operands for the concrete {@link Action}. If {@code -1}
      * the number of operands required is variable.
      */
-    public int getRequiredNumOfOperands() {
+    public int[] getRequiredNumOfOperands() {
         return requiredNumOfOperands;
     }
 

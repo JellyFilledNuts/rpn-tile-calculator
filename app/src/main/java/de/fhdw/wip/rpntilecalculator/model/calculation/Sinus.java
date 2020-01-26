@@ -22,7 +22,9 @@ public class Sinus extends Action {
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static Sinus getInstance() { return SINUS; }
-    private Sinus() { }
+    private Sinus() {
+        requiredNumOfOperands = new int[]{1, 2};
+    }
 
     /*
      * Multiplying ODouble and ODouble

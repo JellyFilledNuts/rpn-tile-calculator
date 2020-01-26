@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
     public void action(Tile tile) {
         try {
             controller.click(tile);
+            System.out.println("Clicked: " + tile.getText() + " from " + tile.getScheme().getTileType());
         } catch (ClickHandlingException ignored) {
             //TODO
         }
-        System.out.println("Clicked: " + tile.getText() + " from " + tile.getScheme().getTileType());
     }
 
 

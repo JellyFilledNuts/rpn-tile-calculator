@@ -21,7 +21,9 @@ public class Logarithm extends Action {
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static Logarithm getInstance() { return LOGARITHM; }
-    private Logarithm() { }
+    private Logarithm() {
+        requiredNumOfOperands = new int[]{1, 2};
+    }
 
     //Natural Logarithm
     //------------------------------------------------------------------------------------

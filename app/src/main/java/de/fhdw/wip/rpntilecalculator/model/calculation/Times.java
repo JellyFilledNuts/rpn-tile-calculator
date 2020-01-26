@@ -30,7 +30,9 @@ public class Times extends Action {
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static Times getInstance() { return TIMES; }
-    private Times() { }
+    private Times() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     /*
      * Multiplying ODouble and ODouble
@@ -39,7 +41,6 @@ public class Times extends Action {
      */
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

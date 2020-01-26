@@ -22,7 +22,9 @@ import org.jetbrains.annotations.NotNull;
          * @return singleton object
          */
         @Contract(pure = true) @NotNull public static Cosinus getInstance() { return COSINUS; }
-        private Cosinus() { }
+        private Cosinus() {
+            requiredNumOfOperands = new int[]{1, 2};
+        }
 
         /*
          * Multiplying ODouble and ODouble

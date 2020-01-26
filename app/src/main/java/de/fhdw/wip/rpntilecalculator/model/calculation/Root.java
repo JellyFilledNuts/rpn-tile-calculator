@@ -20,11 +20,12 @@ public class Root extends Action{
     @NotNull private static final Power POWER = Power.getInstance();
 
     @Contract(pure = true) @NotNull public static Root getInstance() { return ROOT; }
-    private Root() { }
+    private Root() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

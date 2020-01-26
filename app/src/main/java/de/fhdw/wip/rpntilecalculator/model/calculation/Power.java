@@ -25,11 +25,12 @@ public class Power extends Action{
     @NotNull private static final Times TIMES = Times.getInstance();
 
     @Contract(pure = true) @NotNull public static Power getInstance() { return POWER; }
-    private Power() { }
+    private Power() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

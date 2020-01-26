@@ -17,7 +17,9 @@ public class Modulo extends Action {
     @NotNull private static final Modulo MODULO = new Modulo();
 
     @Contract(pure = true) @NotNull public static Modulo getInstance() { return MODULO; }
-    private Modulo() { }
+    private Modulo() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

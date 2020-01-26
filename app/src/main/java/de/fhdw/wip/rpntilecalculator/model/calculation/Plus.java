@@ -21,11 +21,12 @@ public class Plus extends Action {
     @NotNull private static final Plus PLUS = new Plus();
 
     @Contract(pure = true) @NotNull public static Plus getInstance() { return PLUS; }
-    private Plus() { }
+    private Plus() {
+        requiredNumOfOperands = new int[]{2};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
-        requiredNumOfOperands = 2;
         scopedAction = this;
         return super.with(operands);
     }

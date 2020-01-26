@@ -19,6 +19,11 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
+import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
+import de.fhdw.wip.rpntilecalculator.model.settings.Enter;
+import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
+import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
 
 public enum TileMapping {
 
@@ -34,6 +39,11 @@ public enum TileMapping {
     A_SLASH(TileType.ACTION, Slash.getInstance(), "/"),
     A_TIMES(TileType.ACTION, Times.getInstance(), "*"),
 
+    S_AC(TileType.SETTING, AllClear.getInstance(), "AC"),
+    S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),
+    S_ENTER(TileType.SETTING, Enter.getInstance(), "Enter"),
+    S_SWAP(TileType.SETTING, Swap.getInstance(), "Swap"),
+
     S_STACK(TileType.STACK, ""),
 
     X_ERROR(TileType.ERROR, "N/A");
@@ -42,11 +52,19 @@ public enum TileMapping {
     private TileType type;
     private Action actionType;
     private String actionText;
+    private String settingText;
+    private Setting settingType;
     private Class<? extends Operand> operandType;
 
     TileMapping(TileType type, String actionText) {
         this.type = type;
         this.actionText = actionText;
+    }
+
+    TileMapping(TileType type, Setting settingType, String settingText) {
+        this.type = type;
+        this.settingType = settingType;
+        this.settingText = settingText;
     }
 
     TileMapping(TileType type, Action actionType, String actionText) {
@@ -78,5 +96,13 @@ public enum TileMapping {
 
     public String getActionText() {
         return actionText;
+    }
+
+    public String getSettingText() {
+        return settingText;
+    }
+
+    public Setting getSettingType() {
+        return settingType;
     }
 }

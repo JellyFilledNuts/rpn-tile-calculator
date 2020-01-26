@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
          */
         @Contract(pure = true) @NotNull public static Tangens getInstance() { return TANGENS; }
         private Tangens() {
+            requiredNumOfOperands = new int[]{1,2};
         }
 
         /*
