@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
         test();
 
-        TileLayout testLayout = TileLayoutFactory.createLayout(this, "Standardlayout");
+        TileLayout testLayout = TileLayoutFactory.createLayout(this, "Morestack");
         controller.setDisplayEventListeners(testLayout);
 
         drawLayout(testLayout);

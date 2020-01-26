@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.layout;
+package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

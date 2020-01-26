@@ -1,14 +1,12 @@
-package de.fhdw.wip.rpntilecalculator.view.layout;
+package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
 
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 public class OperandTileScheme extends TileScheme {
 
@@ -25,7 +23,7 @@ public class OperandTileScheme extends TileScheme {
         Class<? extends Operand> operandClass = tileType.getOperandType();
 
         try {
-            System.out.println("Trying: " + operandClass + " with " + content);
+            //System.out.println("Trying: " + operandClass + " with " + content);
             this.operand = operandClass.getConstructor(String.class).newInstance(content);
         } catch (InstantiationException e) {
             e.printStackTrace();

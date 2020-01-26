@@ -11,7 +11,6 @@ import android.widget.TableRow;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
@@ -19,6 +18,8 @@ import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.events.StackUpdateListener;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 public class TileLayout implements StackUpdateListener {
 
@@ -44,9 +45,13 @@ public class TileLayout implements StackUpdateListener {
     @Override
     public void updateStack(OperandStack operandStack) {
         @NotNull List<Operand> stackOperands = operandStack.peek(stack.size());
+        operandStack.print();
+
         for(int i = 0; i < stack.size(); i++) {
             Tile stackTile = stack.valueAt(i);
-            stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, stackOperands.get(i), stack.keyAt(i)));
+            Operand operand = null;
+            if(i < stackOperands.size()) operand = stackOperands.get(i);
+            stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, operand, stack.keyAt(i)));
         }
     }
 

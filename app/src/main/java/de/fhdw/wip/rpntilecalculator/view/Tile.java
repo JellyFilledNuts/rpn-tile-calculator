@@ -9,12 +9,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
-/*
+/**
  * Summary: Tile acts as button and forwards the connected type and click to the handler
  * Author:  Tom Bockhorn
- */
+ **/
 
 public class Tile extends AppCompatButton implements TypeQuestionable {
 

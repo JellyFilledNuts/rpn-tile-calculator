@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.layout;
+package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
 /*
  * Summary: TileScheme contains the information about tiles and is used to create tiles and save them
@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
 public abstract class TileScheme {
 
@@ -38,9 +39,15 @@ public abstract class TileScheme {
         else {return null;}
     }
 
-    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @NotNull Operand operand, int rank) {
-        if(tileType.getType().isStack()) return new StackTileScheme(operand, rank);
-        else if(tileType.getType().isOperand()) return new OperandTileScheme(tileType, operand);
+    public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
+        if(tileType.getType().isStack()) {
+            if(operand != null) return new StackTileScheme(operand, rank);
+            else return new StackTileScheme(rank);
+        }
+        else if(tileType.getType().isOperand()) {
+            assert operand != null;
+            return new OperandTileScheme(tileType, operand);
+        }
         else {return null;}
     }
 

@@ -7,11 +7,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 public class TileLayoutFactory {
 
-    final static String VALUE_SEPERATOR = ";";
-    final static String COLUMN_SEPERATOR = ";;";
+    public final static String VALUE_SEPERATOR = ";";
+    public final static String COLUMN_SEPERATOR = ";;";
     private final static String ROW_SEPERATOR = ";;;";
 
     private static TileLayoutLoader layoutLoader = new TileLayoutLoader();

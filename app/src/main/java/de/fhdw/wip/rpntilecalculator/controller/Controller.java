@@ -3,6 +3,10 @@ package de.fhdw.wip.rpntilecalculator.controller;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
+import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
@@ -10,8 +14,10 @@ import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.events.DisplayEventListener;
 import de.fhdw.wip.rpntilecalculator.view.events.StackUpdateListener;
-import de.fhdw.wip.rpntilecalculator.view.layout.OperandTileScheme;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.ActionTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.OperandTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 /**
  * Used for communication between view and model
@@ -36,28 +42,64 @@ public class Controller {
         else throw new ClickHandlingException();
     }
 
+    /**
+     * Handles all stack operation (similar to clickOperand)
+     */
+    private void clickStack(@NotNull Tile tile) {
+        StackTileScheme stackTile = (StackTileScheme) tile.getScheme();
+        if(stackTile.hasOperand()) clickOperand(stackTile.getOperand());
+    }
+
+    /**
+     * Handles operand inputs coming from operand tiles
+     * @param tile operand tile
+     */
     private void clickOperand(@NotNull Tile tile) {
         Operand operand = ((OperandTileScheme) tile.getScheme()).getOperand();
+        clickOperand(operand);
+    }
+
+    /**
+     * Handles operand inputs coming from any tile
+     * @param operand operand that is added to stack
+     */
+    private void clickOperand(@NotNull Operand operand) {
 
         if(tryAppending(operand)) {
             // Operand can be added to the input term and replaces the last operand
             OPERAND_STACK.pop();
             operand = readCombinedOperand(INPUT_TERM).getOperand();
         } else {
-            INPUT_TERM = new StringBuilder();
+            resetInputTerm(operand);
         }
 
         OPERAND_STACK.push(operand);
         callStackUpdateEvent();
-        System.out.println("[Operand] " + operand.getClass());
+        //System.out.println("[Operand] " + operand.getClass());
     }
 
+    /**
+     * Handles all action inputs
+     * @param tile the action tile itself
+     */
     private void clickAction(@NotNull Tile tile) {
+        Action action = ((ActionTileScheme) tile.getScheme()).getAction();
 
-    }
+        if(action.getRequiredNumOfOperands() != -1) {
+            //Simply handle the action
+            int requiredNumOfOperands = action.getRequiredNumOfOperands();
+            try {
+                List<Operand> operands = OPERAND_STACK.peek(requiredNumOfOperands);
+                Operand result = action.with(operands);
+                OPERAND_STACK.pop(requiredNumOfOperands);
+                OPERAND_STACK.push(result);
 
-    private void clickStack(@NotNull Tile tile) {
-
+                resetInputTerm(result);
+            } catch (CalculationException e) {
+                e.printStackTrace();
+            }
+        }
+        callStackUpdateEvent();
     }
 
     private void clickSetting(@NotNull Tile tile) {
@@ -72,10 +114,12 @@ public class Controller {
     private boolean tryAppending(Operand operand) {
         if(OPERAND_STACK.peek() == null || OPERAND_STACK.peek() instanceof ODouble) {
             if (operand instanceof ODouble) {
-                String newTerm = INPUT_TERM.toString() + operand;
-                int count = 0;
-                for (int i = 0; i < newTerm.length(); i++) if (newTerm.charAt(i) == '.') count++;
-                if(count <= 1) {
+                ODouble oNew = (ODouble) operand;
+                int points = 0;
+                if(INPUT_TERM.toString().contains(".")) points++;
+                if(oNew.getDouble() % 1 != 0) points++;
+
+                if(points < 2) {
                     INPUT_TERM.append(operand);
                     return true;
                 }
@@ -91,6 +135,14 @@ public class Controller {
      */
     private OperandTileScheme readCombinedOperand(StringBuilder inputTerm) {
         return (OperandTileScheme) TileScheme.createTileScheme(TileMapping.O_DOUBLE, inputTerm.toString());
+    }
+
+    /**
+     * Clears the current input term
+     */
+    private void resetInputTerm(Operand operand) {
+        INPUT_TERM = new StringBuilder();
+        INPUT_TERM.append(operand);
     }
 
     /**

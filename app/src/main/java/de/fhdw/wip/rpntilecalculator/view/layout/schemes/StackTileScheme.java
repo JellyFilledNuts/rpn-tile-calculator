@@ -1,7 +1,6 @@
-package de.fhdw.wip.rpntilecalculator.view.layout;
+package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
@@ -16,9 +15,12 @@ public class StackTileScheme extends TileScheme {
      * @param content rank of the stack field
      */
     StackTileScheme(@NotNull String content) {
-        super(TileMapping.S_STACK, "");
+        this(Integer.valueOf(content));
+    }
 
-        rank = Integer.valueOf(content);
+    StackTileScheme(@NotNull int rank) {
+        super(TileMapping.S_STACK, "");
+        this.rank = rank;
     }
 
     StackTileScheme(@NotNull Operand operand, @NotNull int rank) {
@@ -30,4 +32,10 @@ public class StackTileScheme extends TileScheme {
     public int getRank() {
         return rank;
     }
+
+    public Operand getOperand() {
+        return operand;
+    }
+
+    public boolean hasOperand() { return operand != null; }
 }
