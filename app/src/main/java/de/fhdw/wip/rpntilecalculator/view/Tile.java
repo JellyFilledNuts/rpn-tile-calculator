@@ -1,7 +1,11 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -9,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 /**
@@ -31,6 +36,43 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
                 give();
             }
         });
+
+        setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                menu();
+                return true;
+            }
+        });
+    }
+
+    private void menu() {
+        /*PopupMenu popupMenu = new PopupMenu(context, this);
+        popupMenu.getMenuInflater().inflate(R.menu.button_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(context, "Menu clicked: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        popupMenu.show();*/
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.button_menu);
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.START | Gravity.TOP;
+        int[] location = new int[2];
+        this.getLocationOnScreen(location);
+        wlp.x = location[0];
+        wlp.y = location[1];
+        window.setAttributes(wlp);
+
+        dialog.show();
     }
 
     private void give() {

@@ -5,6 +5,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.View;
 import android.view.WindowManager;
 
 import de.fhdw.wip.rpntilecalculator.controller.ClickHandlingException;
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
-        test();
 
         TileLayout testLayout = TileLayoutFactory.createLayout(this, "Morestack");
         controller.setDisplayEventListeners(testLayout);
@@ -58,44 +59,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (ClickHandlingException ignored) {
             //TODO
         }
-    }
-
-
-    public void test(){
-        ODouble oDouble1 = new ODouble(1);
-        ODouble oDouble2 = new ODouble(2);
-        ODouble oDouble3 = new ODouble(3);
-        ODouble oDouble4 = new ODouble(4);
-        OFraction oFraction1 = new OFraction(3, 4);
-        OFraction oFraction2 = new OFraction(86, 3);
-        OMatrix oMatrix = new OMatrix(new Array2DRowRealMatrix(new double[][]{
-                new double[]{1, 2, 3},
-                new double[]{4, 4, 4},
-                new double[]{5, 5, 5},
-        }));
-
-        OPERAND_STACK.push(new Operand[]{
-                oDouble1,
-                oDouble2,
-                oDouble3,
-                oDouble4,
-                oFraction1,
-                oFraction2,
-                oMatrix,
-        });
-
-        OPERAND_STACK.print();
-
-        try {
-            List<Operand> operands = OPERAND_STACK.peek(2);
-            Operand result = PLUS.with(operands);
-            OPERAND_STACK.pop(2);
-            OPERAND_STACK.push(result);
-        } catch (CalculationException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println();
-        OPERAND_STACK.print();
     }
 }
