@@ -1,12 +1,5 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
-import android.graphics.Matrix;
-
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-import org.apache.commons.math3.fraction.Fraction;
-
-import java.util.Set;
-
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
@@ -22,6 +15,8 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
 import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
 import de.fhdw.wip.rpntilecalculator.model.settings.Enter;
+import de.fhdw.wip.rpntilecalculator.model.settings.Inverse;
+import de.fhdw.wip.rpntilecalculator.model.settings.TurnAroundSign;
 import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
 import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
 
@@ -43,6 +38,8 @@ public enum TileMapping {
     S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),
     S_ENTER(TileType.SETTING, Enter.getInstance(), "Enter"),
     S_SWAP(TileType.SETTING, Swap.getInstance(), "Swap"),
+    S_TURNAROUNDSIGN(TileType.SETTING, TurnAroundSign.getInstance(), "+/-"),
+    S_INVERSE(TileType.SETTING, Inverse.getInstance(), "1/x"),
 
     S_STACK(TileType.STACK, ""),
 
@@ -56,23 +53,27 @@ public enum TileMapping {
     private Setting settingType;
     private Class<? extends Operand> operandType;
 
+    // Stack & Error
     TileMapping(TileType type, String actionText) {
         this.type = type;
         this.actionText = actionText;
     }
 
+    // Setting
     TileMapping(TileType type, Setting settingType, String settingText) {
         this.type = type;
         this.settingType = settingType;
         this.settingText = settingText;
     }
 
+    // Action
     TileMapping(TileType type, Action actionType, String actionText) {
         this.type = type;
         this.actionType = actionType;
         this.actionText = actionText;
     }
 
+    // Operand
     TileMapping(TileType type, Class<? extends Operand>  operandType) {
         this.type = type;
         this.operandType = operandType;

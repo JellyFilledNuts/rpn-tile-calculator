@@ -47,18 +47,6 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
     }
 
     private void menu() {
-        /*PopupMenu popupMenu = new PopupMenu(context, this);
-        popupMenu.getMenuInflater().inflate(R.menu.button_menu, popupMenu.getMenu());
-
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(context, "Menu clicked: " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-        popupMenu.show();*/
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.button_menu);

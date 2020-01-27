@@ -27,7 +27,7 @@ public class TileLayoutLoader {
             layout = "vO_DOUBLE;1;;O_DOUBLE;2;;O_DOUBLE;3;;;O_DOUBLE;5;;A_MINUS;-;;A_PLUS;+";
         } else if(indicator.equals("Morestack")) {
             //layout = readFromFile(context, "Example");
-            layout = "hS_STACK;1;;S_STACK;2;;S_STACK;3;;S_STACK;4;;S_STACK;5;;S_STACK;6;;S_STACK;7;;S_STACK;8;;;O_FRACTION;(1/2);;O_MATRIX;[[1.23, 1.32], [0.23, 1.23]];;O_SET;[1231, -0.232];;O_TUPLE;(2, -1231.3);;O_POLYNOM;4.1x^0 + 2x^1 + -3.1x^2;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;/;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;*;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;S_AC;AC;;O_DOUBLE;0;;S_ENTER;Enter;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;S_DEL;delete;;A_PLUS;+;;S_SWAP;Swap;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
+            layout = "hS_STACK;1;;S_STACK;2;;S_STACK;3;;S_STACK;4;;S_STACK;5;;S_STACK;6;;S_STACK;7;;S_STACK;8;;;O_FRACTION;(1/2);;O_MATRIX;[[1.23, 1.32], [0.23, 1.23]];;O_SET;[1231, -0.232];;O_TUPLE;(2, -1231.3);;O_POLYNOM;4.1x^0 + 2x^1 + -3.1x^2;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;4;;O_DOUBLE;5;;O_DOUBLE;6;;A_SLASH;/;;A_MINUS;-;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;O_DOUBLE;7;;O_DOUBLE;8;;O_DOUBLE;9;;A_TIMES;*;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;S_AC;AC;;O_DOUBLE;0;;S_ENTER;Enter;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;;S_DEL;delete;;S_TURNAROUNDSIGN;+/-;;S_SWAP;Swap;;S_INVERSE;1/x;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+;;A_PLUS;+";
         }
         else if(indicator.equals("Standardlayout")) {
             //wenn operand/click nicht verfügbar ist, kommt ein plus dort hin

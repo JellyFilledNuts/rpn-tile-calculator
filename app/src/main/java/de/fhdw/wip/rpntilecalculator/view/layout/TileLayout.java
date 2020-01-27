@@ -1,12 +1,17 @@
 package de.fhdw.wip.rpntilecalculator.view.layout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+
+import androidx.core.widget.TextViewCompat;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -81,6 +86,7 @@ public class TileLayout implements StackUpdateListener {
         TableLayout tableView = new TableLayout(context);
         tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         tableView.setBackgroundColor(Color.BLACK);
+
 
         //Creating the in schemeLayout defined amount of rows
         for(ArrayList<TileScheme> row : schemeLayout) {
