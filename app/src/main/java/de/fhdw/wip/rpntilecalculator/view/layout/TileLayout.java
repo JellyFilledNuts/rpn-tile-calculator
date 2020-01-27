@@ -65,7 +65,7 @@ public class TileLayout implements StackUpdateListener {
      * Transforms the layout array into a string
      * @return text of layout
      */
-    public String encipher() {
+    public String generateLayoutText() {
         StringBuilder layoutText = new StringBuilder();
         layoutText.append(orientation.getIndicator());
 
