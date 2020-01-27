@@ -5,29 +5,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.View;
 import android.view.WindowManager;
 
 import de.fhdw.wip.rpntilecalculator.controller.ClickHandlingException;
 import de.fhdw.wip.rpntilecalculator.controller.Controller;
-import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
-import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
-import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
-import org.apache.commons.math3.linear.Array2DRowRealMatrix;
-
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
+    public static MainActivity mainActivity = null;
     private static final OperandStack OPERAND_STACK = new OperandStack();
     private Controller controller = new Controller();
 
@@ -36,16 +26,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainActivity = this;
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
 
         TileLayout testLayout = TileLayoutFactory.createLayout(this, "Morestack");
         controller.setDisplayEventListeners(testLayout);
 
-        drawLayout(testLayout);
+        setTileLayout(testLayout);
     }
 
-    public void drawLayout(TileLayout tileLayout) {
+    public void setTileLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         constraintLayout.setBackgroundColor(Color.WHITE);
         constraintLayout.addView(tileLayout.createView(this));
