@@ -61,6 +61,8 @@ public enum TileMapping {
 
     S_STACK(TileType.STACK, ""),
 
+    H_HISTORY(TileType.HISTORY, ""),
+
     X_ERROR(TileType.ERROR, "N/A");
 
 

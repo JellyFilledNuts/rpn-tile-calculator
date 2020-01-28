@@ -34,14 +34,20 @@ public abstract class TileScheme {
      * @return Type of TileScheme that inherits TileScheme.class
      */
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
-        if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
-        else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
-        else if(tileType.getType().isStack()) {
+        if(tileType.getType().isAction())
+            return new ActionTileScheme(tileType, content);
+        else if(tileType.getType().isOperand())
+            return new OperandTileScheme(tileType, content);
+        else if(tileType.getType().isStack() || tileType.getType().isHistory()) {
             String[] a = content.split(TileLayoutFactory.VALUE_SEPERATOR);
-            System.out.println(a[0] + " - " + a[1] + " - " + a[2]);
-            return new StackTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0])); }
-        else if(tileType.getType().isSetting()) {return new SettingTileScheme(tileType, content); }
-        else {return new ErrorTileScheme(TileMapping.X_ERROR, "N/A");}
+            if(tileType.getType().isHistory())
+                return new HistoryTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0]));
+            if(tileType.getType().isStack())
+                return new StackTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0]));
+        }
+        else if(tileType.getType().isSetting())
+            return new SettingTileScheme(tileType, content);
+        return new ErrorTileScheme(TileMapping.X_ERROR, "N/A");
     }
 
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
@@ -52,6 +58,10 @@ public abstract class TileScheme {
         else if(tileType.getType().isOperand()) {
             assert operand != null;
             return new OperandTileScheme(tileType, operand);
+        }
+        else if(tileType.getType().isHistory()) {
+            if(operand != null) return new HistoryTileScheme(operand, rank);
+            else return new HistoryTileScheme(new ODouble(0), rank);
         }
         else {return null;}
     }

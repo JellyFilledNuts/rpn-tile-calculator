@@ -10,4 +10,6 @@ interface TypeQuestionable {
 
     public boolean isSetting();
 
+    public boolean isHistory();
+
 }

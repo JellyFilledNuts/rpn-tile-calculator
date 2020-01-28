@@ -5,6 +5,7 @@ import de.fhdw.wip.rpntilecalculator.R;
 public enum TileType implements TypeQuestionable {
 
     STACK(R.drawable.tile_stack_green),
+    HISTORY(R.drawable.tile_operand_orange),
     OPERAND(R.drawable.tile_operand_white),
     ACTION(R.drawable.tile_operator_blue),
     SETTING(R.drawable.tile_settings_grey),
@@ -30,7 +31,11 @@ public enum TileType implements TypeQuestionable {
     }
 
     public boolean isSetting() {
-        return this== SETTING;
+        return this == SETTING;
+    }
+
+    public boolean isHistory() {
+        return this == HISTORY;
     }
 
     public int getStyle() {

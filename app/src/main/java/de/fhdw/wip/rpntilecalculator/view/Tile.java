@@ -99,4 +99,9 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
     public boolean isSetting() {
         return scheme.getTileType().getType().isSetting();
     }
+
+    @Override
+    public boolean isHistory() {
+        return scheme.getTileType().getType().isHistory();
+    }
 }

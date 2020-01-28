@@ -14,14 +14,20 @@ import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 public class StackTileScheme extends OperandTileScheme {
 
     private int rank = 1;
+    private boolean first = false;
 
     /**
      * Crates an StackTileScheme with an operand in it
      * @param content rank of the stack field
      */
     StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
+        this(tileMapping, content.equals(" ") ? "0" : content, rank, content.equals(" "));
+    }
+
+    private StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank, boolean first) {
         super(tileMapping, content);
         this.rank = rank;
+        this.first = first;
     }
 
     StackTileScheme(@NotNull Operand operand, @NotNull int rank) {
@@ -51,6 +57,11 @@ public class StackTileScheme extends OperandTileScheme {
      */
     @Override
     public @NotNull String toDisplayText() {
-        return super.toDisplayText().equals("0") ? " " : super.toDisplayText();
+        if(first) {
+            first = false;
+            return " ";
+        } else {
+            return super.toDisplayText();
+        }
     }
 }

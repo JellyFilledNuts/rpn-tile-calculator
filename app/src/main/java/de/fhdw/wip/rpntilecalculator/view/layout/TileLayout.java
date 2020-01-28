@@ -25,6 +25,7 @@ import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.events.StackUpdateListener;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.HistoryTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
@@ -113,7 +114,8 @@ public class TileLayout implements StackUpdateListener {
                 rowView.addView(tile);
                 tileRow.add(tile);
 
-                if(tile.getScheme() instanceof StackTileScheme) {
+                if(tile.getScheme() instanceof StackTileScheme &&
+                        !(tile.getScheme() instanceof HistoryTileScheme)) {
                     stack.append(((StackTileScheme) tileScheme).getRank(), tile);
                 }
             }
