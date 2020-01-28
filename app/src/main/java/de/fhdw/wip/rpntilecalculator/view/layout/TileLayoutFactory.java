@@ -1,11 +1,13 @@
 package de.fhdw.wip.rpntilecalculator.view.layout;
 
 import android.content.Context;
+import android.util.SparseArray;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
@@ -23,7 +25,6 @@ public class TileLayoutFactory {
 
     public static TileLayout createLayout(@NotNull Context context, @NotNull String indicator) {
         tileLayout = new ArrayList<>();
-
         layoutText = layoutLoader.loadLayout(context, indicator);
 
         loadOrientation();
@@ -37,10 +38,7 @@ public class TileLayoutFactory {
 
     private static void loadOrientation() {
         //decipher the layout orientation
-        if(ScreenOrientation.isOrientation(layoutText.charAt(0))) {
-            orientation = ScreenOrientation.getOrientation(layoutText.charAt(0));
-            layoutText = layoutText.substring(1);
-        }
+        orientation = ScreenOrientation.getOrientation(layoutText.charAt(0));
     }
 
     private static void loadLayout() {
