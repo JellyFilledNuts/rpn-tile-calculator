@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
 
         tileLayout = TileLayoutFactory.createLayout(this, "Morestack");
-        controller.setDisplayEventListeners(tileLayout);
-
         setTileLayout(tileLayout);
     }
 
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout.setBackgroundColor(Color.WHITE);
         constraintLayout.addView(tileLayout.createView(this));
         setRequestedOrientation(tileLayout.getOrientation().getOrientation());
+        controller.setDisplayEventListeners(tileLayout);
     }
 
     public TileLayout getTileLayout() {
