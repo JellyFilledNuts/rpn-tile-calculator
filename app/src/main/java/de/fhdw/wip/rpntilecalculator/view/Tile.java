@@ -73,7 +73,7 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
             return; //TODO: Throw exception
         }
         this.scheme = scheme;
-        this.setText(scheme.getContent());
+        this.setText(scheme.toDisplayText());
     }
 
     public TileScheme getScheme() {

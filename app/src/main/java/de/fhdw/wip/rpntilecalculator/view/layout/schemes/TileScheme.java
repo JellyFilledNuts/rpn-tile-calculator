@@ -39,9 +39,9 @@ public abstract class TileScheme {
         else if(tileType.getType().isStack()) {
             String[] a = content.split(TileLayoutFactory.VALUE_SEPERATOR);
             System.out.println(a[0] + " - " + a[1] + " - " + a[2]);
-            return new StackTileScheme((TileMapping)Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0])); }
+            return new StackTileScheme(Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0])); }
         else if(tileType.getType().isSetting()) {return new SettingTileScheme(tileType, content); }
-        else {return null;}
+        else {return new ErrorTileScheme(TileMapping.X_ERROR, "N/A");}
     }
 
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
@@ -70,9 +70,20 @@ public abstract class TileScheme {
         this.tileType = tileType;
     }
 
+    /**
+     * For internal use only
+     */
     @NotNull
     public String getContent() {
         return content;
+    }
+
+    /**
+     * Override if display text varies from normal text
+     */
+    @NotNull
+    public String toDisplayText() {
+        return getContent();
     }
 
     public void setContent(@NotNull String content) {

@@ -45,4 +45,12 @@ public class StackTileScheme extends OperandTileScheme {
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getTileType()
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
     }
+
+    /**
+     * Override to make Stack Tiles with value 0 empty
+     */
+    @Override
+    public @NotNull String toDisplayText() {
+        return super.toDisplayText().equals("0") ? " " : super.toDisplayText();
+    }
 }

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
 
-        tileLayout = TileLayoutFactory.createLayout(this, "Morestack");
+        tileLayout = TileLayoutFactory.createLayout(this, "Standardlayout");
         setTileLayout(tileLayout);
     }
 
