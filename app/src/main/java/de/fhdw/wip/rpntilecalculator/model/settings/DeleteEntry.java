@@ -3,7 +3,7 @@ package de.fhdw.wip.rpntilecalculator.model.settings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 public class DeleteEntry extends Setting {
 
@@ -15,9 +15,9 @@ public class DeleteEntry extends Setting {
      */
     @Override
     public boolean call() {
-        Controller.OPERAND_STACK.pop();
-        Controller.resetInputTerm(Controller.OPERAND_STACK.peek());
-        Controller.callStackUpdateEvent();
+        Presenter.OPERAND_STACK.pop();
+        Presenter.resetInputTerm(Presenter.OPERAND_STACK.peek());
+        Presenter.updateStack();
         return true;
     }
 }

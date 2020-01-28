@@ -1,25 +1,19 @@
 package de.fhdw.wip.rpntilecalculator.view.layout;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
-
-import androidx.core.widget.TextViewCompat;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
@@ -87,7 +81,7 @@ public class TileLayout implements StackUpdateListener {
     }
     public void setIndicator(String indicator) { this.indicator = indicator; }
 
-    public TableLayout createView(@NotNull Context context) {
+    public TableLayout createView(@NotNull Context context, @NotNull Presenter presenter) {
         //Create table by first creating one column as TableLayout
         TableLayout tableView = new TableLayout(context);
         tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -107,7 +101,7 @@ public class TileLayout implements StackUpdateListener {
             for(TileScheme tileScheme : row) {
 
                 //For the design of the Button TileScheme is used and for the button itself Tile
-                Tile tile = new Tile(context, tileScheme);
+                Tile tile = new Tile(context, tileScheme, presenter);
 
                 drawTile(tile);
 
@@ -122,9 +116,9 @@ public class TileLayout implements StackUpdateListener {
             tableView.addView(rowView);
             tileLayout.add(tileRow);
         }
-        Controller.OPERAND_STACK.clear();
+        Presenter.OPERAND_STACK.clear();
         for(int i = stack.size()-1; i >= 0; i--) {
-            Controller.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
+            Presenter.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
         }
         return tableView;
     }

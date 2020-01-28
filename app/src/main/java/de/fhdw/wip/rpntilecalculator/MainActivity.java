@@ -7,22 +7,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import de.fhdw.wip.rpntilecalculator.controller.ClickHandlingException;
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
-import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
-import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
-import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     public static MainActivity mainActivity = null;
-    private static final OperandStack OPERAND_STACK = new OperandStack();
-    private Controller controller = new Controller();
+    private static Presenter presenter = new Presenter();
     private TileLayout tileLayout;
-
-    private static final Plus PLUS = Plus.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,29 +25,21 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
 
-        tileLayout = TileLayoutFactory.createLayout(this, "Standardlayout");
-        setTileLayout(tileLayout);
+        setTileLayout(TileLayoutFactory.createLayout(this, "Standardlayout"));
     }
 
     public void setTileLayout(TileLayout tileLayout) {
+        this.tileLayout = tileLayout;
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         constraintLayout.removeAllViews();
         constraintLayout.setBackgroundColor(Color.WHITE);
-        constraintLayout.addView(tileLayout.createView(this));
+        constraintLayout.addView(tileLayout.createView(this, presenter));
+        presenter.setCurrentLayout(tileLayout);
         setRequestedOrientation(tileLayout.getOrientation().getOrientation());
-        controller.setDisplayEventListeners(tileLayout);
     }
 
     public TileLayout getTileLayout() {
         return tileLayout;
     }
 
-    public void action(Tile tile) {
-        try {
-            controller.click(tile);
-            System.out.println("Clicked: " + tile.getText() + " from " + tile.getScheme().getTileType());
-        } catch (ClickHandlingException ignored) {
-            //TODO
-        }
-    }
 }

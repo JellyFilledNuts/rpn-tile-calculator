@@ -1,5 +1,7 @@
-package de.fhdw.wip.rpntilecalculator.controller;
+package de.fhdw.wip.rpntilecalculator.presenter;
 
+
+import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,8 +17,7 @@ import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.events.DisplayEventListener;
-import de.fhdw.wip.rpntilecalculator.view.events.StackUpdateListener;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.ActionTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.OperandTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.SettingTileScheme;
@@ -26,31 +27,34 @@ import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 /**
  * Used for communication between view and model
  */
-public class Controller {
+public class Presenter implements View.OnClickListener {
 
     public static final OperandStack OPERAND_STACK = new OperandStack();
     public static StringBuilder INPUT_TERM = new StringBuilder();
 
-    private static DisplayEventListener[] viewListeners = new DisplayEventListener[0];
+    private static TileLayout layout;
+
     public static final String INPUT_FINALIZED = "final";
 
     /**
      * Handles all tile input and decides on the follow up procedure
      * First decides on the type of input
-     * @param tile the tile that has been clicked
+     * @param v the tile view that has been clicked
      */
-    public void click(@NotNull Tile tile) throws ClickHandlingException {
+    @Override
+    public void onClick(View v) {
+        Tile tile = (Tile) v;
         if(tile.isOperand()) clickOperand(tile);
         else if(tile.isAction()) clickAction(tile);
-        else if(tile.isStack()) clickStack(tile);
+        else if(tile.isStack() || tile.isHistory()) clickStackLike(tile);
         else if(tile.isSetting()) clickSetting(tile);
-        else throw new ClickHandlingException();
+        else System.out.println("Handling exception when clicked on " + tile.getScheme());
     }
 
     /**
      * Handles all stack operation (similar to clickOperand)
      */
-    private void clickStack(@NotNull Tile tile) {
+    private void clickStackLike(@NotNull Tile tile) {
         StackTileScheme stackTile = (StackTileScheme) tile.getScheme();
         if(stackTile.hasOperand()) clickOperand(stackTile.getOperand());
     }
@@ -79,7 +83,7 @@ public class Controller {
         }
 
         OPERAND_STACK.push(operand);
-        callStackUpdateEvent();
+        updateStack();
         //System.out.println("[Operand] " + operand.getClass());
     }
 
@@ -104,7 +108,7 @@ public class Controller {
                 e.printStackTrace();
             }
         }
-        callStackUpdateEvent();
+        updateStack();
     }
 
     /**
@@ -186,20 +190,17 @@ public class Controller {
     }
 
     /**
-     * Throws a Stack update event to all listeners
+     * Set the layout that the controller can edit
+     * @param layout current layout
      */
-    public static void callStackUpdateEvent() {
-        for(DisplayEventListener listener : viewListeners) {
-            if(listener instanceof StackUpdateListener) {
-                ((StackUpdateListener) listener).updateStack(OPERAND_STACK);
-            }
-        }
+    public void setCurrentLayout(TileLayout layout) {
+        Presenter.layout = layout;
     }
 
     /**
-     * Sets the listeners for display changes
+     * Lets the layout update its stack
      */
-    public void setDisplayEventListeners(DisplayEventListener... viewListeners) {
-        this.viewListeners = viewListeners;
+    public static void updateStack() {
+        layout.updateStack(OPERAND_STACK);
     }
 }

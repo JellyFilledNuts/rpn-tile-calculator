@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 /**
@@ -26,16 +27,12 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
     private MainActivity context;
     private TileScheme scheme;
 
-    public Tile(@NotNull Context context, @NotNull TileScheme scheme) {
+    public Tile(@NotNull Context context, @NotNull TileScheme scheme, @NotNull Presenter presenter) {
         super(context);
         this.context = (MainActivity) context;
         update(scheme);
 
-        setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                give();
-            }
-        });
+        setOnClickListener(presenter);
 
         setOnLongClickListener(new OnLongClickListener() {
             @Override
@@ -61,10 +58,6 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
         window.setAttributes(wlp);
 
         dialog.show();
-    }
-
-    private void give() {
-        this.context.action(this);
     }
 
     public void update(@Nullable TileScheme scheme) {

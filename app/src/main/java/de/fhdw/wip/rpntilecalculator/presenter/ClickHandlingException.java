@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.controller;
+package de.fhdw.wip.rpntilecalculator.presenter;
 
 public class ClickHandlingException extends Exception {
 

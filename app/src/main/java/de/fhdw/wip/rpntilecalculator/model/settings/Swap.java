@@ -3,9 +3,7 @@ package de.fhdw.wip.rpntilecalculator.model.settings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 public class Swap extends Setting {
@@ -18,16 +16,16 @@ public class Swap extends Setting {
      */
     @Override
     public boolean call() {
-        if(Controller.OPERAND_STACK.size() < 2) return false;
+        if(Presenter.OPERAND_STACK.size() < 2) return false;
 
-        Operand one = Controller.OPERAND_STACK.pop();
-        Operand two = Controller.OPERAND_STACK.pop();
+        Operand one = Presenter.OPERAND_STACK.pop();
+        Operand two = Presenter.OPERAND_STACK.pop();
 
-        Controller.OPERAND_STACK.push(one);
-        Controller.OPERAND_STACK.push(two);
-        Controller.resetInputTerm(two);
+        Presenter.OPERAND_STACK.push(one);
+        Presenter.OPERAND_STACK.push(two);
+        Presenter.resetInputTerm(two);
 
-        Controller.callStackUpdateEvent();
+        Presenter.updateStack();
         return true;
     }
 }

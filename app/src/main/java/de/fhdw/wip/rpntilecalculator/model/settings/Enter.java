@@ -3,7 +3,7 @@ package de.fhdw.wip.rpntilecalculator.model.settings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
+import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 public class Enter extends Setting {
 
@@ -15,7 +15,7 @@ public class Enter extends Setting {
      */
     @Override
     public boolean call() {
-        Controller.INPUT_TERM = new StringBuilder().append(Controller.INPUT_FINALIZED);
+        Presenter.INPUT_TERM = new StringBuilder().append(Presenter.INPUT_FINALIZED);
         return true;
     }
 }

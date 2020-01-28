@@ -4,9 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
-import de.fhdw.wip.rpntilecalculator.controller.Controller;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
-import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
 public class SaveLayout extends Setting {
