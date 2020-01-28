@@ -18,7 +18,7 @@ public class LoadLayout extends Setting {
     @Override
     public boolean call() {
         MainActivity activity = MainActivity.mainActivity;
-        activity.setTileLayout(TileLayoutFactory.createLayout(activity.getBaseContext(), "Test"));
+        activity.setTileLayout(TileLayoutFactory.createLayout(activity.getBaseContext(), "Main"));
         return true;
     }
 

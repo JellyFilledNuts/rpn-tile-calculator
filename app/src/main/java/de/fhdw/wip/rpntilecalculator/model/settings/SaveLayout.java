@@ -20,7 +20,9 @@ public class SaveLayout extends Setting {
     @Override
     public boolean call() {
         MainActivity activity = MainActivity.mainActivity;
-        //TileLayoutLoader.saveLayout(activity.getBaseContext(), "main");
+        TileLayout t = activity.getTileLayout();
+        t.setIndicator("Main");
+        TileLayoutLoader.saveLayout(activity.getBaseContext(), activity.getTileLayout());
         return true;
     }
 

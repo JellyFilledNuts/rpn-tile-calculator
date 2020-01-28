@@ -2,6 +2,7 @@ package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
@@ -21,6 +22,7 @@ public class StackTileScheme extends TileScheme {
     StackTileScheme(@NotNull int rank) {
         super(TileMapping.S_STACK, "");
         this.rank = rank;
+        operand = new ODouble(0);
     }
 
     StackTileScheme(@NotNull Operand operand, @NotNull int rank) {
@@ -35,6 +37,11 @@ public class StackTileScheme extends TileScheme {
 
     public Operand getOperand() {
         return operand;
+    }
+
+    @Override
+    public @NotNull String getContent() {
+        return String.valueOf(rank);
     }
 
     public boolean hasOperand() { return operand != null; }

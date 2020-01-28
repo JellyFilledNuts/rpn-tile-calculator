@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static MainActivity mainActivity = null;
     private static final OperandStack OPERAND_STACK = new OperandStack();
     private Controller controller = new Controller();
+    private TileLayout tileLayout;
 
     private static final Plus PLUS = Plus.getInstance();
 
@@ -31,17 +32,22 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
 
-        TileLayout testLayout = TileLayoutFactory.createLayout(this, "Morestack");
-        controller.setDisplayEventListeners(testLayout);
+        tileLayout = TileLayoutFactory.createLayout(this, "Morestack");
+        controller.setDisplayEventListeners(tileLayout);
 
-        setTileLayout(testLayout);
+        setTileLayout(tileLayout);
     }
 
     public void setTileLayout(TileLayout tileLayout) {
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+        constraintLayout.removeAllViews();
         constraintLayout.setBackgroundColor(Color.WHITE);
         constraintLayout.addView(tileLayout.createView(this));
         setRequestedOrientation(tileLayout.getOrientation().getOrientation());
+    }
+
+    public TileLayout getTileLayout() {
+        return tileLayout;
     }
 
     public void action(Tile tile) {

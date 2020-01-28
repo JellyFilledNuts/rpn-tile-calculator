@@ -42,6 +42,7 @@ public abstract class TileScheme {
 
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
         if(tileType.getType().isStack()) {
+            System.out.println("IEE " + rank);
             if(operand != null) return new StackTileScheme(operand, rank);
             else return new StackTileScheme(rank);
         }
@@ -80,6 +81,6 @@ public abstract class TileScheme {
     public String toString() {
         //O_DOUBLE;20
         //A_MINUS;-
-        return tileType.toString() + TileLayoutFactory.VALUE_SEPERATOR + content;
+        return tileType.toString() + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
     }
 }

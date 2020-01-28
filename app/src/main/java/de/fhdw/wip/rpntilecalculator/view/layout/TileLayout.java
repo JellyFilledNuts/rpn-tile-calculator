@@ -73,13 +73,15 @@ public class TileLayout implements StackUpdateListener {
             for(TileScheme columnScheme : row) {
                 layoutText.append(columnScheme.toString()).append(TileLayoutFactory.COLUMN_SEPERATOR);
             }
+            layoutText.append(TileLayoutFactory.ROW_SEPERATOR);
         }
         return layoutText.toString();
     }
 
-    String getIndicator() {
+    public String getIndicator() {
         return indicator;
     }
+    public void setIndicator(String indicator) { this.indicator = indicator; }
 
     public TableLayout createView(@NotNull Context context) {
         //Create table by first creating one column as TableLayout

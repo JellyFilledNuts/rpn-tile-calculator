@@ -13,7 +13,7 @@ public class TileLayoutFactory {
 
     public final static String VALUE_SEPERATOR = ",";
     public final static String COLUMN_SEPERATOR = ";";
-    private final static String ROW_SEPERATOR = "\n";
+    public final static String ROW_SEPERATOR = "\n";
 
     private static TileLayoutLoader layoutLoader = new TileLayoutLoader();
 
@@ -44,9 +44,11 @@ public class TileLayoutFactory {
     }
 
     private static void loadLayout() {
+
         // Read the string and place it into the arraylist
         String[] rows = layoutText.split(ROW_SEPERATOR);
         for(String row : rows) {
+            System.out.println(row);
             String[] columns = row.split(COLUMN_SEPERATOR);
             ArrayList<TileScheme> tileRow = new ArrayList<>();
             for(String column : columns) {
