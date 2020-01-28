@@ -31,8 +31,6 @@ public class TileLayoutFactory {
 
         loadLayout();
 
-        System.out.println("LAYOUTTEXT: " + tileLayout.size() + " - " + tileLayout.get(0).size());
-
         return new TileLayout(indicator, tileLayout, orientation);
     }
 

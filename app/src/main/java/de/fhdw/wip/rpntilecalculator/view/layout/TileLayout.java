@@ -13,22 +13,23 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.events.StackUpdateListener;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.HistoryTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
-public class TileLayout implements StackUpdateListener {
+public class TileLayout {
 
     //Margin between tiles
     private static final int TILE_MARGIN = 3;
 
     private SparseArray<Tile> stack = new SparseArray<>();
+    private SparseArray<Tile> historyStack = new SparseArray<>();
     private ArrayList<ArrayList<Tile>> tileLayout = new ArrayList<>();
 
     private ArrayList<ArrayList<TileScheme>> schemeLayout; //outdated after a single operation
@@ -42,18 +43,32 @@ public class TileLayout implements StackUpdateListener {
     }
 
     /**
-     * Listens to stack updates
+     * Updates the stack and decides which ones are displayed
      */
-    @Override
     public void updateStack(OperandStack operandStack) {
         @NotNull List<Operand> stackOperands = operandStack.peek(stack.size());
-        operandStack.print();
 
         for(int i = 0; i < stack.size(); i++) {
             Tile stackTile = stack.valueAt(i);
             Operand operand = null;
             if(i < stackOperands.size()) operand = stackOperands.get(i);
             stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, operand, stack.keyAt(i)));
+        }
+    }
+
+    /**
+     * Updates the History Stack. if there are more values, the first ones are cut
+     */
+    public void updateHistoryStack(List<Operand> operandList) {
+        int overflow = operandList.size() - historyStack.size();
+        //Adjust to actual history stack size
+        for(int i = 0; i < overflow; i++) {
+            operandList.remove(0);
+            Presenter.HISTORY_STACK.remove(0);
+        }
+        for(int i = 0; i < operandList.size(); i++) {
+            Tile historyTile = historyStack.valueAt(i);
+            historyTile.update(TileScheme.createTileScheme(TileMapping.H_HISTORY, operandList.get(i), i));
         }
     }
 
@@ -81,6 +96,13 @@ public class TileLayout implements StackUpdateListener {
     }
     public void setIndicator(String indicator) { this.indicator = indicator; }
 
+    /**
+     * Creates the 2d ArrayList of Tiles, the stack list & the history stack list based on
+     * the before created TileScheme Layout
+     * @param context the context of the application
+     * @param presenter an instance of the presenter to act as listener
+     * @return a View object TableLayout that can be added to the screen
+     */
     public TableLayout createView(@NotNull Context context, @NotNull Presenter presenter) {
         //Create table by first creating one column as TableLayout
         TableLayout tableView = new TableLayout(context);
@@ -108,19 +130,44 @@ public class TileLayout implements StackUpdateListener {
                 rowView.addView(tile);
                 tileRow.add(tile);
 
-                if(tile.getScheme() instanceof StackTileScheme &&
-                        !(tile.getScheme() instanceof HistoryTileScheme)) {
-                    stack.append(((StackTileScheme) tileScheme).getRank(), tile);
+                if(tile.getScheme() instanceof StackTileScheme) {
+                    if(tile.getScheme() instanceof HistoryTileScheme) {
+                        historyStack.append(((HistoryTileScheme) tileScheme).getRank(), tile);
+                    } else {
+                        stack.append(((StackTileScheme) tileScheme).getRank(), tile);
+                    }
                 }
             }
             tableView.addView(rowView);
             tileLayout.add(tileRow);
         }
+
+        pushStack();
+        pushHistoryStack();
+
+        return tableView;
+    }
+
+    /**
+     * Sets the Stack of the Presenter
+     */
+    private void pushStack() {
         Presenter.OPERAND_STACK.clear();
         for(int i = stack.size()-1; i >= 0; i--) {
             Presenter.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
         }
-        return tableView;
+    }
+
+    /**
+     * Sets the History Stack of the Presenter
+     */
+    private void pushHistoryStack() {
+        Presenter.HISTORY_STACK.clear();
+        for(int i = 0; i < historyStack.size(); i++) {
+            Operand operand = ((HistoryTileScheme) historyStack.valueAt(i).getScheme()).getOperand();
+            if(!operand.equalsValue(new ODouble(0)))
+                Presenter.HISTORY_STACK.add(operand);
+        }
     }
 
     public void drawTile(Tile tile) {
@@ -138,4 +185,5 @@ public class TileLayout implements StackUpdateListener {
     public ScreenOrientation getOrientation() {
         return orientation;
     }
+
 }

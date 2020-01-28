@@ -59,7 +59,6 @@ public class TileLayoutLoader {
         try {
             //The path to the file is defined by its indicator, no doubles allowed!
             //String filePath = FOLDER + indicator + ".txt";
-            System.out.println(layoutText);
             OutputStreamWriter out = new OutputStreamWriter(context.openFileOutput(indicator + ".csv", Context.MODE_PRIVATE));
             out.write(layoutText);
             out.close();

@@ -30,11 +30,16 @@ import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 public class Presenter implements View.OnClickListener {
 
     public static final OperandStack OPERAND_STACK = new OperandStack();
+    public static ArrayList<Operand> HISTORY_STACK = new ArrayList<>();
     public static StringBuilder INPUT_TERM = new StringBuilder();
 
     private static TileLayout layout;
 
     public static final String INPUT_FINALIZED = "final";
+
+    public Presenter() {
+        HISTORY_STACK = new ArrayList<>();
+    }
 
     /**
      * Handles all tile input and decides on the follow up procedure
@@ -73,13 +78,17 @@ public class Presenter implements View.OnClickListener {
      * @param operand operand that is added to stack
      */
     private void clickOperand(@NotNull Operand operand) {
-
-        if(tryAppending(operand)) {
-            // Operand can be added to the input term and replaces the last operand
-            OPERAND_STACK.pop();
-            operand = readCombinedOperand(INPUT_TERM).getOperand();
-        } else {
-            resetInputTerm(operand);
+        switch (tryAppending(operand)) {
+            case 0: // string finalized
+                resetInputTerm(operand);
+                break;
+            case 1: // not finalized, but pushed ahead
+                HISTORY_STACK.add(operand);
+                updateHistoryStack();
+                break;
+            case 2: //
+                OPERAND_STACK.pop();
+                operand = readCombinedOperand(INPUT_TERM).getOperand();
         }
 
         OPERAND_STACK.push(operand);
@@ -109,6 +118,7 @@ public class Presenter implements View.OnClickListener {
             }
         }
         updateStack();
+        updateHistoryStack();
     }
 
     /**
@@ -130,6 +140,7 @@ public class Presenter implements View.OnClickListener {
             Operand result = action.with(operands);
             OPERAND_STACK.pop(operands.size());
             OPERAND_STACK.push(result);
+            HISTORY_STACK.add(result);
             resetInputTerm(result);
             return true;
         } catch (CalculationException e) {
@@ -153,8 +164,8 @@ public class Presenter implements View.OnClickListener {
      * @param operand operand that is added to the stack
      * @return if the combination has been done or not
      */
-    private boolean tryAppending(Operand operand) {
-        if(INPUT_TERM.toString().equals(INPUT_FINALIZED)) return false;
+    private int tryAppending(Operand operand) {
+        if(INPUT_TERM.toString().equals(INPUT_FINALIZED)) return 0;
         if(OPERAND_STACK.peek() == null || OPERAND_STACK.peek() instanceof ODouble) {
             if (operand instanceof ODouble) {
                 ODouble oNew = (ODouble) operand;
@@ -164,11 +175,11 @@ public class Presenter implements View.OnClickListener {
 
                 if(points < 2) {
                     INPUT_TERM.append(operand);
-                    return true;
+                    return 2;
                 }
             }
         }
-        return false;
+        return 1;
     }
 
     /**
@@ -202,5 +213,12 @@ public class Presenter implements View.OnClickListener {
      */
     public static void updateStack() {
         layout.updateStack(OPERAND_STACK);
+    }
+
+    /**
+     * Lets the layout update its history stack
+     */
+    public static void updateHistoryStack() {
+        layout.updateHistoryStack(HISTORY_STACK);
     }
 }
