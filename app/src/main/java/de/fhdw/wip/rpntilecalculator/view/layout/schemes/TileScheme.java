@@ -12,13 +12,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.R;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
 public abstract class TileScheme {
 
-    @NotNull private TileMapping tileType;
+    @NotNull protected TileMapping tileType;
     @NotNull private String content;
 
     TileScheme(@NotNull TileMapping tileType, @NotNull String content) {
@@ -35,16 +36,18 @@ public abstract class TileScheme {
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable String content) {
         if(tileType.getType().isAction()) { return new ActionTileScheme(tileType, content); }
         else if(tileType.getType().isOperand()) { return new OperandTileScheme(tileType, content); }
-        else if(tileType.getType().isStack()) { return new StackTileScheme(content); }
+        else if(tileType.getType().isStack()) {
+            String[] a = content.split(TileLayoutFactory.VALUE_SEPERATOR);
+            System.out.println(a[0] + " - " + a[1] + " - " + a[2]);
+            return new StackTileScheme((TileMapping)Enum.valueOf(TileMapping.class, a[1]), a[2], Integer.parseInt(a[0])); }
         else if(tileType.getType().isSetting()) {return new SettingTileScheme(tileType, content); }
         else {return null;}
     }
 
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
         if(tileType.getType().isStack()) {
-            System.out.println("IEE " + rank);
             if(operand != null) return new StackTileScheme(operand, rank);
-            else return new StackTileScheme(rank);
+            else return new StackTileScheme(new ODouble(0), rank);
         }
         else if(tileType.getType().isOperand()) {
             assert operand != null;

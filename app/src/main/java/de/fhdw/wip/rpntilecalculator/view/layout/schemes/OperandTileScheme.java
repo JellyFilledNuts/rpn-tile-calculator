@@ -23,7 +23,6 @@ public class OperandTileScheme extends TileScheme {
         Class<? extends Operand> operandClass = tileType.getOperandType();
 
         try {
-            //System.out.println("Trying: " + operandClass + " with " + content);
             this.operand = operandClass.getConstructor(String.class).newInstance(content);
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -41,6 +40,10 @@ public class OperandTileScheme extends TileScheme {
     OperandTileScheme(@NotNull TileMapping tileType, @NotNull Operand operand) {
         super(tileType, operand.toString());
         this.operand = operand;
+    }
+
+    public boolean hasOperand(){
+        return operand != null;
     }
 
     @Override

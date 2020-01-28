@@ -1,33 +1,31 @@
 package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
 
+import androidx.annotation.NonNull;
+
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
-public class StackTileScheme extends TileScheme {
+public class StackTileScheme extends OperandTileScheme {
 
-    private Operand operand = null;
     private int rank = 1;
 
     /**
      * Crates an StackTileScheme with an operand in it
      * @param content rank of the stack field
      */
-    StackTileScheme(@NotNull String content) {
-        this(Integer.valueOf(content));
-    }
-
-    StackTileScheme(@NotNull int rank) {
-        super(TileMapping.S_STACK, "");
+    StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
+        super(tileMapping, content);
         this.rank = rank;
-        operand = new ODouble(0);
     }
 
     StackTileScheme(@NotNull Operand operand, @NotNull int rank) {
-        super(TileMapping.S_STACK, operand.toString()); //TODO Update the toString method?
-        this.operand = operand;
+        super(TileMapping.O_DOUBLE, operand);
         this.rank = rank;
     }
 
@@ -35,14 +33,16 @@ public class StackTileScheme extends TileScheme {
         return rank;
     }
 
-    public Operand getOperand() {
-        return operand;
+    public int getStyle() {
+        return TileType.STACK.getStyle();
     }
 
+    @NonNull
     @Override
-    public @NotNull String getContent() {
-        return String.valueOf(rank);
+    public String toString() {
+        return "S_STACK"
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getTileType()
+                + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
     }
-
-    public boolean hasOperand() { return operand != null; }
 }

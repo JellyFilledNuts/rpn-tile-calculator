@@ -69,7 +69,7 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
 
     public void update(@Nullable TileScheme scheme) {
         if(scheme == null) {
-            System.out.println("[TILE] Could not update Tile " + this.scheme.getTileType() + " " + getText());
+            System.out.println("[TILE] Could not update Tile " + getText());
             return; //TODO: Throw exception
         }
         this.scheme = scheme;
