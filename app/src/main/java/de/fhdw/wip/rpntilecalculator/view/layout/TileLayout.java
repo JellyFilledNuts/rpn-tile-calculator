@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.controller.Controller;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
@@ -35,7 +36,7 @@ public class TileLayout implements StackUpdateListener {
     private SparseArray<Tile> stack = new SparseArray<>();
     private ArrayList<ArrayList<Tile>> tileLayout = new ArrayList<>();
 
-    private ArrayList<ArrayList<TileScheme>> schemeLayout;
+    private ArrayList<ArrayList<TileScheme>> schemeLayout; //outdated after a single operation
     private ScreenOrientation orientation;
     private String indicator;
 
@@ -67,14 +68,16 @@ public class TileLayout implements StackUpdateListener {
      */
     public String generateLayoutText() {
         StringBuilder layoutText = new StringBuilder();
-        layoutText.append(orientation.getIndicator());
+        //layoutText.append(orientation.getIndicator());
 
-        for(ArrayList<TileScheme> row : schemeLayout) {
-            for(TileScheme columnScheme : row) {
-                layoutText.append(columnScheme.toString()).append(TileLayoutFactory.COLUMN_SEPERATOR);
+        for(ArrayList<Tile> row : tileLayout) {
+            for(Tile t : row) {
+                layoutText.append(t.getScheme().toString()).append(TileLayoutFactory.COLUMN_SEPERATOR);
             }
+            layoutText.deleteCharAt(layoutText.length()-1);
             layoutText.append(TileLayoutFactory.ROW_SEPERATOR);
         }
+        //layoutText.deleteCharAt(layoutText.length()-1);
         return layoutText.toString();
     }
 
@@ -110,21 +113,30 @@ public class TileLayout implements StackUpdateListener {
                 rowView.addView(tile);
                 tileRow.add(tile);
 
-                if(tile.getScheme().getTileType().getType().isStack()) {
-                    stack.put(((StackTileScheme) tileScheme).getRank(), tile);
+                if(tile.getScheme() instanceof StackTileScheme) {
+                    stack.append(((StackTileScheme) tileScheme).getRank(), tile);
                 }
             }
             tableView.addView(rowView);
             tileLayout.add(tileRow);
         }
+        Controller.OPERAND_STACK.clear();
+        for(int i = stack.size()-1; i >= 0; i--) {
+            Controller.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
+        }
         return tableView;
     }
 
     public void drawTile(Tile tile) {
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
-        layoutParams.setMargins(TILE_MARGIN, TILE_MARGIN, TILE_MARGIN, TILE_MARGIN);
-        tile.setLayoutParams(layoutParams);
-        tile.setBackgroundResource(tile.getScheme().getStyle());
+            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
+            layoutParams.setMargins(TILE_MARGIN, TILE_MARGIN, TILE_MARGIN, TILE_MARGIN);
+            tile.setLayoutParams(layoutParams);
+
+        if(tile.getScheme() != null) {
+            tile.setBackgroundResource(tile.getScheme().getStyle());
+        }else{
+            System.out.println("Cloud not draw Tile");
+        }
     }
 
     public ScreenOrientation getOrientation() {
