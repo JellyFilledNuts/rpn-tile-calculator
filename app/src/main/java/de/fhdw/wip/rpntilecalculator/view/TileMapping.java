@@ -20,6 +20,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
+import de.fhdw.wip.rpntilecalculator.model.settings.ClearHistory;
 import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
 import de.fhdw.wip.rpntilecalculator.model.settings.Enter;
 import de.fhdw.wip.rpntilecalculator.model.settings.Inverse;
@@ -58,6 +59,7 @@ public enum TileMapping {
     S_INVERSE(TileType.SETTING, Inverse.getInstance(), "1/x"),
     S_LOADLAYOUT(TileType.SETTING, LoadLayout.getInstance(), "Load Layout"),
     S_SAVELAYOUT(TileType.SETTING, SaveLayout.getInstance(), "Save Layout"),
+    S_CLEARHISTORY(TileType.SETTING, ClearHistory.getInstance(), "Clear History"),
 
     S_STACK(TileType.STACK, ""),
 

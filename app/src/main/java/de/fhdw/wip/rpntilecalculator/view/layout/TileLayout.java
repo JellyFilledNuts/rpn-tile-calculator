@@ -66,9 +66,11 @@ public class TileLayout {
             operandList.remove(0);
             Presenter.HISTORY_STACK.remove(0);
         }
-        for(int i = 0; i < operandList.size(); i++) {
+        for(int i = 0; i < historyStack.size(); i++) {
             Tile historyTile = historyStack.valueAt(i);
-            historyTile.update(TileScheme.createTileScheme(TileMapping.H_HISTORY, operandList.get(i), i));
+            Operand operand = null;
+            if(i < operandList.size()) operand = operandList.get(i);
+            historyTile.update(TileScheme.createTileScheme(TileMapping.H_HISTORY, operand, i));
         }
     }
 
