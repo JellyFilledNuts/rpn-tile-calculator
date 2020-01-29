@@ -2,25 +2,38 @@ package de.fhdw.wip.rpntilecalculator.view.menu;
 
 import android.app.Dialog;
 import android.view.Gravity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 
+/**
+ * Summary: Super Class: Tile acts as button and forwards the connected type and click to the handler
+ * Author:  Getuart Istogu
+ **/
+
 public abstract class DialogMenu {
 
+    protected MainActivity context;
     protected Dialog dialog;
+    @Nullable
+    protected Dialog last;
     protected int contentView;
     final protected Tile tile;
 
-    public DialogMenu(MainActivity context, int windowFeature, Tile tileOutside)
+    public DialogMenu(MainActivity context, int windowFeature, Tile tileOutside, Dialog last)
     {
+        this.context = context;
+        this.last = last;
         this.dialog = new Dialog(context);
+        this.dialog.requestWindowFeature(windowFeature);
+
         this.setContentView();
         this.dialog.setContentView(contentView);
-        this.dialog.requestWindowFeature(windowFeature);
+
 
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -32,8 +45,12 @@ public abstract class DialogMenu {
 
     protected abstract void setContentView();
 
-    public void show()
+
+    public void dismissAll()
     {
-        dialog.show();
+        if(last != null) last.dismiss();
+        dialog.dismiss();
     }
+
+
 }
