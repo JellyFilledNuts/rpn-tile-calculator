@@ -1,79 +1,48 @@
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
-import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.analysis.integration.SimpsonIntegrator;
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import java.util.ArrayList;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 
+
 /*
- * Summary: Defines methods, which are typically needed for curve sketching
+ * Summary: Determine limit
  * Author:  Getuart Istogu
  * Date:    2020/01/04
  */
-public class CurveSketching extends Action {
+public class Limes extends Action {
 
-    @NotNull private static final CurveSketching CURVE_SKETCHING = new CurveSketching();
+    @NotNull private static final Limes LIMES = new Limes();
 
-    @Contract(pure = true) @NotNull public static CurveSketching getInstance() { return CURVE_SKETCHING; }
-    private CurveSketching() { }
-
-
-    // Structure: via the method getCoefficients()
-    // coefficients[n] * x^n + ... + coefficients[1] * x + coefficients[0]
+    @Contract(pure = true) @NotNull public static Limes getInstance() { return LIMES; }
+    private Limes() { }
 
     /**
-     * Berechnet die nächste Ableitung.
-     * @return
+     * Calculates the limit of a function at one point
+     * @param oPolynom Examined function
+     * @param approach Limit point
+     * @return Limit value at the defined point
      */
-    @NotNull
-    public OPolynom getDerivative(OPolynom oPolynom)
-    {
-        PolynomialFunction polynomialDerivative = oPolynom.getPolynom().polynomialDerivative();
-        return new OPolynom(polynomialDerivative);
-    }
-
-    /**
-     * Berechnet das Integral für den angegebenen Grenzbereich
-     * @param lowerBound untere Grenze
-     * @param upperBound übere Grenze
-     * @return
-     */
-    @NotNull public double getSimpsonIntegrator(OPolynom oPolynom, double lowerBound, double upperBound)
-    {
-        SimpsonIntegrator simpsonIntegrator = new SimpsonIntegrator();
-        UnivariateFunction uF = (UnivariateFunction) oPolynom.getPolynom();
-        return simpsonIntegrator.integrate(10000, uF, lowerBound, upperBound);
-    }
-
-    /**
-     * Berechnet die Nullstellen.
-     * Die Funktion muss nicht abgeleitet werden!
-     * @param lowerBound untere Grenze
-     * @param upperBound übere Grenze
-     * @return Eine Liste an Nullstellen. Wenn null, dann keine Nullstellen
-     */
-    public ArrayList<ODouble> getZeroPoints(OPolynom oPolynom, double lowerBound, double upperBound)
-    {
-        return null;
-    }
-
-
-    public double limit(OPolynom oPolynom, double appraoch) {
+    public ODouble limit(OPolynom oPolynom, double approach) {
         PolynomialFunction polynomialFunction = oPolynom.getPolynom();
-        double below = limitFromBelow(polynomialFunction, appraoch);
-        double above = limitFromAbove(polynomialFunction, appraoch);
+        double below = limitFromBelow(polynomialFunction, approach);
+        double above = limitFromAbove(polynomialFunction, approach);
         if(below == above)
-            return below;
+            return new ODouble(below);
         else
-            return Double.NaN;
+            return new ODouble(Double.NaN);
     }
 
+    /**
+     * Calculates the limit of a function at one point from below
+     * @param polynomialFunction Examined function
+     * @param approach Limit point
+     * @return Limit value from below at the defined point
+     */
     private double limitFromBelow(PolynomialFunction polynomialFunction, double approach) {
 
         for (double d = approach - 10; d <= approach; d = approach
@@ -95,6 +64,12 @@ public class CurveSketching extends Action {
         return Double.NaN;
     }
 
+    /**
+     * Calculates the limit of a function at one point from above
+     * @param polynomialFunction Examined function
+     * @param approach Limit point
+     * @return Limit value from above at the defined point
+     */
     private double limitFromAbove(PolynomialFunction polynomialFunction, double approach) {
 
         for (double d = approach + 10; d >= approach; d = approach
