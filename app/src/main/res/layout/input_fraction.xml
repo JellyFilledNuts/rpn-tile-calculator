@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:paddingLeft="20px"
+    android:paddingTop="20px"
+    android:paddingRight="20px"
+    android:paddingBottom="20px">
+
+    <EditText
+        android:id="@+id/numerator"
+        android:layout_width="254dp"
+        android:layout_height="142dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Numerator"
+        android:inputType="numberDecimal"
+        android:textSize="36sp" />
+
+    <View
+        android:id="@+id/fraction_line"
+        android:layout_width="249dp"
+        android:layout_height="6dp"
+        android:layout_alignBottom="@id/numerator"
+        android:background="@android:color/darker_gray" />
+
+    <EditText
+        android:id="@+id/denumerator"
+        android:layout_width="254dp"
+        android:layout_height="152dp"
+        android:layout_alignTop="@+id/fraction_line"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Denumerator"
+        android:inputType="numberDecimal"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="119dp"
+        android:layout_height="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="106dp"
+        android:layout_toRightOf="@id/fraction_line"
+        android:text="Bestätigen" />
+
+</RelativeLayout>

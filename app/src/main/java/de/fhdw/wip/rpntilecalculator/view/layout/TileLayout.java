@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -125,7 +126,7 @@ public class TileLayout {
             for(TileScheme tileScheme : row) {
 
                 //For the design of the Button TileScheme is used and for the button itself Tile
-                Tile tile = new Tile(context, tileScheme, presenter);
+                Tile tile = new Tile(context, tileScheme, presenter, this);
 
                 drawTile(tile);
 
@@ -188,4 +189,7 @@ public class TileLayout {
         return orientation;
     }
 
+    public void removeFromHistoryStack(Tile tile) {
+        historyStack.remove(historyStack.indexOfValue(tile)+1);
+    }
 }
