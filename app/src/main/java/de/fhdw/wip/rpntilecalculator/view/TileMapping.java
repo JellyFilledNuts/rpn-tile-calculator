@@ -32,12 +32,12 @@ import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
 
 public enum TileMapping {
 
-    O_DOUBLE(TileType.OPERAND, ODouble.class),
-    O_FRACTION(TileType.OPERAND, OFraction.class),
-    O_MATRIX(TileType.OPERAND, OMatrix.class),
-    O_POLYNOM(TileType.OPERAND, OPolynom.class),
-    O_SET(TileType.OPERAND, OSet.class),
-    O_TUPLE(TileType.OPERAND, OTuple.class),
+    O_DOUBLE(TileType.OPERAND, ODouble.class, "0.0"),
+    O_FRACTION(TileType.OPERAND, OFraction.class, "0/0"),
+    O_MATRIX(TileType.OPERAND, OMatrix.class, "Matrix"),
+    O_POLYNOM(TileType.OPERAND, OPolynom.class, "Funktion"),
+    O_SET(TileType.OPERAND, OSet.class, "Set"),
+    O_TUPLE(TileType.OPERAND, OTuple.class, "Tuple"),
     
     A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
     A_PLUS(TileType.ACTION, Plus.getInstance(), "+"),
@@ -73,12 +73,14 @@ public enum TileMapping {
     private String actionText;
     private String settingText;
     private Setting settingType;
+    private String menuText;
     private Class<? extends Operand> operandType;
 
     // Stack & Error
     TileMapping(TileType type, String actionText) {
         this.type = type;
         this.actionText = actionText;
+        this.menuText = actionText;
     }
 
     // Setting
@@ -86,6 +88,7 @@ public enum TileMapping {
         this.type = type;
         this.settingType = settingType;
         this.settingText = settingText;
+        this.menuText = settingText;
     }
 
     // Action
@@ -93,12 +96,14 @@ public enum TileMapping {
         this.type = type;
         this.actionType = actionType;
         this.actionText = actionText;
+        this.menuText = actionText;
     }
 
     // Operand
-    TileMapping(TileType type, Class<? extends Operand>  operandType) {
+    TileMapping(TileType type, Class<? extends Operand>  operandType, String menuText) {
         this.type = type;
         this.operandType = operandType;
+        this.menuText = menuText;
     }
 
     public TileType getType() {
@@ -127,5 +132,9 @@ public enum TileMapping {
 
     public Setting getSettingType() {
         return settingType;
+    }
+
+    public String getMenuText() {
+        return menuText;
     }
 }

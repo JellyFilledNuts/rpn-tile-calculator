@@ -26,9 +26,6 @@ import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 public class TileLayout {
 
-    //Margin between tiles
-    private static final int TILE_MARGIN = 3;
-
     private SparseArray<Tile> stack = new SparseArray<>();
     private SparseArray<Tile> historyStack = new SparseArray<>();
     private ArrayList<ArrayList<Tile>> tileLayout = new ArrayList<>();
@@ -112,7 +109,6 @@ public class TileLayout {
         tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         tableView.setBackgroundColor(Color.BLACK);
 
-
         //Creating the in schemeLayout defined amount of rows
         for(ArrayList<TileScheme> row : schemeLayout) {
             ArrayList<Tile> tileRow = new ArrayList<>();
@@ -126,7 +122,9 @@ public class TileLayout {
             for(TileScheme tileScheme : row) {
 
                 //For the design of the Button TileScheme is used and for the button itself Tile
-                Tile tile = new Tile(context, tileScheme, presenter, this);
+                Tile tile = new Tile(context, tileScheme, this);
+                tile.setOnClickListener(presenter);
+                tile.enableMenuListener();
 
                 drawTile(tile);
 
@@ -174,15 +172,7 @@ public class TileLayout {
     }
 
     public void drawTile(Tile tile) {
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
-            layoutParams.setMargins(TILE_MARGIN, TILE_MARGIN, TILE_MARGIN, TILE_MARGIN);
-            tile.setLayoutParams(layoutParams);
 
-        if(tile.getScheme() != null) {
-            tile.setBackgroundResource(tile.getScheme().getStyle());
-        }else{
-            System.out.println("Cloud not draw Tile");
-        }
     }
 
     public ScreenOrientation getOrientation() {

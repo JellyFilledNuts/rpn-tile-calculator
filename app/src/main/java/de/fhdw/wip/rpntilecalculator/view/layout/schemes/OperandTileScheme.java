@@ -20,6 +20,9 @@ public class OperandTileScheme extends TileScheme {
     OperandTileScheme(@NotNull TileMapping tileType, @NotNull String content) {
         super(tileType, content);
 
+        // Ignore menu values
+        if(content.equals(tileType.getMenuText())) return;
+
         Class<? extends Operand> operandClass = tileType.getOperandType();
 
         try {
@@ -48,7 +51,7 @@ public class OperandTileScheme extends TileScheme {
 
     @Override
     public @NotNull String getContent() {
-        return operand.toString();
+        return operand == null ? " " : operand.toString();
     }
 
     public Operand getOperand() {

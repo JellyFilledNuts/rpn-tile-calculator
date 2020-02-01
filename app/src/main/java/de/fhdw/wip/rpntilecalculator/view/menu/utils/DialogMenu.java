@@ -1,7 +1,8 @@
-package de.fhdw.wip.rpntilecalculator.view.menu;
+package de.fhdw.wip.rpntilecalculator.view.menu.utils;
 
 import android.app.Dialog;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -15,7 +16,7 @@ import de.fhdw.wip.rpntilecalculator.view.Tile;
  * Author:  Getuart Istogu
  **/
 
-public abstract class DialogMenu {
+public abstract class DialogMenu implements View.OnClickListener {
 
     protected MainActivity context;
     protected Dialog dialog;
@@ -24,12 +25,12 @@ public abstract class DialogMenu {
     protected int contentView;
     final protected Tile tile;
 
-    public DialogMenu(MainActivity context, int windowFeature, Tile tileOutside, Dialog last)
+    public DialogMenu(MainActivity context, Tile displayTile, Dialog last)
     {
         this.context = context;
         this.last = last;
         this.dialog = new Dialog(context);
-        this.dialog.requestWindowFeature(windowFeature);
+        this.dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         this.setContentView();
         this.dialog.setContentView(contentView);
@@ -40,17 +41,20 @@ public abstract class DialogMenu {
         wlp.gravity = Gravity.CENTER;
         window.setAttributes(wlp);
 
-        this.tile = tileOutside;
+        this.tile = displayTile;
     }
 
     protected abstract void setContentView();
 
 
-    public void dismissAll()
+    protected void dismissAll()
     {
         if(last != null) last.dismiss();
         dialog.dismiss();
     }
 
-
+    @Override
+    public void onClick(View v) {
+        dialog.show();
+    }
 }

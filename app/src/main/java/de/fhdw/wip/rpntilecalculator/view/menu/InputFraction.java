@@ -11,21 +11,22 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
 /**
  * Summary: Class responsible for input of fractions
  * Author:  Getuart Istogu
  **/
 
-public class InputFraction extends DialogMenu implements View.OnClickListener {
+public class InputFraction extends DialogMenu {
 
     private Button confirmButton = this.dialog.findViewById(R.id.enterButton);
     private EditText numeratorText = this.dialog.findViewById(R.id.numerator);
     private EditText denumeratorText = this.dialog.findViewById(R.id.denumerator);
 
-   public InputFraction(MainActivity context, int windowFeature, Tile tileOutside, Dialog last)
+   public InputFraction(MainActivity context, Tile displayTile, Dialog last)
    {
-       super(context, windowFeature, tileOutside, last);
+       super(context, displayTile, last);
        confirmButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -44,10 +45,5 @@ public class InputFraction extends DialogMenu implements View.OnClickListener {
     @Override
     protected void setContentView() {
         contentView = R.layout.input_fraction;
-    }
-
-    @Override
-    public void onClick(View view) {
-        dialog.show();
     }
 }

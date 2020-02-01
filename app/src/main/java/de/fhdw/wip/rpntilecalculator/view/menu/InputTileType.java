@@ -9,6 +9,8 @@ import android.widget.Button;
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
 /**
  * Summary: Tile acts as button and forwards the connected type and click to the handler
@@ -21,12 +23,11 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
     private Button operandTypeButton = this.dialog.findViewById(R.id.operandTypeButton);
     private Button operatorTypeButton = this.dialog.findViewById(R.id.operatorTypeButton);
     private Button settingTypeButton = this.dialog.findViewById(R.id.settingTypeButton);
+    private Button historyTypeButton = this.dialog.findViewById(R.id.historyTypeButton);
 
-    //onLongClick(this.show())
-
-    public InputTileType(MainActivity context, int windowFeature, Tile tileOutside)
+    public InputTileType(MainActivity context, Tile tileOutside)
     {
-        super(context, windowFeature, tileOutside, null);
+        super(context, tileOutside, null);
 
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -37,18 +38,24 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
         wlp.y = location[1];
         window.setAttributes(wlp);
 
-        stackTypeButton.setOnClickListener(new InputFraction(context, Window.FEATURE_NO_TITLE, tile, dialog));
+        stackTypeButton.setOnClickListener(
+                new InputFraction(context, tile, dialog));
 
-        operandTypeButton.setOnClickListener(new InputFraction(context, Window.FEATURE_NO_TITLE, tile, dialog));
+        operandTypeButton.setOnClickListener(
+                new ChooseListMenu(context, TileType.OPERAND, tile, dialog));
 
-        operatorTypeButton.setOnClickListener(new InputFraction(context, Window.FEATURE_NO_TITLE, tile, dialog));
+        operatorTypeButton.setOnClickListener(
+                new InputFraction(context, tile, dialog));
 
-        settingTypeButton.setOnClickListener(new InputFraction(context, Window.FEATURE_NO_TITLE, tile, dialog));
+        settingTypeButton.setOnClickListener(
+                new InputFraction(context, tile, dialog));
+
+        //historyTypeButton.setOnClickListener();
     }
 
     @Override
     protected void setContentView() {
-        contentView = R.layout.button_menu;
+        contentView = R.layout.input_tile_type;
     }
 
     @Override

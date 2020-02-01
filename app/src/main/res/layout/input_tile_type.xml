@@ -18,6 +18,14 @@
             android:text="Stack" />
 
         <Button
+            android:id="@+id/historyTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tile_operand_orange"
+            android:text="Stack" />
+
+        <Button
             android:id="@+id/operandTypeButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
