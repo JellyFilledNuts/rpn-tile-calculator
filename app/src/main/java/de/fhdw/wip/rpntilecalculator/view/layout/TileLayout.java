@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -140,6 +141,8 @@ public class TileLayout {
         pushStack2Presenter();
         pushHistoryStack2Presenter();
 
+        showAnimation(Tile.buttonLoad);
+
         return tableView;
     }
 
@@ -232,5 +235,15 @@ public class TileLayout {
 
     public int getHistoryStackSize() {
         return historyStack.size();
+    }
+
+    /**
+     * Lets all tiles display a certain animation
+     * @param animation the animation to be displayed
+     */
+    public void showAnimation(Animation animation) {
+        for(ArrayList<Tile> tileRow: tileLayout) {
+            for(Tile tile : tileRow) tile.startAnimation(animation);
+        }
     }
 }

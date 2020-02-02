@@ -49,6 +49,7 @@ public class Presenter implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Tile tile = (Tile) v;
+        tile.showAnimation(Tile.buttonClick);
         if(tile.isOperand()) clickOperand(tile);
         else if(tile.isAction()) clickAction(tile);
         else if(tile.isStack() || tile.isHistory()) clickStackLike(tile);

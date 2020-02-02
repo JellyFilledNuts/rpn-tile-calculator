@@ -1,6 +1,9 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
 import android.content.Context;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TableRow;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -9,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 import de.fhdw.wip.rpntilecalculator.view.menu.InputTileType;
@@ -20,8 +24,10 @@ import de.fhdw.wip.rpntilecalculator.view.menu.InputTileType;
 
 public class Tile extends AppCompatButton implements TypeQuestionable {
 
-    //Margin between tiles
     private static final int TILE_MARGIN = 3;
+    public static Animation buttonClick;
+    public static Animation buttonLoad;
+    public static Animation buttonSave;
 
     private MainActivity context;
     private TileScheme scheme;
@@ -39,8 +45,14 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
      */
     public Tile(@NotNull Context context, @NotNull TileScheme scheme, @Nullable TileLayout tileLayout) {
         super(context);
-        this.tileLayout = tileLayout;
+
         this.context = (MainActivity) context;
+        this.tileLayout = tileLayout;
+
+        buttonClick = AnimationUtils.loadAnimation(context, R.anim.button_bounce);
+        buttonLoad = AnimationUtils.loadAnimation(context, R.anim.button_load);
+        buttonSave = AnimationUtils.loadAnimation(context, R.anim.button_save);
+
         update(scheme);
     }
 
@@ -98,5 +110,12 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
     @Override
     public boolean isHistory() {
         return scheme.getTileType().getType().isHistory();
+    }
+
+    /**
+     * Show an animation when clicked
+     */
+    public void showAnimation(Animation animation) {
+        startAnimation(animation);
     }
 }
