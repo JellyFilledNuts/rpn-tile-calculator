@@ -19,6 +19,7 @@ import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.OperandTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 import de.fhdw.wip.rpntilecalculator.view.menu.utils.InputMenuFactory;
@@ -102,9 +103,14 @@ public class ChooseListMenu extends DialogMenu {
      * Update the amount of stack tiles if it is to be changed
      */
     private void updateAmountIfStack() {
+        TileMapping mapping = tileOptions.get(0);
+        if(mapping.getType().isStack() || mapping.getType().isHistory()) {
+            tileOptions.clear();
+            tileOptions.add(mapping);
+        }
         int amount = 0;
-        if(tileOptions.get(0).getType().isStack()) amount = tile.getTileLayout().getStackSize();
-        if(tileOptions.get(0).getType().isHistory()) amount = tile.getTileLayout().getHistoryStackSize();
+        if(mapping.getType().isStack()) amount = tile.getTileLayout().getStackSize();
+        if(mapping.getType().isHistory()) amount = tile.getTileLayout().getHistoryStackSize();
         for(int i = 0; i < amount; i++) //Add one more than amount (0) to allow expansion
             tileOptions.add(tileOptions.get(0));
     }

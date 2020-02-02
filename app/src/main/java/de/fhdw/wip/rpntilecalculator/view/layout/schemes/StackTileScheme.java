@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.R;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
@@ -20,14 +18,9 @@ public class StackTileScheme extends OperandTileScheme {
      * Crates an StackTileScheme with an operand in it
      * @param content rank of the stack field
      */
-    StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
-        this(tileMapping, content, rank, content.equals(" "));
-    }
-
-    private StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank, boolean first) {
+    public StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
         super(tileMapping, content);
         this.rank = rank;
-        this.first = first;
     }
 
     StackTileScheme(@NotNull Operand operand, @NotNull int rank) {

@@ -21,6 +21,7 @@ import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.HistoryTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.layout.schemes.OperandTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
@@ -50,7 +51,9 @@ public class TileLayout {
             Tile stackTile = stack.valueAt(i);
             Operand operand = null;
             if(i < stackOperands.size()) operand = stackOperands.get(i);
+            System.out.println("Updating STACK: " + i + " " + ((StackTileScheme) stackTile.getScheme()).getRank() + " _ " + ((StackTileScheme) stackTile.getScheme()).getOperand());
             stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, operand, stack.keyAt(i)));
+            System.out.println("Updating STACK: " + i + " " + ((StackTileScheme) stackTile.getScheme()).getRank() + " _ " + ((StackTileScheme) stackTile.getScheme()).getOperand());
         }
     }
 
@@ -191,17 +194,23 @@ public class TileLayout {
             return;
         }
 
-        Tile replaceTile = stack.get(scheme.getRank());
-        StackTileScheme replaceScheme = (StackTileScheme) replaceTile.getScheme();
-        //TileScheme replaceScheme2 = TileScheme.createTileScheme(mapping, scheme.getOperand(), replaceScheme.getRank());
-        //replaceTile.update(replaceScheme2);
-        //TODO
+        //Test if stack tile is replaced with stack tile
+        Tile replaceTile = stackType.get(scheme.getRank());
+        System.out.println("TILE: " + tile.getScheme().getContent() + " as " + tile.getScheme() + " with " + replaceTile.getScheme() + ((OperandTileScheme) replaceTile.getScheme()).getOperand());
+        System.out.println("TILE? " + replaceTile.isHistory() + " " + replaceTile.isStack());
+        if(replaceTile.getScheme() instanceof StackTileScheme) {
+            StackTileScheme replaceScheme = (StackTileScheme) replaceTile.getScheme();
 
-        TileScheme scheme2 = TileScheme.createTileScheme(mapping, replaceScheme.getOperand(), scheme.getRank());
-        tile.update(scheme2);
+            TileScheme replaceScheme2 = TileScheme.createTileScheme(mapping, scheme.getOperand(), replaceScheme.getRank());
+            replaceTile.update(replaceScheme2);
+            System.out.println("Replacing " + scheme.getRank() + " (" + scheme.getContent() + ") with " + replaceScheme.getRank() + " (" + replaceScheme.getContent() + ")");
 
-        for(int i = stackType.size() -1; i >= (scheme.getRank()); i--) {
-            //System.out.println("From " + i + " to " + (i+1));
+            TileScheme scheme2 = TileScheme.createTileScheme(mapping, replaceScheme.getOperand(), scheme.getRank());
+            tile.update(scheme2);
+        }
+
+        for(int i = stackType.size() -1; i >= scheme.getRank(); i--) {
+            System.out.println("From " + i + " to " + (i+1));
             Tile hisTile = stackType.get(i);
             StackTileScheme hisScheme = (StackTileScheme) hisTile.getScheme();
             TileScheme newScheme = TileScheme.createTileScheme(mapping, hisScheme.getOperand(), (i + 1));
