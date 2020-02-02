@@ -18,7 +18,7 @@ public class Enter extends Setting {
     public boolean call() {
         Presenter.INPUT_TERM = new StringBuilder().append(Presenter.INPUT_FINALIZED);
         if(Presenter.OPERAND_STACK.size() != 0) {
-            Presenter.HISTORY_STACK.add(Presenter.OPERAND_STACK.peek());
+            Presenter.add2History(Presenter.OPERAND_STACK.peek());
             Presenter.updateHistoryStack();
         }
         return true;

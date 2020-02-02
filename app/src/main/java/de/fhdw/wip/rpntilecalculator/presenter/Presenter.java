@@ -83,7 +83,7 @@ public class Presenter implements View.OnClickListener {
                 resetInputTerm(operand);
                 break;
             case 1: // not finalized, but pushed ahead
-                HISTORY_STACK.add(operand);
+                add2History(operand);
                 updateHistoryStack();
                 break;
             case 2: //
@@ -140,7 +140,7 @@ public class Presenter implements View.OnClickListener {
             Operand result = action.with(operands);
             OPERAND_STACK.pop(operands.size());
             OPERAND_STACK.push(result);
-            HISTORY_STACK.add(result);
+            add2History(result);
             resetInputTerm(result);
             return true;
         } catch (CalculationException e) {
@@ -180,6 +180,18 @@ public class Presenter implements View.OnClickListener {
             }
         }
         return 1;
+    }
+
+    /**
+     * Try adding an operand to the history stack
+     * @param operand the operand ot be added
+     */
+    public static void add2History(Operand operand) {
+        boolean add = true;
+        for(Operand op : HISTORY_STACK) {
+            if(op.equalsValue(operand)) add = false;
+        }
+        if(add) HISTORY_STACK.add(operand);
     }
 
     /**

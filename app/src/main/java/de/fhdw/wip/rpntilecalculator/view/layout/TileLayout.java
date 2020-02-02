@@ -65,7 +65,6 @@ public class TileLayout {
         //Adjust to actual history stack size
         for(int i = 0; i < overflow; i++) {
             operandList.remove(0);
-            Presenter.HISTORY_STACK.remove(0);
         }
         for(int i = 0; i < historyStack.size(); i++) {
             Tile historyTile = historyStack.valueAt(i);
@@ -196,14 +195,11 @@ public class TileLayout {
 
         //Test if stack tile is replaced with stack tile
         Tile replaceTile = stackType.get(scheme.getRank());
-        System.out.println("TILE: " + tile.getScheme().getContent() + " as " + tile.getScheme() + " with " + replaceTile.getScheme() + ((OperandTileScheme) replaceTile.getScheme()).getOperand());
-        System.out.println("TILE? " + replaceTile.isHistory() + " " + replaceTile.isStack());
         if(replaceTile.getScheme() instanceof StackTileScheme) {
             StackTileScheme replaceScheme = (StackTileScheme) replaceTile.getScheme();
 
             TileScheme replaceScheme2 = TileScheme.createTileScheme(mapping, scheme.getOperand(), replaceScheme.getRank());
             replaceTile.update(replaceScheme2);
-            System.out.println("Replacing " + scheme.getRank() + " (" + scheme.getContent() + ") with " + replaceScheme.getRank() + " (" + replaceScheme.getContent() + ")");
 
             TileScheme scheme2 = TileScheme.createTileScheme(mapping, replaceScheme.getOperand(), scheme.getRank());
             tile.update(scheme2);
