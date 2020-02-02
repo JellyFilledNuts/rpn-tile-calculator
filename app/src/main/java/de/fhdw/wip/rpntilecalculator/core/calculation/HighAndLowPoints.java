@@ -2,41 +2,45 @@ package de.fhdw.wip.rpntilecalculator.core.calculation;
 
 import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 
+import org.intellij.lang.annotations.JdkConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
+ * Date:    2020/01/23 (initialy) updates at the 02/02/20
  */
 
 public class HighAndLowPoints extends Action {
 
-    @NotNull private static final HighAndLowPoints HIGH_AND_LOW_POINTS= new HighAndLowPoints();
+    @NotNull private static final HighAndLowPoints HIGH_AND_LOW_POINTS = new HighAndLowPoints();
+    @NotNull private static final Derivation DERIVATION = Derivation.getInstance();
+    @NotNull private static final Zeros ZEROS = Zeros.getInstance();
 
     @Contract(pure = true) @NotNull public static HighAndLowPoints getInstance() { return HIGH_AND_LOW_POINTS; }
     private HighAndLowPoints() { }
 
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
 
-    // Structure: via the method getCoefficients()
-    // coefficients[n] * x^n + ... + coefficients[1] * x + coefficients[0]
-
-    @NotNull
-    public OPolynom getDerivative(OPolynom oPolynom)
-    {
-        PolynomialFunction polynomialDerivative = oPolynom.getPolynom().polynomialDerivative();
-        return new OPolynom(polynomialDerivative);
+    @Contract(pure = true) @NotNull double[] on(@NotNull OPolynom oPolynom) {
+        return getHighAndLowPoints(oPolynom);
     }
 
     // Begin. Returns an double array with the following structure
-    //
-    public void getHighAndLowPoints(OPolynom oPolynom)
+    public double [] getHighAndLowPoints(OPolynom oPolynom)
     {
-        double[] function = getFunctionAsDouble(oPolynom);
-
+        double [] result = calculateHighAndLowPoints(oPolynom);
+        return result;
     }
 
     // Sets the Function into the following formatition:
@@ -45,27 +49,34 @@ public class HighAndLowPoints extends Action {
         return oPolynom.getPolynom().getCoefficients();
     }
 
-    //
-    private void calculateHighAndLowPoints(double[] function)
+    // Calculates the values of the extreme points of a given function.
+    // Returns the values as an double array, an uneyual number position stands for the x value,
+    // the number at the next position for the y value
+    private double[] calculateHighAndLowPoints(OPolynom oPolynom)
     {
-        Derivation derivation = new Derivation();
-        // Aufruf der methode in der Klasse für die Ableitung
+        // Calculates the derivation of the funcion.
+        OPolynom derivation = DERIVATION.derivate(oPolynom);
+        // Calculates the zeros of the function's derivation.
+        double [] zeros = ZEROS.calculateZeros(derivation);
+        // Gets the funcion as an double array for the calculation.
+        double [] functionAsDouble = getFunctionAsDouble(oPolynom);
 
-        //double[] derivatedFunction = derivation.
-
-        // Aufruf der Methode zur berechnung der NUllstellen
-        Zeros zeros = new Zeros();
-        // double [] zerosOfFuntion = zeros.calculateZeros(derivatedFunction)
-
-        // Berechnen der Werte der beiden Nullstellen
-        // doppelte forschleife für die nullstelle  in zeros
-        double result = 0;
-        for(int i = function.length -1; i >= 0; i--)
+        // Calculates the y values of the zeros.
+        double [] valuesXY = new double[] {};
+        int position = -1;
+        for(int counter = 0; counter < zeros.length; counter++)
         {
-            //result += function[i] * VARAUSDEMDOUBLEDERNULLSTELLEN ^i;
+            double currentZero = zeros[counter];
+            double yValue = 0;
+            for(int counter2 = 0; counter < functionAsDouble.length; counter2++)
+            {
+                yValue += functionAsDouble[counter] * Math.pow(currentZero,(functionAsDouble.length - counter2 - 1));
+            }
+            position++;
+            valuesXY[position] = currentZero;
+            position++;
+            valuesXY[position] = yValue;
         }
-        //ergebnis = VARAUSDEMDOUBLEDERNULLSTELLEN/result als ein Hoch bzw. tiefpunkt
+        return valuesXY;
     }
-
-
 }

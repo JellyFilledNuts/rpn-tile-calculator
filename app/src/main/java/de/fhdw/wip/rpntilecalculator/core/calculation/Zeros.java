@@ -1,11 +1,10 @@
 package de.fhdw.wip.rpntilecalculator.core.calculation;
 
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
 /*
  * Summary: A Class that can calculate the zeros of functions ans quadratic functions.
@@ -19,19 +18,18 @@ public class Zeros extends Action {
     @Contract(pure = true) @NotNull public static Zeros getInstance() { return ZEROS; }
     public Zeros() { }
 
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
 
-    // Structure: via the method getCoefficients()
-    // coefficients[n] * x^n + ... + coefficients[1] * x + coefficients[0]
-
-    @NotNull
-    public OPolynom getDerivative(OPolynom oPolynom)
-    {
-        PolynomialFunction polynomialDerivative = oPolynom.getPolynom().polynomialDerivative();
-        return new OPolynom(polynomialDerivative);
+    @Contract(pure = true) @NotNull double[] on(@NotNull OPolynom oPolynom) {
+        return calculateZeros(oPolynom);
     }
 
     // Function that calculates the zeros when called
-    private double [] calculateZeros(OPolynom oPolynom)
+    public double [] calculateZeros(OPolynom oPolynom)
     {
         double [] zeros = new double[] {};
         double[] functionAsDouble = oPolynom.getPolynom().getCoefficients();
