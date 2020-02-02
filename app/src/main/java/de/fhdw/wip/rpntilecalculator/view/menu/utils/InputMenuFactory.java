@@ -16,7 +16,7 @@ public class InputMenuFactory {
      * @param mapping mapping who's listener should be read
      * @return the correct class that handles the click
      */
-    public static View.OnClickListener createListener(MainActivity context, TileMapping mapping, Tile displayTile, Dialog last) {
+    public static View.OnClickListener createListener(MainActivity context, TileMapping mapping, Tile displayTile, DialogMenu last) {
         if(mapping.getType().isOperand()) return createMenuListener(context, mapping, displayTile, last);
         else return createNotFoundListener(context);
     }
@@ -24,7 +24,7 @@ public class InputMenuFactory {
     /**
      * Creates listeners for Operands by TileMapping
      */
-    private static View.OnClickListener createMenuListener(final MainActivity context, TileMapping mapping, Tile displayTile, Dialog last) {
+    private static View.OnClickListener createMenuListener(final MainActivity context, TileMapping mapping, Tile displayTile, DialogMenu last) {
         switch (mapping) {
             case O_FRACTION:
                 return new InputFraction(context, displayTile, last);

@@ -32,11 +32,11 @@ import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
 
 public enum TileMapping {
 
-    O_DOUBLE(TileType.OPERAND, ODouble.class, "0.0"),
-    O_FRACTION(TileType.OPERAND, OFraction.class, "0/0"),
+    O_DOUBLE(TileType.OPERAND, ODouble.class, "Zahl"),
+    O_FRACTION(TileType.OPERAND, OFraction.class, "Bruch"),
     O_MATRIX(TileType.OPERAND, OMatrix.class, "Matrix"),
     O_POLYNOM(TileType.OPERAND, OPolynom.class, "Funktion"),
-    O_SET(TileType.OPERAND, OSet.class, "Set"),
+    O_SET(TileType.OPERAND, OSet.class, "Menge"),
     O_TUPLE(TileType.OPERAND, OTuple.class, "Tuple"),
     
     A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),

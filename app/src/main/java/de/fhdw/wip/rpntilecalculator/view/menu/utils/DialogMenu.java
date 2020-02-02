@@ -21,11 +21,11 @@ public abstract class DialogMenu implements View.OnClickListener {
     protected MainActivity context;
     protected Dialog dialog;
     @Nullable
-    protected Dialog last;
+    protected DialogMenu last;
     protected int contentView;
     final protected Tile tile;
 
-    public DialogMenu(MainActivity context, Tile displayTile, Dialog last)
+    public DialogMenu(MainActivity context, Tile displayTile, DialogMenu last)
     {
         this.context = context;
         this.last = last;
@@ -49,7 +49,7 @@ public abstract class DialogMenu implements View.OnClickListener {
 
     protected void dismissAll()
     {
-        if(last != null) last.dismiss();
+        if(last != null) last.dismissAll();
         dialog.dismiss();
     }
 

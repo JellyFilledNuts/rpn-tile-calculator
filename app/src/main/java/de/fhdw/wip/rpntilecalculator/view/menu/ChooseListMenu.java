@@ -2,9 +2,12 @@ package de.fhdw.wip.rpntilecalculator.view.menu;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -25,8 +28,16 @@ public class ChooseListMenu extends DialogMenu {
 
     private ArrayList<TileMapping> tileOptions = new ArrayList<>();
 
-    public ChooseListMenu(MainActivity context, TileType type, Tile displayTile, Dialog last) {
+    public ChooseListMenu(MainActivity context, TileType type, Tile displayTile, DialogMenu last) {
         super(context, displayTile, last);
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        Point size = new Point();
+        context.getWindowManager().getDefaultDisplay().getSize(size);
+        wlp.height = (int) (size.y * 0.4);
+        wlp.width = (int) (size.x * 0.8);
+        window.setAttributes(wlp);
 
         for(TileMapping mapping : TileMapping.values()) {
             if(type == mapping.getType()) tileOptions.add(mapping);
@@ -41,7 +52,8 @@ public class ChooseListMenu extends DialogMenu {
         //Create table by first creating one column as TableLayout
         TableLayout tableView = new TableLayout(context);
         tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        tableView.setBackgroundColor(Color.BLACK);
+        tableView.setBackgroundResource(R.drawable.tile_operand_white);
+        tableView.setPadding(20, 20, 20, 20);
 
         //Creating the in schemeLayout defined amount of rows
         int[] rowLengths = new int[]{
@@ -62,12 +74,13 @@ public class ChooseListMenu extends DialogMenu {
 
                 Tile tile = new Tile(context, scheme, null);
 
-                View.OnClickListener listener = InputMenuFactory.createListener(context, mapping, this.tile, dialog);
+                View.OnClickListener listener = InputMenuFactory.createListener(context, mapping, this.tile, this);
                 tile.setOnClickListener(listener);
                 tile.setText(mapping.getMenuText());
 
                 rowView.addView(tile);
 
+                currentOption++;
             }
             tableView.addView(rowView);
         }

@@ -24,7 +24,7 @@ public class InputFraction extends DialogMenu {
     private EditText numeratorText = this.dialog.findViewById(R.id.numerator);
     private EditText denumeratorText = this.dialog.findViewById(R.id.denumerator);
 
-   public InputFraction(MainActivity context, Tile displayTile, Dialog last)
+   public InputFraction(MainActivity context, Tile displayTile, DialogMenu last)
    {
        super(context, displayTile, last);
        confirmButton.setOnClickListener(new View.OnClickListener() {
