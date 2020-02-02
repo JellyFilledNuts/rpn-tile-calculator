@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: A Class that can calculate the natural logarithm.
