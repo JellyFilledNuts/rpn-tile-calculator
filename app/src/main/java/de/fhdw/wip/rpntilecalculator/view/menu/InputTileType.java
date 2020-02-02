@@ -10,6 +10,7 @@ import android.widget.Button;
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
+import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
 import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
@@ -44,8 +45,9 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
         wlp.width = size.x / 3;
         window.setAttributes(wlp);
 
+
         stackTypeButton.setOnClickListener(
-                new InputFraction(context, tile, this));
+                new ChooseListMenu(context, TileMapping.S_STACK, tile, this));
 
         operandTypeButton.setOnClickListener(
                 new ChooseListMenu(context, TileType.OPERAND, tile, this));
@@ -56,7 +58,8 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
         settingTypeButton.setOnClickListener(
                 new ChooseListMenu(context, TileType.SETTING, tile, this));
 
-        //historyTypeButton.setOnClickListener();
+        historyTypeButton.setOnClickListener(
+                new ChooseListMenu(context, TileMapping.H_HISTORY, tile, this));
     }
 
     @Override

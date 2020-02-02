@@ -1,6 +1,5 @@
 package de.fhdw.wip.rpntilecalculator.view.menu;
 
-import android.app.Dialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,8 +34,7 @@ public class InputFraction extends DialogMenu {
                OFraction oFraction = new OFraction(nummerator, denumerator);
                TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_FRACTION, oFraction, 0);
                tile.update(newTileScheme);
-               tile.setBackgroundResource(R.drawable.tile_operand_white);
-               tile.getTileLayout().removeFromHistoryStack(tile);
+               tile.getTileLayout().removeFromStacks(tile);
                dismissAll();
            }
        });

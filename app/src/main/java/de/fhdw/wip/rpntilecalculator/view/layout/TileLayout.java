@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -126,25 +125,17 @@ public class TileLayout {
                 tile.setOnClickListener(presenter);
                 tile.enableMenuListener();
 
-                drawTile(tile);
-
                 rowView.addView(tile);
                 tileRow.add(tile);
 
-                if(tile.getScheme() instanceof StackTileScheme) {
-                    if(tile.getScheme() instanceof HistoryTileScheme) {
-                        historyStack.append(((HistoryTileScheme) tileScheme).getRank(), tile);
-                    } else {
-                        stack.append(((StackTileScheme) tileScheme).getRank(), tile);
-                    }
-                }
+                addToStacks(tile);
             }
             tableView.addView(rowView);
             tileLayout.add(tileRow);
         }
 
-        pushStack();
-        pushHistoryStack();
+        pushStack2Presenter();
+        pushHistoryStack2Presenter();
 
         return tableView;
     }
@@ -152,7 +143,7 @@ public class TileLayout {
     /**
      * Sets the Stack of the Presenter
      */
-    private void pushStack() {
+    private void pushStack2Presenter() {
         Presenter.OPERAND_STACK.clear();
         for(int i = stack.size()-1; i >= 0; i--) {
             Presenter.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
@@ -162,7 +153,7 @@ public class TileLayout {
     /**
      * Sets the History Stack of the Presenter
      */
-    private void pushHistoryStack() {
+    private void pushHistoryStack2Presenter() {
         Presenter.HISTORY_STACK.clear();
         for(int i = 0; i < historyStack.size(); i++) {
             Operand operand = ((HistoryTileScheme) historyStack.valueAt(i).getScheme()).getOperand();
@@ -171,15 +162,69 @@ public class TileLayout {
         }
     }
 
-    public void drawTile(Tile tile) {
-
-    }
-
     public ScreenOrientation getOrientation() {
         return orientation;
     }
 
-    public void removeFromHistoryStack(Tile tile) {
-        historyStack.remove(historyStack.indexOfValue(tile)+1);
+    /**
+     * Adds a tile to stack or history stack
+     */
+    public void addToStacks(Tile tile) {
+        if(tile.getScheme() instanceof HistoryTileScheme) {
+            updateStackOrder(tile, historyStack, TileMapping.H_HISTORY);
+            pushHistoryStack2Presenter();
+        }
+        else if(tile.getScheme() instanceof StackTileScheme) {
+            updateStackOrder(tile, stack, TileMapping.S_STACK);
+            pushStack2Presenter();
+        }
+    }
+
+    /**
+     * Updates the order of a stack and makes free room for a new one
+     */
+    private void updateStackOrder(Tile tile, SparseArray<Tile> stackType, TileMapping mapping) {
+        StackTileScheme scheme = (StackTileScheme) tile.getScheme();
+        if(stackType.get(scheme.getRank()) == null) {
+            stackType.append(scheme.getRank(), tile);
+            return;
+        }
+
+        Tile replaceTile = stack.get(scheme.getRank());
+        StackTileScheme replaceScheme = (StackTileScheme) replaceTile.getScheme();
+        //TileScheme replaceScheme2 = TileScheme.createTileScheme(mapping, scheme.getOperand(), replaceScheme.getRank());
+        //replaceTile.update(replaceScheme2);
+        //TODO
+
+        TileScheme scheme2 = TileScheme.createTileScheme(mapping, replaceScheme.getOperand(), scheme.getRank());
+        tile.update(scheme2);
+
+        for(int i = stackType.size() -1; i >= (scheme.getRank()); i--) {
+            //System.out.println("From " + i + " to " + (i+1));
+            Tile hisTile = stackType.get(i);
+            StackTileScheme hisScheme = (StackTileScheme) hisTile.getScheme();
+            TileScheme newScheme = TileScheme.createTileScheme(mapping, hisScheme.getOperand(), (i + 1));
+            hisTile.update(newScheme);
+            stackType.append((i+1), hisTile);
+        }
+        stackType.append(scheme.getRank(), tile);
+    }
+
+    /**
+     * Removes a tile form the stack or history stack
+     */
+    public void removeFromStacks(Tile tile) {
+        if(historyStack.indexOfValue(tile) >= 0)
+            historyStack.remove(historyStack.indexOfValue(tile)+1);
+        else if(stack.indexOfValue(tile) >= 0)
+            stack.remove(stack.indexOfValue(tile)+1);
+    }
+
+    public int getStackSize() {
+        return stack.size();
+    }
+
+    public int getHistoryStackSize() {
+        return historyStack.size();
     }
 }
