@@ -19,7 +19,9 @@ public class Derivation extends Action {
     @NotNull public static final Derivation DERIVATION = new Derivation();
 
     @Contract(pure = true) @NotNull public static Derivation getInstance() { return DERIVATION; }
-    public Derivation() {    }
+    public Derivation() {
+        requiredNumOfOperands = new int[]{1};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

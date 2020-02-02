@@ -22,7 +22,9 @@ public class HighAndLowPoints extends Action {
     @NotNull private static final Zeros ZEROS = Zeros.getInstance();
 
     @Contract(pure = true) @NotNull public static HighAndLowPoints getInstance() { return HIGH_AND_LOW_POINTS; }
-    private HighAndLowPoints() { }
+    private HighAndLowPoints() {
+        requiredNumOfOperands = new int[]{1};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

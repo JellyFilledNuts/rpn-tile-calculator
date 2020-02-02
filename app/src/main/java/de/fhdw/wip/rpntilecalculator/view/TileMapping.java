@@ -2,6 +2,8 @@ package de.fhdw.wip.rpntilecalculator.view;
 
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Cosinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Derivation;
+import de.fhdw.wip.rpntilecalculator.model.calculation.HighAndLowPoints;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Modulo;
@@ -49,6 +51,8 @@ public enum TileMapping {
     A_LOG(TileType.ACTION, Logarithm.getInstance(), "log"),
     A_POWER(TileType.ACTION, Power.getInstance(), "bⁿ"),
     A_ROOT(TileType.ACTION, Root.getInstance(), "√"),
+    A_DERIVE(TileType.ACTION, Derivation.getInstance(), "dy / dx"),
+    A_HIGHLOW(TileType.ACTION, HighAndLowPoints.getInstance(), "Extrema"),
     A_SIN(TileType.ACTION, Sinus.getInstance(), "sin"),
     A_COS(TileType.ACTION, Cosinus.getInstance(), "cos"),
     A_TAN(TileType.ACTION, Tangens.getInstance(), "tan"),
