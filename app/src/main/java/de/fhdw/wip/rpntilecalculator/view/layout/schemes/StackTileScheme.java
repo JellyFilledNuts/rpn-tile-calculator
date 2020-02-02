@@ -21,7 +21,7 @@ public class StackTileScheme extends OperandTileScheme {
      * @param content rank of the stack field
      */
     StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
-        this(tileMapping, content.equals(" ") ? "0" : content, rank, content.equals(" "));
+        this(tileMapping, content, rank, content.equals(" "));
     }
 
     private StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank, boolean first) {
@@ -50,18 +50,5 @@ public class StackTileScheme extends OperandTileScheme {
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getTileType()
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
-    }
-
-    /**
-     * Override to make Stack Tiles with value 0 empty
-     */
-    @Override
-    public @NotNull String toDisplayText() {
-        if(first) {
-            first = false;
-            return " ";
-        } else {
-            return super.toDisplayText();
-        }
     }
 }

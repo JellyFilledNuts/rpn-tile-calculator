@@ -19,6 +19,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
 import de.fhdw.wip.rpntilecalculator.model.settings.ClearHistory;
 import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
@@ -38,6 +39,7 @@ public enum TileMapping {
     O_POLYNOM(TileType.OPERAND, OPolynom.class, "Funktion"),
     O_SET(TileType.OPERAND, OSet.class, "Menge"),
     O_TUPLE(TileType.OPERAND, OTuple.class, "Tuple"),
+    O_Empty(TileType.OPERAND, OEmpty.class, "Empty"),
     
     A_MINUS(TileType.ACTION, Minus.getInstance(), "-"),
     A_PLUS(TileType.ACTION, Plus.getInstance(), "+"),

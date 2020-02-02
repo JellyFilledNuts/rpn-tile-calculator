@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
@@ -157,7 +158,7 @@ public class TileLayout {
         Presenter.HISTORY_STACK.clear();
         for(int i = 0; i < historyStack.size(); i++) {
             Operand operand = ((HistoryTileScheme) historyStack.valueAt(i).getScheme()).getOperand();
-            if(!operand.equalsValue(new ODouble(0)))
+            if(!operand.equalsValue(new OEmpty()))
                 Presenter.HISTORY_STACK.add(operand);
         }
     }

@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
@@ -53,7 +54,7 @@ public abstract class TileScheme {
     public static TileScheme createTileScheme(@NotNull TileMapping tileType, @Nullable Operand operand, int rank) {
         if(tileType.getType().isStack()) {
             if(operand != null) return new StackTileScheme(operand, rank);
-            else return new StackTileScheme(new ODouble(0), rank);
+            else return new StackTileScheme(new OEmpty(), rank);
         }
         else if(tileType.getType().isOperand()) {
             assert operand != null;
@@ -61,7 +62,7 @@ public abstract class TileScheme {
         }
         else if(tileType.getType().isHistory()) {
             if(operand != null) return new HistoryTileScheme(operand, rank);
-            else return new HistoryTileScheme(new ODouble(0), rank);
+            else return new HistoryTileScheme(new OEmpty(), rank);
         }
         else {return null;}
     }
