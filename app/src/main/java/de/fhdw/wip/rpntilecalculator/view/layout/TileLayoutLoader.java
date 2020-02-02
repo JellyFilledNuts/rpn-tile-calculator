@@ -8,10 +8,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 public class TileLayoutLoader {
 
@@ -39,6 +41,23 @@ public class TileLayoutLoader {
         return layout;
     }
 
+    public static ArrayList<String> getSavedLayouts(@NotNull Context context){
+        File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File file, String s) {
+                return s.endsWith(".csv");
+            }
+        });
+
+        ArrayList<String> layouts = new ArrayList<>();
+        for(File f : files){
+            System.out.println(f.getName());
+            System.out.println(f.getName().substring(0, f.getName().lastIndexOf(".")));
+            layouts.add(f.getName().substring(0, f.getName().lastIndexOf(".")));
+        }
+        return layouts;
+    }
+
     //Callable method to save a certain Layout
     public static boolean saveLayout(@NotNull Context context, @NotNull TileLayout tileLayout) {
         String layoutText = tileLayout.generateLayoutText();
@@ -62,7 +81,6 @@ public class TileLayoutLoader {
             OutputStreamWriter out = new OutputStreamWriter(context.openFileOutput(indicator + ".csv", Context.MODE_PRIVATE));
             out.write(layoutText);
             out.close();
-            System.out.println("Write: " + layoutText);
             return true;
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -89,7 +107,6 @@ public class TileLayoutLoader {
 
                 inputStream.close();
                 ret = stringBuilder.toString();
-                System.out.println("Read: " + ret);
             }
         }
         catch (FileNotFoundException e) {
