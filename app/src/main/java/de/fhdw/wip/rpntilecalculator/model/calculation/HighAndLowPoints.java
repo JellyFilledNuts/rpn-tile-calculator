@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
@@ -32,8 +33,8 @@ public class HighAndLowPoints extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull double[] on(@NotNull OPolynom oPolynom) {
-        return getHighAndLowPoints(oPolynom);
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OPolynom oPolynom) {
+        return new OTuple(getHighAndLowPoints(oPolynom));
     }
 
     // Begin. Returns an double array with the following structure

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 
 /*
@@ -19,7 +20,17 @@ public class Limes extends Action {
     @NotNull private static final Limes LIMES = new Limes();
 
     @Contract(pure = true) @NotNull public static Limes getInstance() { return LIMES; }
-    private Limes() { }
+    private Limes() { requiredNumOfOperands = new int[] {2};}
+
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
+
+    @Contract(pure = true) @NotNull ODouble on (@NotNull OPolynom oPolynom, @NotNull ODouble approach) {
+        return limit(oPolynom, approach.getDouble());
+    }
 
     /**
      * Calculates the limit of a function at one point

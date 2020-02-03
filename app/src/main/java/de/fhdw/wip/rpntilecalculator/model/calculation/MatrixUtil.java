@@ -4,7 +4,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
+import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: Solving systems of linear equations with "LR decomposition with column pivot search"
@@ -17,8 +19,17 @@ public class MatrixUtil extends Action {
     private static final MatrixUtil MATRIX_UTIL  = new MatrixUtil();
 
     @Contract(pure = true) @NotNull public static MatrixUtil getInstance() { return MATRIX_UTIL; }
-    private MatrixUtil() { }
+    private MatrixUtil() { requiredNumOfOperands = new int[] {2}; }
 
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
+
+    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, OTuple b) {
+        return solveLinearSystem(A, b.getTuple());
+    }
     /**
      * On the condition that A*x = b
      * @param A Matrix

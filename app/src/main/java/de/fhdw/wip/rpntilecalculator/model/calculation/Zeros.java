@@ -3,7 +3,9 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
@@ -16,7 +18,7 @@ public class Zeros extends Action {
     @NotNull public static final Zeros ZEROS = new Zeros();
 
     @Contract(pure = true) @NotNull public static Zeros getInstance() { return ZEROS; }
-    public Zeros() { }
+    public Zeros() {requiredNumOfOperands = new int[] {1}; }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
@@ -24,8 +26,9 @@ public class Zeros extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull double[] on(@NotNull OPolynom oPolynom) {
-        return calculateZeros(oPolynom);
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OPolynom oPolynom) {
+        double[] results = calculateZeros(oPolynom);
+        return new OTuple(results);
     }
 
     // Function that calculates the zeros when called
