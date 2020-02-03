@@ -34,7 +34,7 @@ public class ChooseListMenu extends DialogMenu {
      */
     public ChooseListMenu(MainActivity context, TileType type, Tile displayTile, DialogMenu last) {
         super(context, displayTile, last);
-        menuFactory = new InputMenuFactory(displayTile, last, this);
+        menuFactory = new InputMenuFactory(displayTile, this);
 
         adjustWindow(0.4, 0.8);
 
@@ -53,7 +53,7 @@ public class ChooseListMenu extends DialogMenu {
      */
     public ChooseListMenu(MainActivity context, TileMapping type, Tile displayTile, DialogMenu last) {
         super(context, displayTile, last);
-        menuFactory = new InputMenuFactory(displayTile, last, this);
+        menuFactory = new InputMenuFactory(displayTile, this);
 
         adjustWindow(0.4, 0.8);
 

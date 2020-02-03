@@ -13,14 +13,11 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 public class InputMenuFactory {
 
     private Tile displayTile;
-    private DialogMenu last;
     private DialogMenu current;
 
     public InputMenuFactory(@NotNull Tile displayTile,
-                            @NotNull DialogMenu last,
                             @NotNull DialogMenu current) {
         this.displayTile = displayTile;
-        this.last = last;
         this.current = current;
     }
 
@@ -77,9 +74,9 @@ public class InputMenuFactory {
     private View.OnClickListener createOperandListener(final MainActivity context, TileMapping mapping) {
         switch (mapping) {
             case O_FRACTION:
-                return new InputFraction(context, displayTile, last);
+                return new InputFraction(context, displayTile, current);
             case O_POLYNOM:
-                return new InputPolynomial(context, displayTile, last);
+                return new InputPolynomial(context, displayTile, current);
             default:
                 return createNotFoundListener(context);
         }
