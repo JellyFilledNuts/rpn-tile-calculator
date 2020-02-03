@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
     /*
-     * Summary: Defines the Sinus action.
+     * Summary: Defines the Tangens action.
      * Author:  Jannis Luca Keienburg
      * Date:    2020/01/04
      */
@@ -34,12 +34,7 @@ import org.jetbrains.annotations.NotNull;
 
         // Calculates the tangens with a given angle.
         @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
-            return new ODouble(Math.tan(angle.getDouble()));
-        }
-
-        // Calculates the tangens with the reversed side and the adjacent side.
-        @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble reversedSide, @NotNull ODouble adjacentSide) {
-            return new ODouble(Math.atan(reversedSide.getDouble() / adjacentSide.getDouble()));
+            return new ODouble(Math.tan(Math.toRadians((angle.getDouble()))));
         }
     }
 

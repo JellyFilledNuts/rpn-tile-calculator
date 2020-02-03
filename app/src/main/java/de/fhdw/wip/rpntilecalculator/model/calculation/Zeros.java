@@ -9,9 +9,9 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
- * Summary: A Class that can calculate the zeros of functions ans quadratic functions.
+ * Summary: A Class that can calculate the zeros of functions and quadratic functions.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/19
+ * Date:    2020/01/19, updated on 02.02.2020
  */
 public class Zeros extends Action {
 
