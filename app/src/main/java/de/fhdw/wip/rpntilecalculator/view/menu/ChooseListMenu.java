@@ -20,8 +20,6 @@ import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
-import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
-import de.fhdw.wip.rpntilecalculator.view.menu.utils.InputMenuFactory;
 
 public class ChooseListMenu extends DialogMenu {
 

@@ -12,7 +12,6 @@ import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
-import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
 /**
  * Summary: Tile acts as button and forwards the connected type and click to the handler

@@ -10,7 +10,6 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
-import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
 /**
  * Summary: Class responsible for input of fractions

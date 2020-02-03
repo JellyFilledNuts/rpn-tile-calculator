@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.menu.utils;
+package de.fhdw.wip.rpntilecalculator.view.menu;
 
 import android.app.Dialog;
 import android.view.Gravity;
