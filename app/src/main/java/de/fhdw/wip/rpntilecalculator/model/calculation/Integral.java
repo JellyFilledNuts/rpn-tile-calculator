@@ -21,7 +21,7 @@ public class Integral extends Action {
     @NotNull private static final Integral INTEGRAL = new Integral();
 
     @Contract(pure = true) @NotNull public static Integral getInstance() { return INTEGRAL; }
-    private Integral() {requiredNumOfOperands = new int[] {1, 2, 3};}
+    private Integral() {requiredNumOfOperands = new int[] {3};}
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

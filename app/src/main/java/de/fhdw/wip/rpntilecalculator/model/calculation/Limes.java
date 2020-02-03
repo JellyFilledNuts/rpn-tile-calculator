@@ -20,7 +20,7 @@ public class Limes extends Action {
     @NotNull private static final Limes LIMES = new Limes();
 
     @Contract(pure = true) @NotNull public static Limes getInstance() { return LIMES; }
-    private Limes() { requiredNumOfOperands = new int[] {1,2};}
+    private Limes() { requiredNumOfOperands = new int[] {2};}
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

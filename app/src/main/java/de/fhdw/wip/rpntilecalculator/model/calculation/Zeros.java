@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
@@ -25,16 +26,9 @@ public class Zeros extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull ODouble[] on(@NotNull OPolynom oPolynom) {
+    @Contract(pure = true) @NotNull OTuple on(@NotNull OPolynom oPolynom) {
         double[] results = calculateZeros(oPolynom);
-        int numberOfResults = results.length;
-        ODouble[] oResults = new ODouble[numberOfResults];
-        for(int i=0; i<numberOfResults; i++)
-        {
-            oResults[i] = new ODouble(results[i]);
-        }
-
-        return oResults;
+        return new OTuple(results);
     }
 
     // Function that calculates the zeros when called

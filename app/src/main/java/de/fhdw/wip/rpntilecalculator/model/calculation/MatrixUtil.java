@@ -19,7 +19,7 @@ public class MatrixUtil extends Action {
     private static final MatrixUtil MATRIX_UTIL  = new MatrixUtil();
 
     @Contract(pure = true) @NotNull public static MatrixUtil getInstance() { return MATRIX_UTIL; }
-    private MatrixUtil() { requiredNumOfOperands = new int[] {1, 2}; }
+    private MatrixUtil() { requiredNumOfOperands = new int[] {2}; }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
