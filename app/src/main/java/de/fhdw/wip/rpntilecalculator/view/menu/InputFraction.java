@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.view.menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
@@ -22,19 +23,24 @@ public class InputFraction extends DialogMenu {
     private EditText numeratorText = this.dialog.findViewById(R.id.numerator);
     private EditText denumeratorText = this.dialog.findViewById(R.id.denumerator);
 
-   public InputFraction(MainActivity context, Tile displayTile, DialogMenu last)
+   public InputFraction(final MainActivity context, Tile displayTile, DialogMenu last)
    {
        super(context, displayTile, last);
        confirmButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               int nummerator = Integer.parseInt(numeratorText.getText().toString());
-               int denumerator = Integer.parseInt(denumeratorText.getText().toString());
-               OFraction oFraction = new OFraction(nummerator, denumerator);
-               TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_FRACTION, oFraction, 0);
-               tile.update(newTileScheme);
-               tile.getTileLayout().removeFromStacks(tile);
-               dismissAll();
+               try {
+                   int nummerator = Integer.parseInt(numeratorText.getText().toString());
+                   int denumerator = Integer.parseInt(denumeratorText.getText().toString());
+                   OFraction oFraction = new OFraction(nummerator, denumerator);
+                   TileScheme newTileScheme = TileScheme.createTileScheme(TileMapping.O_FRACTION, oFraction, 0);
+                   tile.update(newTileScheme);
+                   tile.getTileLayout().removeFromStacks(tile);
+                   dismissAll();
+               }catch (Exception e)
+               {
+                   Toast.makeText(context, "Please check your input", Toast.LENGTH_SHORT).show();
+               }
            }
        });
    }

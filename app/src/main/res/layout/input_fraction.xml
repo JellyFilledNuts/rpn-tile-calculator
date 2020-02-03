@@ -15,7 +15,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Numerator"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:textSize="36sp" />
 
     <View
@@ -34,7 +34,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Denumerator"
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:textSize="36sp" />
 
     <Button
