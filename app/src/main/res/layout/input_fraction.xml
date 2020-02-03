@@ -45,6 +45,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="106dp"
         android:layout_toRightOf="@id/fraction_line"
-        android:text="Bestätigen" />
+        android:text="Enter" />
 
 </RelativeLayout>

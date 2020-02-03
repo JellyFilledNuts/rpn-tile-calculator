@@ -7,7 +7,10 @@ import de.fhdw.wip.rpntilecalculator.model.calculation.ArcTangens;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Cosinus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Derivation;
 import de.fhdw.wip.rpntilecalculator.model.calculation.HighAndLowPoints;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Integral;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Limes;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm;
+import de.fhdw.wip.rpntilecalculator.model.calculation.MatrixUtil;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Modulo;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Plus;
@@ -17,6 +20,7 @@ import de.fhdw.wip.rpntilecalculator.model.calculation.Sinus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Slash;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Tangens;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Times;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Zeros;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.OMatrix;
@@ -58,12 +62,16 @@ public enum TileMapping {
     A_ROOT(TileType.ACTION, Root.getInstance(), "√"),
     A_DERIVE(TileType.ACTION, Derivation.getInstance(), "dy / dx"),
     A_HIGHLOW(TileType.ACTION, HighAndLowPoints.getInstance(), "Extrema"),
+    A_ZEROS(TileType.ACTION, Zeros.getInstance(), "Zeros"),
+    A_INTEGRAL(TileType.ACTION, Integral.getInstance(), "Integral"),
+    A_LIMES(TileType.ACTION, Limes.getInstance(), "Limes"),
     A_SIN(TileType.ACTION, Sinus.getInstance(), "sin"),
     A_COS(TileType.ACTION, Cosinus.getInstance(), "cos"),
     A_TAN(TileType.ACTION, Tangens.getInstance(), "tan"),
     A_ASIN(TileType.ACTION, ArcSinus.getInstance(), "asin"),
     A_ACOS(TileType.ACTION, ArcCosinus.getInstance(), "acos"),
     A_ATAN(TileType.ACTION, ArcTangens.getInstance(), "atan"),
+    A_MATRIXUTIL(TileType.ACTION, MatrixUtil.getInstance(), "LGS lösen"),
 
     S_AC(TileType.SETTING, AllClear.getInstance(), "AC"),
     S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),

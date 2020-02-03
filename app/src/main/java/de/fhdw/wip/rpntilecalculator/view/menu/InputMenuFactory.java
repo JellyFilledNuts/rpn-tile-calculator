@@ -78,6 +78,8 @@ public class InputMenuFactory {
         switch (mapping) {
             case O_FRACTION:
                 return new InputFraction(context, displayTile, last);
+            case O_POLYNOM:
+                return new InputPolynomial(context, displayTile, last);
             default:
                 return createNotFoundListener(context);
         }

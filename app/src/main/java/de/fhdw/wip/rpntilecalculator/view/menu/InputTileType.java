@@ -35,7 +35,7 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
         WindowManager.LayoutParams wlp = window.getAttributes();
         wlp.gravity = Gravity.START | Gravity.TOP;
         int[] location = new int[2];
-        tile.getLocationOnScreen(location);
+        tile.getLocationInWindow(location);
         wlp.x = location[0];
         wlp.y = location[1];
         Point size = new Point();
