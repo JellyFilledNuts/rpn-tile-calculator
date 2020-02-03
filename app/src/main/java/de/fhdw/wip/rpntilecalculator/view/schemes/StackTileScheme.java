@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
+package de.fhdw.wip.rpntilecalculator.view.schemes;
 
 import androidx.annotation.NonNull;
 

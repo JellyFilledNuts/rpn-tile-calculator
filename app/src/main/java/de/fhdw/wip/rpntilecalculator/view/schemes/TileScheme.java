@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
+package de.fhdw.wip.rpntilecalculator.view.schemes;
 
 /*
  * Summary: TileScheme contains the information about tiles and is used to create tiles and save them
@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.fhdw.wip.rpntilecalculator.R;
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;

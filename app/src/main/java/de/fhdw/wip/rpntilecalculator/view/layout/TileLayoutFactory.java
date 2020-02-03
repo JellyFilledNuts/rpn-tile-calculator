@@ -1,15 +1,13 @@
 package de.fhdw.wip.rpntilecalculator.view.layout;
 
 import android.content.Context;
-import android.util.SparseArray;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
 public class TileLayoutFactory {
 

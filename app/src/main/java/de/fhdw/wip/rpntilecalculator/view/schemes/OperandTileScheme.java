@@ -1,4 +1,4 @@
-package de.fhdw.wip.rpntilecalculator.view.layout.schemes;
+package de.fhdw.wip.rpntilecalculator.view.schemes;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
 
 public class OperandTileScheme extends TileScheme {
 

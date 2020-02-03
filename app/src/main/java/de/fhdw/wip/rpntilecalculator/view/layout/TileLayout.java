@@ -14,17 +14,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.HistoryTileScheme;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.OperandTileScheme;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.StackTileScheme;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.HistoryTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.StackTileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
 public class TileLayout {
 

@@ -1,7 +1,6 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
 import android.content.Context;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TableRow;
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 import de.fhdw.wip.rpntilecalculator.view.menu.InputTileType;
 
 /**

@@ -9,7 +9,7 @@ import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 import de.fhdw.wip.rpntilecalculator.view.menu.utils.DialogMenu;
 
 /**

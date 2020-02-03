@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
-import de.fhdw.wip.rpntilecalculator.view.layout.schemes.TileScheme;
+import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 import de.fhdw.wip.rpntilecalculator.view.menu.InputFraction;
 
 public class InputMenuFactory {
