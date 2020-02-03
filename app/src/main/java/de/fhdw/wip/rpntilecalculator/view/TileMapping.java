@@ -25,6 +25,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.model.settings.AllClear;
 import de.fhdw.wip.rpntilecalculator.model.settings.ClearHistory;
 import de.fhdw.wip.rpntilecalculator.model.settings.DeleteEntry;
+import de.fhdw.wip.rpntilecalculator.model.settings.Dot;
 import de.fhdw.wip.rpntilecalculator.model.settings.Enter;
 import de.fhdw.wip.rpntilecalculator.model.settings.Inverse;
 import de.fhdw.wip.rpntilecalculator.model.settings.LoadLayout;
@@ -62,6 +63,7 @@ public enum TileMapping {
     S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),
     S_ENTER(TileType.SETTING, Enter.getInstance(), "Enter"),
     S_SWAP(TileType.SETTING, Swap.getInstance(), "Swap"),
+    S_DOT(TileType.SETTING, Dot.getInstance(), "."),
     S_TURNAROUNDSIGN(TileType.SETTING, TurnAroundSign.getInstance(), "+/-"),
     S_INVERSE(TileType.SETTING, Inverse.getInstance(), "1/x"),
     S_LOADLAYOUT(TileType.SETTING, LoadLayout.getInstance(), "Load Layout"),

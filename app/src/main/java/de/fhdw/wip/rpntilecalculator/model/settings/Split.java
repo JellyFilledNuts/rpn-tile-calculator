@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -55,6 +56,7 @@ public class Split extends Setting {
         if(operandList.size() != 0) {
             Presenter.OPERAND_STACK.pop();
 
+            Collections.reverse((operandList));
             for(ODouble oDouble : operandList) {
                 Presenter.add2History(oDouble);
                 Presenter.OPERAND_STACK.push(oDouble);
