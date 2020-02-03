@@ -39,7 +39,9 @@ public class ChooseListMenu extends DialogMenu {
         adjustWindow(0.4, 0.8);
 
         for(TileMapping mapping : TileMapping.values()) {
-            if(type == mapping.getType()) tileOptions.add(mapping);
+            if(type == mapping.getType()) {
+                if(mapping != TileMapping.O_Empty) tileOptions.add(mapping);
+            }
         }
     }
 
