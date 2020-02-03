@@ -34,11 +34,6 @@ public class Sinus extends Action {
 
     // Calculates the sinus with a given angle.
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
-        return new ODouble(Math.sin(angle.getDouble()));
-    }
-
-    // Calculates the sinus with the adjacent side and the reversed side.
-    @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble adjacentSide, @NotNull ODouble reversedSide) {
-        return new ODouble(Math.asin(adjacentSide.getDouble() / reversedSide.getDouble()));
+        return new ODouble(Math.sin(Math.toRadians((angle.getDouble()))));
     }
 }

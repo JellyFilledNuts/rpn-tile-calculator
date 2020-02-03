@@ -11,7 +11,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the derivate of a function
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23
+ * Date:    2020/01/23, updated 2020/02/02
  */
 
 public class Derivation extends Action {
