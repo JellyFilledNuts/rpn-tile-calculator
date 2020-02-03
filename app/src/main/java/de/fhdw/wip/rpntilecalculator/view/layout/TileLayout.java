@@ -207,7 +207,6 @@ public class TileLayout {
         }
 
         for(int i = stackType.size() -1; i >= scheme.getRank(); i--) {
-            System.out.println("From " + i + " to " + (i+1));
             Tile hisTile = stackType.get(i);
             StackTileScheme hisScheme = (StackTileScheme) hisTile.getScheme();
             TileScheme newScheme = TileScheme.createTileScheme(mapping, hisScheme.getOperand(), (i + 1));
