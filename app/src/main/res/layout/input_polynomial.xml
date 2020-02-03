@@ -7,6 +7,7 @@
     android:paddingRight="20dp">
 
     <Button
+        android:background="@drawable/tile_operand_white"
         android:id="@+id/enterButton2"
         android:layout_width="119dp"
         android:layout_height="69dp"
