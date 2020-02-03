@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: Calculate the antiderivative and integral
@@ -20,8 +21,18 @@ public class Integral extends Action {
     @NotNull private static final Integral INTEGRAL = new Integral();
 
     @Contract(pure = true) @NotNull public static Integral getInstance() { return INTEGRAL; }
-    private Integral() { }
+    private Integral() {requiredNumOfOperands = new int[] {1, 2, 3};}
 
+    @NotNull @Override
+    public Operand with(@NotNull Operand... operands) throws CalculationException {
+        scopedAction = this;
+        return super.with(operands);
+    }
+
+    @Contract(pure = true) @NotNull ODouble on(@NotNull OPolynom oPolynom, @NotNull ODouble lowerBound, @NotNull ODouble upperBound) {
+        return calculateIntegralSimpsons(oPolynom, lowerBound.getDouble(), upperBound.getDouble());
+    }
+    
     /**
      * Calculates the integral for the specified limit range
      * @param oPolynom Normal PolynomialFunction, not its antiderivative
