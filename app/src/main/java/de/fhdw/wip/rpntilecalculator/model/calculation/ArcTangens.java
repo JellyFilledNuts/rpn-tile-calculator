@@ -1,10 +1,10 @@
-package de.fhdw.wip.rpntilecalculator.core.calculation;
+package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
-import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: Defines the arc Tangens action.
@@ -23,6 +23,7 @@ public class ArcTangens  extends Action {
      */
     @Contract(pure = true) @NotNull public static ArcTangens getInstance() { return ARC_TANGENS; }
     private ArcTangens() {
+        requiredNumOfOperands = new int[]{1};
     }
 
     @NotNull @Override

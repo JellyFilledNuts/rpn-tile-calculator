@@ -1,8 +1,8 @@
-package de.fhdw.wip.rpntilecalculator.core.calculation;
+package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.junit.Test;
 
-import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 
 import static org.junit.Assert.assertTrue;
 

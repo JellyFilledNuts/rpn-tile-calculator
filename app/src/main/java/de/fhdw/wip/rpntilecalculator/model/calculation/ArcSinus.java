@@ -1,10 +1,10 @@
-package de.fhdw.wip.rpntilecalculator.core.calculation;
+package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
-import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
  * Summary: Defines the arc Sinus action.
@@ -22,7 +22,9 @@ public class ArcSinus extends Action {
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcSinus getInstance() { return ARC_SINUS; }
-    private ArcSinus() { }
+    private ArcSinus() {
+        requiredNumOfOperands = new int[]{1};
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {

@@ -1,6 +1,9 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcCosinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcSinus;
+import de.fhdw.wip.rpntilecalculator.model.calculation.ArcTangens;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Cosinus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Derivation;
 import de.fhdw.wip.rpntilecalculator.model.calculation.HighAndLowPoints;
@@ -58,6 +61,9 @@ public enum TileMapping {
     A_SIN(TileType.ACTION, Sinus.getInstance(), "sin"),
     A_COS(TileType.ACTION, Cosinus.getInstance(), "cos"),
     A_TAN(TileType.ACTION, Tangens.getInstance(), "tan"),
+    A_ASIN(TileType.ACTION, ArcSinus.getInstance(), "asin"),
+    A_ACOS(TileType.ACTION, ArcCosinus.getInstance(), "acos"),
+    A_ATAN(TileType.ACTION, ArcTangens.getInstance(), "atan"),
 
     S_AC(TileType.SETTING, AllClear.getInstance(), "AC"),
     S_DEL(TileType.SETTING, DeleteEntry.getInstance(), "Delete"),
