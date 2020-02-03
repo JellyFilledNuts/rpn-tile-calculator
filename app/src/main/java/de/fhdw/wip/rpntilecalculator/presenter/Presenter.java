@@ -12,6 +12,7 @@ import java.util.List;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
+import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
 import de.fhdw.wip.rpntilecalculator.model.stack.OperandStack;
@@ -167,7 +168,8 @@ public class Presenter implements View.OnClickListener {
      */
     private int tryAppending(Operand operand) {
         if(INPUT_TERM.toString().equals(INPUT_FINALIZED)) return 0;
-        if(OPERAND_STACK.peek() == null || OPERAND_STACK.peek() instanceof ODouble) {
+
+        if(OPERAND_STACK.peek() instanceof OEmpty || OPERAND_STACK.peek() instanceof ODouble) {
             if (operand instanceof ODouble) {
                 ODouble oNew = (ODouble) operand;
                 int points = 0;

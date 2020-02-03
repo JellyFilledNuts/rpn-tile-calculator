@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OEmpty;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
@@ -50,9 +51,12 @@ public class TileLayout {
             Tile stackTile = stack.valueAt(i);
             Operand operand = null;
             if(i < stackOperands.size()) operand = stackOperands.get(i);
-            System.out.println("Updating STACK: " + i + " " + ((StackTileScheme) stackTile.getScheme()).getRank() + " _ " + ((StackTileScheme) stackTile.getScheme()).getOperand());
             stackTile.update(TileScheme.createTileScheme(TileMapping.S_STACK, operand, stack.keyAt(i)));
-            System.out.println("Updating STACK: " + i + " " + ((StackTileScheme) stackTile.getScheme()).getRank() + " _ " + ((StackTileScheme) stackTile.getScheme()).getOperand());
+
+            //Sonderfall erster Stack Tile
+            if(i == 0 && operand != null) {
+                stackTile.setText(Presenter.INPUT_TERM.toString());
+            }
         }
     }
 
