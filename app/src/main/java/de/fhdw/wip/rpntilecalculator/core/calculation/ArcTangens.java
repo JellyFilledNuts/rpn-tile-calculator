@@ -1,28 +1,29 @@
 package de.fhdw.wip.rpntilecalculator.core.calculation;
 
-import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
-import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
-
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
+import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
+
 /*
- * Summary: Defines the Sinus action.
+ * Summary: Defines the arc Tangens action.
  * Author:  Jannis Luca Keienburg
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
-public class Sinus extends Action {
+
+public class ArcTangens  extends Action {
 
     @NotNull
-    private static final Sinus SINUS = new Sinus();
+    private static final ArcTangens ARC_TANGENS = new ArcTangens();
 
     /*
      * Singleton for SINUS
      * @return singleton object
      */
-    @Contract(pure = true) @NotNull public static Sinus getInstance() { return SINUS; }
-    private Sinus() { }
+    @Contract(pure = true) @NotNull public static ArcTangens getInstance() { return ARC_TANGENS; }
+    private ArcTangens() {
+    }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
@@ -30,8 +31,10 @@ public class Sinus extends Action {
         return super.with(operands);
     }
 
-    // Calculates the sinus with a given angle.
+    // Calculates the tangens with a given angle.
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
-        return new ODouble(Math.sin(Math.toRadians((angle.getDouble()))));
+        return new ODouble(Math.atan(Math.toRadians((angle.getDouble()))));
     }
 }
+
+

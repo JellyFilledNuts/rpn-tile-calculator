@@ -3,13 +3,14 @@ package de.fhdw.wip.rpntilecalculator.core.calculation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import de.fhdw.wip.rpntilecalculator.core.model.operand.ODouble;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.OPolynom;
 import de.fhdw.wip.rpntilecalculator.core.model.operand.Operand;
 
 /*
- * Summary: A Class that can calculate the zeros of functions ans quadratic functions.
+ * Summary: A Class that can calculate the zeros of functions and quadratic functions.
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/19
+ * Date:    2020/01/19, updated on 02.02.2020
  */
 public class Zeros extends Action {
 
@@ -24,8 +25,15 @@ public class Zeros extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull double[] on(@NotNull OPolynom oPolynom) {
-        return calculateZeros(oPolynom);
+    // Entry of the function. Returns the zeros of the function as ODouble array.
+    @Contract(pure = true) @NotNull ODouble[] on(@NotNull OPolynom oPolynom) {
+        double [] zerosAsDoubleArray = calculateZeros(oPolynom);
+        ODouble[] zerosAsODoubleArray = new ODouble[zerosAsDoubleArray.length];
+        for(int counter = 0; counter < zerosAsDoubleArray.length; counter++)
+        {
+            zerosAsODoubleArray[counter] = new ODouble(zerosAsDoubleArray[counter]);
+        }
+        return zerosAsODoubleArray;
     }
 
     // Function that calculates the zeros when called
