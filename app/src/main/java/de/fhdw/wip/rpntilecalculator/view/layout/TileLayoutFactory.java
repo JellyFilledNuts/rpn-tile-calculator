@@ -28,18 +28,14 @@ public class TileLayoutFactory {
 
     public static TileLayout createLayout(@NotNull Context context, @NotNull String indicator) {
         tileLayout = new ArrayList<>();
+        orientation = ScreenOrientation.getOrientation(indicator.charAt(0));
+
         layoutText = layoutLoader.loadLayout(context, indicator);
 
-        loadOrientation();
-
-        loadLayout();
+        if(layoutText != null)
+            loadLayout();
 
         return new TileLayout(indicator, tileLayout, orientation);
-    }
-
-    private static void loadOrientation() {
-        //decipher the layout orientation
-        orientation = ScreenOrientation.getOrientation(layoutText.charAt(0));
     }
 
     private static void loadLayout() {
@@ -59,7 +55,7 @@ public class TileLayoutFactory {
                     tileType = Enum.valueOf(TileMapping.class, values[0]);
                 } catch (Exception e) {
                     tileType = TileMapping.X_ERROR;
-                    values[1] = tileType.getActionText();
+                    values = new String[]{null, tileType.getActionText()};
                     //throw new StorageLoadingException("The value " + values[0] + " could not be deciphered.");
                 }
 

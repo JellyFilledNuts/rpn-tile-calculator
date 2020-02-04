@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
