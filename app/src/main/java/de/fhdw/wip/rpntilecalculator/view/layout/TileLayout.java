@@ -55,7 +55,8 @@ public class TileLayout {
 
             //Sonderfall erster Stack Tile
             if(i == 0 && operand != null) {
-                if(operand instanceof ODouble) stackTile.setText(Presenter.INPUT_TERM.toString());
+                if(operand instanceof ODouble)
+                    stackTile.setText(Presenter.INPUT_TERM.toString());
             }
         }
     }
