@@ -82,6 +82,7 @@ public class Presenter implements View.OnClickListener {
      * @param operand operand that is added to stack
      */
     private void clickOperand(@NotNull Operand operand) {
+        if(operand instanceof OEmpty) return;
         switch (tryAppending(operand)) {
             case 0: // string finalized
                 resetInputTerm(operand);
