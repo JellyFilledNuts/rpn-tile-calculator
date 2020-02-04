@@ -10,6 +10,7 @@ import de.fhdw.wip.rpntilecalculator.model.calculation.HighAndLowPoints;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Integral;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Limes;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm;
+import de.fhdw.wip.rpntilecalculator.model.calculation.Logarithm10;
 import de.fhdw.wip.rpntilecalculator.model.calculation.MatrixUtil;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Minus;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Modulo;
@@ -63,6 +64,7 @@ public enum TileMapping {
     A_TIMES(TileType.ACTION, Times.getInstance(), "*"),
     A_MODULO(TileType.ACTION, Modulo.getInstance(), "%"),
     A_LOG(TileType.ACTION, Logarithm.getInstance(), "log"),
+    A_LOG10(TileType.ACTION, Logarithm10.getInstance(), "log10"),
     A_POWER(TileType.ACTION, Power.getInstance(), "bⁿ"),
     A_ROOT(TileType.ACTION, Root.getInstance(), "√"),
     A_DERIVE(TileType.ACTION, Derivation.getInstance(), "dy / dx"),

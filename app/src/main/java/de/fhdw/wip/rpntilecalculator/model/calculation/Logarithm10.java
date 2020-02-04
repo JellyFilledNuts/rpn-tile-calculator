@@ -21,7 +21,7 @@ public class Logarithm10 extends Action {
      */
     @Contract(pure = true) @NotNull public static Logarithm10 getInstance() { return LOGARITHM10; }
     private Logarithm10() {
-        requiredNumOfOperands = new int[]{1, 2};
+        requiredNumOfOperands = new int[]{1};
     }
 
     @NotNull @Override
