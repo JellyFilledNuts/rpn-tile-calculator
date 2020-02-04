@@ -38,6 +38,7 @@
         android:textSize="36sp" />
 
     <Button
+        android:background="@drawable/tile_operand_white"
         android:id="@+id/enterButton"
         android:layout_width="119dp"
         android:layout_height="69dp"

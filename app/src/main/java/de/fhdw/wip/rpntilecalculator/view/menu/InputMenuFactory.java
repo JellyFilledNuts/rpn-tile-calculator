@@ -82,6 +82,8 @@ public class InputMenuFactory {
                 return new InputFraction(context, displayTile, current);
             case O_POLYNOM:
                 return new InputPolynomial(context, displayTile, current);
+            case O_DOUBLE:
+                return new InputDouble(context, displayTile, current);
             default:
                 return createNotFoundListener(context);
         }
