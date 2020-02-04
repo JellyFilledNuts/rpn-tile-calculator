@@ -9,11 +9,27 @@ import static org.junit.Assert.assertTrue;
 public class SinusTest {
     private Sinus SINUS = Sinus.getInstance();
 
-    @Test public void sinusAngle_isCorrect() {
+    @Test public void sinusAngle_isCorrect1() {
         System.out.println(SINUS.on(
                 new ODouble(10)));
         assertTrue(SINUS.on(
                 new ODouble(10)).equalsValue(new ODouble(0.17364817766693033))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect2() {
+        System.out.println(SINUS.on(
+                new ODouble(45)));
+        assertTrue(SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.7071067811865475))
+        );
+    }
+
+    @Test public void sinusAngle_isCorrect3() {
+        System.out.println(SINUS.on(
+                new ODouble(-45)));
+        assertTrue(SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865475))
         );
     }
 }

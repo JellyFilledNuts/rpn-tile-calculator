@@ -34,11 +34,15 @@ public class Logarithm extends Action {
 
     //Natural Logarithm
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble oDouble) {
+        if(oDouble.getDouble() <= 0)
+            throw new IllegalArgumentException("Value must be higher than Zero.");
         return new ODouble(Math.log(oDouble.getDouble()));
     }
 
     //Logarithm with specific base
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble base, ODouble logartihmOf) {
+        if(base.getDouble() <= 0 || logartihmOf.getDouble() <= 0)
+            throw new IllegalArgumentException("Value must be higher than Zero.");
         return new ODouble(Math.log(logartihmOf.getDouble()) / Math.log(base.getDouble()));
     }
 }
