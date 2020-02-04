@@ -14,7 +14,8 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
 /**
  * Summary: Class responsible for input of fractions
- * Author:  Getuart Istogu
+ * Author:  Dennis Gentges
+ * Date:    2020/01/29
  **/
 
 public class InputFraction extends DialogMenu {

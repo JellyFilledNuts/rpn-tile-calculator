@@ -2,6 +2,11 @@ package de.fhdw.wip.rpntilecalculator.view.layout;
 
 import android.content.pm.ActivityInfo;
 
+/**
+ * Summary: Defines values for the screen orientation, used in layout
+ * Author: Tom Bockhorn
+ * Date: 2020/01/15
+ */
 public enum ScreenOrientation {
 
     LANDSCAPE(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, 'h'),

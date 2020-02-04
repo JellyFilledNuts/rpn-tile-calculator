@@ -25,6 +25,11 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.HistoryTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.schemes.StackTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
+/**
+ * Summary: Container for Tiles and acts as handler for visual updates
+ * Author:  Tom Bockhorn
+ * Date:    2020/01/05
+ */
 public class TileLayout {
 
     private SparseArray<Tile> stack = new SparseArray<>();

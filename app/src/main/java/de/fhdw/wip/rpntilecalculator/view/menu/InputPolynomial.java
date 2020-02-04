@@ -1,21 +1,23 @@
 package de.fhdw.wip.rpntilecalculator.view.menu;
 
-import android.app.Dialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
 
 import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
-import de.fhdw.wip.rpntilecalculator.model.operands.OFraction;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
+/**
+ * Summary: Input class for inputting polynomial functions
+ * Author:  Dennis Gentges
+ * Date:    2020/01/30
+ */
 public class InputPolynomial extends DialogMenu {
 
     private Button confirmButton = this.dialog.findViewById(R.id.enterButton2);

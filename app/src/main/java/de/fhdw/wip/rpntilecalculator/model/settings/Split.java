@@ -16,8 +16,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
+/**
+ * Summary: Splits the current loaded operand into several ODoubles
+ * Author:  Hendrik Falk
+ * Date:    2020/02/03
+ */
 public class Split extends Setting {
-
 
     @Contract(pure = true) @NotNull
     public static Split getInstance() { return new Split(); }

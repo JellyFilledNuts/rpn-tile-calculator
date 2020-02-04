@@ -14,10 +14,10 @@ import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
 
 /**
- * Summary: Tile acts as button and forwards the connected type and click to the handler
+ * Summary: Menu for inputting the type of the tile
  * Author:  Getuart Istogu
+ * Date:    2020/01/29
  **/
-
 public class InputTileType extends DialogMenu implements View.OnLongClickListener {
 
     private Button stackTypeButton = this.dialog.findViewById(R.id.stackTypeButton);

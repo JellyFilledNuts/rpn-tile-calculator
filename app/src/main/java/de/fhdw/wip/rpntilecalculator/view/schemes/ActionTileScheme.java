@@ -6,6 +6,11 @@ import org.jetbrains.annotations.Nullable;
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
+/**
+ * Summary: TileScheme for an Operator (Action)
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
 public class ActionTileScheme extends TileScheme {
 
     @NotNull private Action action;

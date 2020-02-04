@@ -1,15 +1,20 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
+/**
+ * Summary: Questionable for the type to condense information on the type
+ * Author:  Khang Pham
+ * Date:    2020/01/15
+ */
 interface TypeQuestionable {
 
-    public boolean isStack();
+    boolean isStack();
 
-    public boolean isOperand();
+    boolean isOperand();
 
-    public boolean isAction();
+    boolean isAction();
 
-    public boolean isSetting();
+    boolean isSetting();
 
-    public boolean isHistory();
+    boolean isHistory();
 
 }

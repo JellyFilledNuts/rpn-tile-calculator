@@ -15,6 +15,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+/**
+ * Summary: Class that loads and saves tile layouts in csv
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/06
+ */
 public class TileLayoutLoader {
 
     /**
@@ -24,7 +29,7 @@ public class TileLayoutLoader {
      * @return TileLayout
      */
     public String loadLayout(@NotNull Context context, @NotNull String indicator) {
-        String layout = "";
+        String layout;
 
         if(indicator.equals("Morestack")) {
             layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_SET,[1,2];O_TUPLE,(0,2);O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_AC,AC;O_DOUBLE,0;S_ENTER,Enter;S_SPLIT,Split;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DEL,delete;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_INVERSE,1/x;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
@@ -95,7 +100,7 @@ public class TileLayoutLoader {
             if ( inputStream != null ) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while ( (receiveString = bufferedReader.readLine()) != null ) {

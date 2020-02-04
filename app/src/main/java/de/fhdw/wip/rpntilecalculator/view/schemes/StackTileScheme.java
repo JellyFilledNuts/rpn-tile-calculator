@@ -9,21 +9,25 @@ import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
+/**
+ * Summary: TileScheme for stack tiles (extends Operand-TileScheme)
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
 public class StackTileScheme extends OperandTileScheme {
 
-    private int rank = 1;
-    private boolean first = false;
+    private int rank;
 
     /**
      * Crates an StackTileScheme with an operand in it
      * @param content rank of the stack field
      */
-    public StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, @NotNull int rank) {
+    public StackTileScheme(@NotNull TileMapping tileMapping, @NotNull String content, int rank) {
         super(tileMapping, content);
         this.rank = rank;
     }
 
-    StackTileScheme(@NotNull Operand operand, @NotNull int rank) {
+    StackTileScheme(@NotNull Operand operand, int rank) {
         super(TileMapping.O_DOUBLE, operand);
         this.rank = rank;
     }

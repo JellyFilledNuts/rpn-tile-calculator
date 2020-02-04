@@ -5,6 +5,11 @@ import org.jetbrains.annotations.NotNull;
 
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
+/**
+ * Summary: Empties the history stack of the presenter
+ * Author:  Hendrik Falk
+ * Date:    2020/01/26
+ */
 public class ClearHistory extends Setting {
 
     @Contract(pure = true) @NotNull

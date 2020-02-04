@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
+/**
+ * Summary: Places a '.' in the input term to create decimal values
+ * Author:  Hendrik Falk
+ * Date:    2020/02/03
+ */
 public class Dot extends Setting {
 
     @Contract(pure = true) @NotNull

@@ -11,6 +11,11 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 
+/**
+ * Summary: Starting activity that loads presenter and default layout
+ * Author:  Tom Bockhorn
+ * Date:    2019/09/04
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static MainActivity mainActivity = null;

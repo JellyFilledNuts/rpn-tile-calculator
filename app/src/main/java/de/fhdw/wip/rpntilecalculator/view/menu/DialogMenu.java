@@ -14,6 +14,7 @@ import de.fhdw.wip.rpntilecalculator.view.Tile;
 /**
  * Summary: Super Class: Tile acts as button and forwards the connected type and click to the handler
  * Author:  Getuart Istogu
+ * Date:    2020/01/29
  **/
 
 public abstract class DialogMenu implements View.OnClickListener {

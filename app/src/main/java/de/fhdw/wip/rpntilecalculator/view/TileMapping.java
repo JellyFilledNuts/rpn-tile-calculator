@@ -42,6 +42,11 @@ import de.fhdw.wip.rpntilecalculator.model.settings.TurnAroundSign;
 import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
 import de.fhdw.wip.rpntilecalculator.model.settings.Swap;
 
+/**
+ * Summary: definition of the different tiles and their display texts (used for loading and saving)
+ * Author:  Khang Pham
+ * Date:    2020/01/07
+ */
 public enum TileMapping {
 
     O_DOUBLE(TileType.OPERAND, ODouble.class, "Zahl"),

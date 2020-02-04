@@ -1,11 +1,10 @@
 package de.fhdw.wip.rpntilecalculator.view.schemes;
 
 /*
- * Summary: TileScheme contains the information about tiles and is used to create tiles and save them
- * Author:  Tom Bockhorn
+  Summary: Contains information about tiles and is used to create tiles and save them
+  Author:  Dennis Gentges
+  Date: 2020/01/06
  */
-
-
 import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;

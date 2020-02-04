@@ -7,6 +7,11 @@ import java.lang.reflect.InvocationTargetException;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
+/**
+ * Summary: TileScheme for an operand
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
 public class OperandTileScheme extends TileScheme {
 
     private Operand operand = null;

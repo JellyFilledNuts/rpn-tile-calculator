@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
+/**
+ * Summary: Changes positive operands to negative ones and vice versa
+ * Author:  Hendrik Falk
+ * Date:    2020/01/30
+ */
 public class TurnAroundSign extends Setting {
 
     @Contract(pure = true) @NotNull

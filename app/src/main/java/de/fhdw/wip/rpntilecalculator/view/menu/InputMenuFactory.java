@@ -10,6 +10,11 @@ import de.fhdw.wip.rpntilecalculator.view.Tile;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
+/**
+ * Summary: Factory for Menu Listeners for all dynamically created menus
+ * Author:  Tom Bockhorn
+ * Date:    2020/02/02
+ */
 public class InputMenuFactory {
 
     private Tile displayTile;

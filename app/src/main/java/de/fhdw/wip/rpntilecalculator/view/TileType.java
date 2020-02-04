@@ -2,6 +2,11 @@ package de.fhdw.wip.rpntilecalculator.view;
 
 import de.fhdw.wip.rpntilecalculator.R;
 
+/**
+ * Summary: definitions of the different available tile types
+ * Author:  Khang Pham
+ * Date:    2020/01/06
+ */
 public enum TileType implements TypeQuestionable {
 
     STACK(R.drawable.tile_stack_green),

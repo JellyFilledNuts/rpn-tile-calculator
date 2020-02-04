@@ -17,6 +17,11 @@ import de.fhdw.wip.rpntilecalculator.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
+/**
+ * Summary: Creates a load layout menu to load a new layout design
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
+ */
 public class LoadLayout extends Setting {
 
     @Contract(pure = true) @NotNull

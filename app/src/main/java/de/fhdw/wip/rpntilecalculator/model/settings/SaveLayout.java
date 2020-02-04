@@ -15,6 +15,11 @@ import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
+/**
+ * Summary: Creates a save layout menu to save the current design
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/26
+ */
 public class SaveLayout extends Setting {
 
     @Contract(pure = true) @NotNull

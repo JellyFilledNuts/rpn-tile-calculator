@@ -26,7 +26,9 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.StackTileScheme;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
 /**
- * Used for communication between view and model
+ * Summary: Used for communication between view and model and stack handling
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2020/01/14
  */
 public class Presenter implements View.OnClickListener {
 

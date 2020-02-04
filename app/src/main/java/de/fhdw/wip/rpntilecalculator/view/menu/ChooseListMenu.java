@@ -21,6 +21,11 @@ import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.TileType;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
+/**
+ * Summary: Dynamically created layout for choosing options of a variably long list of tiles
+ * Author:  Khang Pham
+ * Date:    2020/02/01
+ */
 public class ChooseListMenu extends DialogMenu {
 
     private ArrayList<TileMapping> tileOptions = new ArrayList<>();

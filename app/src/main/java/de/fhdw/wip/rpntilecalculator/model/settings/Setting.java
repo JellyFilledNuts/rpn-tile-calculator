@@ -3,7 +3,9 @@ package de.fhdw.wip.rpntilecalculator.model.settings;
 import org.jetbrains.annotations.Contract;
 
 /**
- * Summary: Framework for defining settings. Each setting works in its own way, but can be addressed similarly
+ * Summary: Super class for settings
+ * Author:  Hendrik Falk
+ * Date:    2020/01/26
  */
 public abstract class Setting {
 

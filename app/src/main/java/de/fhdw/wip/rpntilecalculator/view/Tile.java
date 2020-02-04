@@ -1,5 +1,6 @@
 package de.fhdw.wip.rpntilecalculator.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,9 +19,11 @@ import de.fhdw.wip.rpntilecalculator.view.menu.InputTileType;
 
 /**
  * Summary: Tile acts as button and forwards the connected type and click to the handler
+ *          Info of the type of the tile is stored in its scheme
  * Author:  Tom Bockhorn
+ * Date:    2020/01/05
  **/
-
+@SuppressLint("ViewConstructor")
 public class Tile extends AppCompatButton implements TypeQuestionable {
 
     private static final int TILE_MARGIN = 3;
@@ -32,6 +35,7 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
     private TileScheme scheme;
     @Nullable private TileLayout tileLayout;
 
+    @Nullable
     public TileLayout getTileLayout()
     {
         return tileLayout;
@@ -69,8 +73,8 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
             this.setBackgroundResource(getScheme().getStyle());
             this.setText(scheme.toDisplayText());
         } else {
-            System.out.println("[TILE] Could not draw Tile " + getText());
-            return; //TODO: Throw exception
+            //Could not draw Tile
+            update(TileScheme.createTileScheme(TileMapping.X_ERROR, scheme.getContent()));
         }
 
     }

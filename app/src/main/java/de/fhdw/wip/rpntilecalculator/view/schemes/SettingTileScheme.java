@@ -5,6 +5,11 @@ import org.jetbrains.annotations.NotNull;
 import de.fhdw.wip.rpntilecalculator.model.settings.Setting;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 
+/**
+ * Summary: TileScheme for a setting tile
+ * Author:  Dennis Gentges
+ * Date:    2020/01/08
+ */
 public class SettingTileScheme extends TileScheme {
 
     @NotNull private Setting setting;
@@ -18,6 +23,7 @@ public class SettingTileScheme extends TileScheme {
         this.setting = tileType.getSettingType();
     }
 
+    @NotNull
     public Setting getSetting() {
         return setting;
     }

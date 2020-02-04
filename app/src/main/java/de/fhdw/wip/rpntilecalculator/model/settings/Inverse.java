@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
+/**
+ * Summary: Calculates the inverse of an operand
+ * Author:  Hendrik Falk
+ * Date:    2020/01/29
+ */
 public class Inverse extends Setting {
 
     @Contract(pure = true) @NotNull

@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import de.fhdw.wip.rpntilecalculator.view.TileMapping;
 import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
 
+/**
+ * Summary: Factory for TileLayout that creates loads from storage
+ * Author:  Tom Bockhorn
+ * Date:    2020/01/06
+ */
 public class TileLayoutFactory {
 
     public final static String VALUE_SEPERATOR = ",";
