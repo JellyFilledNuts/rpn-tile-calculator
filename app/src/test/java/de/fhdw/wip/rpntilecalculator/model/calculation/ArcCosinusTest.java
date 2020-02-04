@@ -6,15 +6,33 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 
 import static org.junit.Assert.assertTrue;
 
-public class ArcCosinusTest {
-    private ArcCosinus ARC_COSINUS = ArcCosinus.getInstance();
+public class ArcSinusTest {
+    private ArcSinus ARC_SINUS = ArcSinus.getInstance();
 
     @Test
-    public void arcCosinusAngle_isCorrect() {
-        System.out.println(ARC_COSINUS.on(
+    public void arcSinusAngle_isCorrect1() {
+        System.out.println(ARC_SINUS.on(
                 new ODouble(10)));
-        assertTrue(ARC_COSINUS.on(
-                new ODouble(10)).equalsValue(new ODouble(1.3953649341158527))
+        assertTrue(ARC_SINUS.on(
+                new ODouble(10)).equalsValue(new ODouble(0.17543139267904395))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect2() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(45)).equalsValue(new ODouble(0.9033391107665127))
+        );
+    }
+
+    @Test
+    public void arcSinusAngle_isCorrect3() {
+        System.out.println(ARC_SINUS.on(
+                new ODouble(-45)));
+        assertTrue(ARC_SINUS.on(
+                new ODouble(-45)).equalsValue(new ODouble(-0.9033391107665127))
         );
     }
 }
