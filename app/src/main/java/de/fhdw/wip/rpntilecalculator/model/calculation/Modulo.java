@@ -11,8 +11,6 @@ import org.jetbrains.annotations.Contract;
  * Author:  Getuart Istogu
  * Date:    2020/01/05
  */
-
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class Modulo extends Action {
     @NotNull private static final Modulo MODULO = new Modulo();
 

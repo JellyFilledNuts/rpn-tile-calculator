@@ -8,14 +8,27 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+ * Summary: Every entry can only exist one time
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class OSet extends Operand {
 
     @NotNull private Set<Double> set;
 
+    /**
+     * Create Set from set.
+     * @param set Set
+     */
     public OSet(@NotNull Set<Double> set) {
         this.set = set;
     }
 
+    /**
+     * Create OSet from array of doubles
+     * @param doubles Double array
+     */
     public OSet(@NotNull double... doubles) {
         ArrayList<Double> list = new ArrayList<>();
         for (double d : doubles) list.add(d);
@@ -24,6 +37,10 @@ public class OSet extends Operand {
         this.set.addAll(list);
     }
 
+    /**
+     * Create OSet from String
+     * @param set String representation of the Set
+     */
     public OSet(@NotNull String set) {
         this.set = new HashSet<>();
         Pattern pat = Pattern.compile("[\\-0-9.]+");
@@ -34,10 +51,18 @@ public class OSet extends Operand {
         }
     }
 
+    /**
+     * Get underlying Set
+     * @return Set
+     */
     @NotNull public Set<Double> getSet() {
         return set;
     }
 
+    /**
+     * Turn around all signs
+     * @return New OSet
+     */
     @NotNull @Override public OSet turnAroundSign() {
         Set<Double> newSet = new HashSet<>();
         for (double d : set)
@@ -45,6 +70,10 @@ public class OSet extends Operand {
         return new OSet(newSet);
     }
 
+    /**
+     * Negate all values
+     * @return New OSet
+     */
     @NotNull @Override public OSet negateValue() {
         Set<Double> newSet = new HashSet<>();
         for (double d : set)
@@ -52,6 +81,10 @@ public class OSet extends Operand {
         return new OSet(newSet);
     }
 
+    /**
+     * Inverse all values
+     * @return new OSet
+     */
     @Override public @NotNull OSet inverseValue() {
         Set<Double> newSet = new HashSet<>();
         for (double d : set)
@@ -59,6 +92,11 @@ public class OSet extends Operand {
         return new OSet(newSet);
     }
 
+    /**
+     * Compare this instance with another Operand
+     * @param operand Another operand
+     * @return Boolean
+     */
     @Override public boolean equalsValue(Operand operand) {
         if (operand == this) return true;
         if (!(operand instanceof OSet)) return false;
@@ -66,6 +104,10 @@ public class OSet extends Operand {
         return DoubleComparator.isEqual(set, ((OSet) operand).getSet());
     }
 
+    /**
+     * Turn this instance into an string.
+     * @return String
+     */
     @NotNull @Override public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("[");

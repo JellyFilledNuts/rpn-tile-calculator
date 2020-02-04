@@ -38,7 +38,7 @@ public class Derivation extends Action {
 
     // Sets the Function into the following formatition:
     // [n]* x^10 + [n-1] *x^9 + ... + [1] * x + [0]
-    private double[] getFunctionAsDouble(OPolynom oPolynom) {
+    private double[] getFunctionAsDouble(@NotNull OPolynom oPolynom) {
         return oPolynom.getPolynom().getCoefficients();
     }
 

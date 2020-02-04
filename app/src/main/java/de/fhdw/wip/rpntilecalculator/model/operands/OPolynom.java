@@ -5,6 +5,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+/*
+ * Summary: Wrapper for the Polynom Operand
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class OPolynom extends Operand {
 
     @NotNull private PolynomialFunction polynom;

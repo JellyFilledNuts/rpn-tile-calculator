@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class Minus extends Action {
 
     @NotNull private static final Plus PLUS = Plus.getInstance();

@@ -14,7 +14,6 @@ import org.jetbrains.annotations.Contract;
  * Date:    2020/01/04
  */
 
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class Root extends Action{
     @NotNull private static final Root ROOT = new Root();
     @NotNull private static final Power POWER = Power.getInstance();

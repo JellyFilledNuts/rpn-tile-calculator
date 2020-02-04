@@ -12,7 +12,11 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings({"unused"})
+/*
+ * Summary: Defines the Sinus action.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class Slash extends Action {
 
     @NotNull private static final Times TIMES = Times.getInstance();

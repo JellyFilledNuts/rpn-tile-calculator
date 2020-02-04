@@ -27,7 +27,7 @@ public class MatrixUtil extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, OTuple b) {
+    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, @NotNull OTuple b) {
         return solveLinearSystem(A, b.getTuple());
     }
     /**
@@ -36,7 +36,7 @@ public class MatrixUtil extends Action {
      * @param b Solution vector
      * @return Returns the vector 'x'
      */
-    public OTuple solveLinearSystem(OMatrix A, double[] b)
+    public OTuple solveLinearSystem(@NotNull OMatrix A, double[] b)
     {
         return new OTuple(solveLGSForX(A.getMatrix().getData(), b));
     }
@@ -46,7 +46,7 @@ public class MatrixUtil extends Action {
      * @param A The linear system in double[][]
      * @return
      */
-    private int[] pivot(double A[][])
+    private int[] pivot(@NotNull double A[][])
     {
         int n = A.length;
         int[] pivot = new int[n];

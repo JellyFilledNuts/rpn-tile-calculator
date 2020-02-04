@@ -18,7 +18,6 @@ import org.jetbrains.annotations.Contract;
  * Date:    2020/01/04
  */
 
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class Power extends Action{
 
     @NotNull private static final Power POWER = new Power();

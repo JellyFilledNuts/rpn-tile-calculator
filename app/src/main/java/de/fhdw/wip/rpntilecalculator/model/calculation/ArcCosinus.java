@@ -32,7 +32,12 @@ public class ArcCosinus extends Action {
         return super.with(operands);
     }
 
-    // Calculates the arc cosinus with a given angle.
+    /**
+     * Calculates the arc cosinus with a given angle.
+     *
+     * @param angle Representing the angle.
+     * @return Result
+     */
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
         return new ODouble(Math.acos(Math.toRadians((angle.getDouble()))));
     }

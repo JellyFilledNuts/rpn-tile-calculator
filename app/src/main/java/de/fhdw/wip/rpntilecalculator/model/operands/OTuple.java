@@ -15,16 +15,28 @@ public class OTuple extends Operand {
 
     @NotNull private double[] tuple;
 
+    /**
+     * Create tuple from array of doubles.
+     * @param doubles
+     */
     public OTuple(@NotNull double... doubles) {
         this.tuple = doubles;
     }
 
+    /**
+     * Create tuple from list of doubles
+     * @param tuple
+     */
     private OTuple(@NotNull List<Double> tuple) {
         this.tuple = new double[tuple.size()];
         for (int i = 0; i < this.tuple.length; i++)
             this.tuple[i] = tuple.get(i);
     }
 
+    /**
+     * Create Tuple from String
+     * @param tuple Tuple as String
+     */
     public OTuple(@NotNull String tuple) {
         ArrayList<Double> listTuple = new ArrayList<>();
         Pattern pat = Pattern.compile("[\\-0-9.]+");
@@ -38,10 +50,18 @@ public class OTuple extends Operand {
         for(int i = 0; i < 2; i++) this.tuple[i] = listTuple.get(i);
     }
 
+    /**
+     * Get the underlying Tuple.
+     * @return Tuple
+     */
     public @NotNull double[] getTuple() {
         return tuple;
     }
 
+    /**
+     * Turn around all signs.
+     * @return new Tuple.
+     */
     @NotNull @Override public OTuple turnAroundSign() {
         List<Double> newTuple = new ArrayList<>();
         for (double d : tuple)
@@ -49,6 +69,10 @@ public class OTuple extends Operand {
         return new OTuple(newTuple);
     }
 
+    /**
+     * Negate Value. Make all values negative.
+     * @return new Tuple
+     */
     @NotNull @Override public OTuple negateValue() {
         List<Double> newTuple = new ArrayList<>();
         for (double d : tuple)
@@ -56,6 +80,10 @@ public class OTuple extends Operand {
         return new OTuple(newTuple);
     }
 
+    /**
+     * Inverse the value of this instance
+     * @return New Tuple
+     */
     @Override
     public @NotNull OTuple inverseValue() {
         List<Double> newTuple = new ArrayList<>();
@@ -64,6 +92,11 @@ public class OTuple extends Operand {
         return new OTuple(newTuple);
     }
 
+    /**
+     * Compare this instance with another Operand
+     * @param operand Another operand.
+     * @return Boolean
+     */
     @Override
     public boolean equalsValue(Operand operand) {
         if (operand == this) return true;
@@ -72,6 +105,10 @@ public class OTuple extends Operand {
         return DoubleComparator.isEqual(tuple, ((OTuple) operand).getTuple());
     }
 
+    /**
+     * Turn Operand into String representation
+     * @return String
+     */
     @NotNull @Override public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("(");

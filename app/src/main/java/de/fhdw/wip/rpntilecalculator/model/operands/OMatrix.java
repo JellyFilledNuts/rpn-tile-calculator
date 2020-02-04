@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings("unused")
 public class OMatrix extends Operand {
 
     @NotNull private RealMatrix matrix;

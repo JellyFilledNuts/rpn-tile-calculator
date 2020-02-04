@@ -9,11 +9,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
- * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executer functions.
+ * Summary: The framework for defining Actions. Actions are able to work with operands from the stack or executor functions.
  * Author:  Tim Schwenke
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused"})
 public abstract class Action {
 
     /**
@@ -26,6 +25,13 @@ public abstract class Action {
      */
     protected int[] requiredNumOfOperands = new int[]{-1};
 
+    /**
+     * Leverages reflection for matching given arguments to a calculation method.
+     *
+     * @param operands List of operands.
+     * @return Always a valid Operand.
+     * @throws CalculationException In case the result cannot be computed.
+     */
     @Contract(pure = true)
     public @NotNull Operand with(@NotNull List<Operand> operands) throws CalculationException {
         Operand[] target = new Operand[operands.size()];
@@ -35,6 +41,13 @@ public abstract class Action {
         return with(target);
     }
 
+    /**
+     * Leverages reflection for matching given arguments to a calculation method.
+     *
+     * @param operands List of operands.
+     * @return Always a valid Operand.
+     * @throws CalculationException In case the result cannot be computed.
+     */
     @Contract(pure = true) public @NotNull Operand with(@NotNull Operand... operands) throws CalculationException {
         Class[] operandClasses = new Class[operands.length];
         Operand resultOperand;

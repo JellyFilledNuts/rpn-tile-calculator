@@ -15,7 +15,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-@SuppressWarnings({"unused"})
+/*
+ * Summary: Defines the Plus click. Lets the user subtract operands.
+ * Author:  Tim Schwenke
+ * Date:    2020/01/04
+ */
 public class Plus extends Action {
 
     @NotNull private static final Plus PLUS = new Plus();

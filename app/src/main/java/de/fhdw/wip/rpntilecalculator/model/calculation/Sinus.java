@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
  * Author:  Jannis Luca Keienburg
  * Date:    2020/01/04
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class Sinus extends Action {
 
     @NotNull
