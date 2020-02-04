@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
 
 /**

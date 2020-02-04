@@ -29,13 +29,16 @@ public class TileLayoutLoader {
      * @return TileLayout
      */
     public String loadLayout(@NotNull Context context, @NotNull String indicator) {
-        String layout;
+        String layout = "";
 
-        if(indicator.equals("Morestack")) {
+        if(indicator.equals("h_Morestack")) {
             layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_SET,[1,2];O_TUPLE,(0,2);O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_AC,AC;O_DOUBLE,0;S_ENTER,Enter;S_SPLIT,Split;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DEL,delete;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_INVERSE,1/x;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
         }
-        else if(indicator.equals("Standardlayout")) {
+        else if(indicator.equals("h_Standardlayout")) {
             layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;S_INVERSE,1/x;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DOT,.;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_SPLIT,split;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
+        }else if(indicator.equals("v_Standardlayout")) {
+            // TODO
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2\nA_PLUS,+;A_SIN,sin";
         } else {
             layout = readLayout(context, indicator);
         }
@@ -43,11 +46,11 @@ public class TileLayoutLoader {
         return layout;
     }
 
-    public static ArrayList<String> getSavedLayouts(@NotNull Context context){
+    public static ArrayList<String> getSavedLayouts(@NotNull Context context, final ScreenOrientation orientation){
         File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String s) {
-                return s.endsWith(".csv");
+                return s.endsWith(".csv") && (s.charAt(0) == orientation.getIndicator());
             }
         });
 
@@ -113,8 +116,10 @@ public class TileLayoutLoader {
         }
         catch (FileNotFoundException e) {
             Log.e("Exception", "File not found: " + e.toString());
+            ret = null;
         } catch (IOException e) {
             Log.e("Exception", "Can not read file: " + e.toString());
+            ret = null;
         }
 
         return ret;

@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import de.fhdw.wip.rpntilecalculator.MainActivity;
+import de.fhdw.wip.rpntilecalculator.view.MainActivity;
 import de.fhdw.wip.rpntilecalculator.R;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 import de.fhdw.wip.rpntilecalculator.view.Tile;
