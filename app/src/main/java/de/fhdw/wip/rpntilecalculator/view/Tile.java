@@ -67,6 +67,8 @@ public class Tile extends AppCompatButton implements TypeQuestionable {
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         layoutParams.setMargins(TILE_MARGIN, TILE_MARGIN, TILE_MARGIN, TILE_MARGIN);
         setLayoutParams(layoutParams);
+        setWidth(0);
+        setHeight(0);
 
         if(scheme != null) {
             this.scheme = scheme;
