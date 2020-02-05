@@ -46,19 +46,19 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
 
 
         stackTypeButton.setOnClickListener(
-                new ChooseListMenu(context, TileMapping.S_STACK, tile, this));
+                new InputTileMapping(context, TileMapping.S_STACK, tile, this));
 
         operandTypeButton.setOnClickListener(
-                new ChooseListMenu(context, TileType.OPERAND, tile, this));
+                new InputTileMapping(context, TileType.OPERAND, tile, this));
 
         operatorTypeButton.setOnClickListener(
-                new ChooseListMenu(context, TileType.ACTION, tile, this));
+                new InputTileMapping(context, TileType.ACTION, tile, this));
 
         settingTypeButton.setOnClickListener(
-                new ChooseListMenu(context, TileType.SETTING, tile, this));
+                new InputTileMapping(context, TileType.SETTING, tile, this));
 
         historyTypeButton.setOnClickListener(
-                new ChooseListMenu(context, TileMapping.H_HISTORY, tile, this));
+                new InputTileMapping(context, TileMapping.H_HISTORY, tile, this));
     }
 
     @Override
