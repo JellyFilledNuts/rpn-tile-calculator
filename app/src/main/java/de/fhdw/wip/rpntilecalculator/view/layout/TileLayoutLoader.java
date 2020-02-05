@@ -47,18 +47,21 @@ public class TileLayoutLoader {
     }
 
     public static ArrayList<String> getSavedLayouts(@NotNull Context context, final ScreenOrientation orientation){
+        System.out.println(orientation);
+        System.out.println(context.getFilesDir().listFiles());
         File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String s) {
+                System.out.println(s);
                 return s.endsWith(".csv") && (s.charAt(0) == orientation.getIndicator());
             }
         });
 
         ArrayList<String> layouts = new ArrayList<>();
+        layouts.add("Standardlayout");
         for(File f : files){
-            System.out.println(f.getName());
-            System.out.println(f.getName().substring(0, f.getName().lastIndexOf(".")));
-            layouts.add(f.getName().substring(0, f.getName().lastIndexOf(".")));
+            String name = f.getName();
+            layouts.add(name.substring(2, name.lastIndexOf(".")));
         }
         return layouts;
     }
@@ -66,7 +69,7 @@ public class TileLayoutLoader {
     //Callable method to save a certain Layout
     public static boolean saveLayout(@NotNull Context context, @NotNull TileLayout tileLayout) {
         String layoutText = tileLayout.generateLayoutText();
-        return writeLayout(context, layoutText, tileLayout.getIndicator());
+        return writeLayout(context, layoutText, tileLayout.getOrientation().getIndicator() + "_" + tileLayout.getIndicator());
     }
 
     //Callable method to clean all saved layouts
