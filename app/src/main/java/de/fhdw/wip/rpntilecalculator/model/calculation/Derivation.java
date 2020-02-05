@@ -16,10 +16,10 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 public class Derivation extends Action {
 
-    @NotNull public static final Derivation DERIVATION = new Derivation();
+    @NotNull private static final Derivation DERIVATION = new Derivation();
 
     @Contract(pure = true) @NotNull public static Derivation getInstance() { return DERIVATION; }
-    public Derivation() {
+    private Derivation() {
         requiredNumOfOperands = new int[]{1};
     }
 

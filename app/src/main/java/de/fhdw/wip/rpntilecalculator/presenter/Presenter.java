@@ -33,10 +33,10 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
  */
 public class Presenter implements View.OnClickListener {
 
-    @Contract(pure = true) @NotNull
-    public static Presenter getInstance() { return presenter; }
+    private static final Presenter PRESENTER = new Presenter();
 
-    private static Presenter presenter;
+    @Contract(pure = true) @NotNull
+    public static Presenter getInstance() { return PRESENTER; }
 
     private final OperandStack OPERAND_STACK = new OperandStack();
     private ArrayList<Operand> HISTORY_STACK = new ArrayList<>();
@@ -45,10 +45,6 @@ public class Presenter implements View.OnClickListener {
     private TileLayout layout;
 
     private final String INPUT_FINALIZED = "final";
-
-    public Presenter() {
-        presenter = this;
-    }
 
     /**
      * Handles all tile input and decides on the follow up procedure

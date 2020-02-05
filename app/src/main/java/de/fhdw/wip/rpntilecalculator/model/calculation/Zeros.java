@@ -15,10 +15,10 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
  */
 public class Zeros extends Action {
 
-    @NotNull public static final Zeros ZEROS = new Zeros();
+    @NotNull private static final Zeros ZEROS = new Zeros();
 
     @Contract(pure = true) @NotNull public static Zeros getInstance() { return ZEROS; }
-    public Zeros() {requiredNumOfOperands = new int[] {1}; }
+    private Zeros() {requiredNumOfOperands = new int[] {1}; }
 
     @NotNull @Override
     public Operand with(@NotNull Operand... operands) throws CalculationException {
