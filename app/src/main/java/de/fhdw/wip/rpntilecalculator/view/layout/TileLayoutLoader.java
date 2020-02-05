@@ -38,8 +38,10 @@ public class TileLayoutLoader {
             //layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_PLUS,+;A_SIN,sin;H_HISTORY,1,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,11,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_MINUS,-;A_COS,cos;H_HISTORY,2,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,12,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_SLASH,/;A_TAN,tan;H_HISTORY,3,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,13,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_TIMES,*;A_MODULO,%;H_HISTORY,4,O_Empty, ;H_HISTORY,9,O_Empty, ;H_HISTORY,14,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;S_INVERSE,1/x;A_ROOT,root;H_HISTORY,5,O_Empty, ;H_HISTORY,10,O_Empty, ;H_HISTORY,15,O_Empty, \nS_DOT,.;S_TURNAROUNDSIGN,+/-;S_SWAP,Swap;S_SPLIT,split;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
             layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;S_SWAP,Swap;S_SPLIT,split;H_HISTORY,1,O_Empty, ;H_HISTORY,5,O_Empty, ;H_HISTORY,9,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_PLUS,+;A_SIN,sin;H_HISTORY,2,O_Empty, ;H_HISTORY,6,O_Empty, ;H_HISTORY,10,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_MINUS,-;A_COS,cos;H_HISTORY,3,O_Empty, ;H_HISTORY,7,O_Empty, ;H_HISTORY,11,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_SLASH,/;A_LOG,ichundmeinlog;H_HISTORY,4,O_Empty, ;H_HISTORY,8,O_Empty, ;H_HISTORY,12,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;A_TIMES,*;A_MODULO,%;S_INVERSE,1/x;O_MATRIX,[[1, 2], [3, 4]];O_TUPLE,(1, 2)\nS_AC,AC;S_TURNAROUNDSIGN,+/-;S_DOT,.;A_ROOT,root;A_POWER,pow;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
         }else if(indicator.equals("v_Standardlayout")) {
-            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;H_HISTORY,1,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;H_HISTORY,2,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;H_HISTORY,3,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;H_HISTORY,4,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;H_HISTORY,5,O_Empty, \nS_DOT,.;S_TURNAROUNDSIGN,+/-;S_INVERSE,1/x;H_HISTORY,6,O_Empty, \nA_PLUS,+;A_MINUS,-;A_SLASH,/;A_ROOT,root\nA_POWER,pow;A_MODULO,%;A_TIMES,*;A_LOG,ichundmeinlog\nS_AC,acorigins;S_CLEARHISTORY,ifuknowwhatimean;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save";
-        } else {
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;S_STACK,4,O_Empty, \nA_PLUS,+;A_MINUS,-;A_SLASH,/;A_ROOT,root \nA_POWER,pow;A_MODULO,%;A_TIMES,*;A_LOG,ichundmeinlog\nS_AC,acorigins;S_DEL,Delete;S_INVERSE,1/x;H_HISTORY,1,O_Empty, \nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;H_HISTORY,2,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;H_HISTORY,3,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;H_HISTORY,4,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;H_HISTORY,5,O_Empty, \nS_LOADLAYOUT,Load;S_TURNAROUNDSIGN,+/-;S_SAVELAYOUT,Save;S_CLEARHISTORY,ifuknowwhatimean";
+        } else if(indicator.equals("h_Extended")) {
+            layout = "S_STACK,1,O_Empty, ;S_STACK,2,O_Empty, ;S_STACK,3,O_Empty, ;A_ROOT,root;A_ZEROS,abc;S_SWAP,Swap;S_SPLIT,split;S_TOTUPLE,abc\nO_DOUBLE,1;O_DOUBLE,2;O_DOUBLE,3;A_PLUS,+;A_HIGHLOW,abc;O_FRACTION,(1/2);O_FRACTION,(3/4);H_HISTORY,1,O_Empty, \nO_DOUBLE,4;O_DOUBLE,5;O_DOUBLE,6;A_MINUS,-;A_INTEGRAL,abc;O_MATRIX,[[1, 2], [3, 4]];O_MATRIX,[[1, 0], [0, 1]];H_HISTORY,2,O_Empty, \nO_DOUBLE,7;O_DOUBLE,8;O_DOUBLE,9;A_SLASH,/;A_LIMES,abc;O_POLYNOM, 3x^0 + 2x^1 + 1x^2;O_POLYNOM, -5x^0 + 1x^1 + -2x^2;H_HISTORY,3,O_Empty, \nS_DEL,Delete;O_DOUBLE,0;S_ENTER,Enter;A_TIMES,*;A_MATRIXUTIL,LGS lösen;O_TUPLE,(1, 2);O_TUPLE,(2, 0);H_HISTORY,4,O_Empty, \nS_AC,AC;S_TURNAROUNDSIGN,+/-;S_DOT,.;S_INVERSE,1/x;A_LOG,ichundmeinlog;S_LOADLAYOUT,Load;S_SAVELAYOUT,Save;S_CLEARHISTORY,ifuknowwhatimean";
+        }else{
             layout = readLayout(context, indicator);
         }
 
@@ -57,6 +59,8 @@ public class TileLayoutLoader {
 
         ArrayList<String> layouts = new ArrayList<>();
         layouts.add("Standardlayout");
+        if(orientation == ScreenOrientation.LANDSCAPE)
+            layouts.add("Extended");
         for(File f : files){
             String name = f.getName();
             layouts.add(name.substring(2, name.lastIndexOf(".")));
