@@ -32,6 +32,7 @@ public class Swap extends Setting {
         presenter.resetInputTerm(two);
 
         presenter.updateStack();
+        presenter.finalizeInput();
         return true;
     }
 }

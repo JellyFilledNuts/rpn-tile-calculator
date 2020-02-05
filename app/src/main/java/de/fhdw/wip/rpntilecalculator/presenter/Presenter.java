@@ -10,6 +10,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.FactoryConfigurationError;
+
 import de.fhdw.wip.rpntilecalculator.model.calculation.Action;
 import de.fhdw.wip.rpntilecalculator.model.calculation.CalculationException;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
@@ -44,7 +46,7 @@ public class Presenter implements View.OnClickListener {
 
     private TileLayout layout;
 
-    private final String INPUT_FINALIZED = "final";
+    private boolean INPUT_FINALIZED = false;
 
     /**
      * Handles all tile input and decides on the follow up procedure
@@ -97,6 +99,7 @@ public class Presenter implements View.OnClickListener {
             case 2: //
                 OPERAND_STACK.pop();
                 operand = readCombinedOperand(INPUT_TERM).getOperand();
+                break;
         }
 
         OPERAND_STACK.push(operand);
@@ -127,6 +130,7 @@ public class Presenter implements View.OnClickListener {
         }
         updateStack();
         updateHistoryStack();
+        finalizeInput();
     }
 
     /**
@@ -173,17 +177,13 @@ public class Presenter implements View.OnClickListener {
      * @return if the combination has been done or not
      */
     private int tryAppending(Operand operand) {
-        if(INPUT_TERM.toString().equals(INPUT_FINALIZED)) return 0;
+        if(isInputFinalized()) return 0;
 
-        if(OPERAND_STACK.peek() instanceof OEmpty || OPERAND_STACK.peek() instanceof ODouble) {
-            if (operand instanceof ODouble) {
-                ODouble oNew = (ODouble) operand;
-                int points = 0;
-                if(INPUT_TERM.toString().contains(".") ||
-                        INPUT_TERM.toString().contains(",")) points++;
-                if(oNew.getDouble() % 1 != 0) points++;
-
-                if(points < 2) {
+        if(operand instanceof ODouble) {
+            Operand top = OPERAND_STACK.peek();
+            if(top instanceof OEmpty || top instanceof ODouble) {
+                String[] splits = (INPUT_TERM.toString() + operand.toString()).split(".");
+                if(splits.length < 3) {
                     INPUT_TERM.append(operand);
                     return 2;
                 }
@@ -218,6 +218,7 @@ public class Presenter implements View.OnClickListener {
      * @param operand one operand that should remain in the input term
      */
     public void resetInputTerm(@Nullable Operand operand) {
+        definalizeInput();
         INPUT_TERM = new StringBuilder();
         if(operand != null) INPUT_TERM.append(operand);
     }
@@ -260,7 +261,16 @@ public class Presenter implements View.OnClickListener {
         return OPERAND_STACK;
     }
 
-    public String getInputFinalized() {
+    public boolean isInputFinalized() {
         return INPUT_FINALIZED;
     }
+
+    public void finalizeInput() {
+        INPUT_FINALIZED = true;
+    }
+
+    private void definalizeInput() {
+        INPUT_FINALIZED = false;
+    }
+
 }
