@@ -24,6 +24,8 @@ public class DeleteEntry extends Setting {
         presenter.getOperandStack().pop();
         presenter.resetInputTerm(presenter.getOperandStack().peek());
         presenter.updateStack();
+        Enter enter = new Enter();
+        enter.call();
         return true;
     }
 }

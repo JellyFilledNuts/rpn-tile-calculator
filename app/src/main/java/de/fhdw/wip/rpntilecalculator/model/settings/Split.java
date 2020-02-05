@@ -67,6 +67,7 @@ public class Split extends Setting {
                 presenter.getOperandStack().push(oDouble);
             }
 
+            presenter.resetInputTerm(operandList.get(operandList.size()-1));
             presenter.updateStack();
             presenter.updateHistoryStack();
         }

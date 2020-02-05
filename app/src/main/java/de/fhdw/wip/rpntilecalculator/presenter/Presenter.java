@@ -92,6 +92,7 @@ public class Presenter implements View.OnClickListener {
             case 1: // not finalized, but pushed ahead
                 add2History(operand);
                 updateHistoryStack();
+                resetInputTerm(operand);
                 break;
             case 2: //
                 OPERAND_STACK.pop();
