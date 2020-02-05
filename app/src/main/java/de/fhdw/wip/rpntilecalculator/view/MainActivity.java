@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Could not load Layout", Toast.LENGTH_LONG).show();
 
         }else{
-           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext()));
+           adoptTileLayout(tileLayout, tileLayout.createView(this));
         }
     }
 
