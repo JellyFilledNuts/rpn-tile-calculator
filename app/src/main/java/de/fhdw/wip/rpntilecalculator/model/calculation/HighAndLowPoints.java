@@ -13,7 +13,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/23 (initialy) updates at the 02/02/20
+ * Date:    2020/01/16, updated on 2020/01/17
  */
 
 public class HighAndLowPoints extends Action {
