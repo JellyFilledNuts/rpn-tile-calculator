@@ -4,6 +4,12 @@ import org.junit.Test;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import static org.junit.Assert.assertTrue;
 
+/*
+ * Summary: Unit test for the logarithm with base 10. 
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
 public class Logarithm10Test {
     private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
 
