@@ -18,7 +18,7 @@ public class ArcCosinus extends Action {
     private static final ArcCosinus ARC_COSINUS = new ArcCosinus();
 
     /*
-     * Singleton for COSINUS
+     * Singleton for ARc COSINUS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcCosinus getInstance() { return ARC_COSINUS; }
