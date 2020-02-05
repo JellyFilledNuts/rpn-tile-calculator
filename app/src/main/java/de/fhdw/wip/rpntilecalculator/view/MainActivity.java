@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.view.layout.ScreenOrientation;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
@@ -59,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             adoptTileLayout(v_standardlayout, v_tablelayout);
         else
             adoptTileLayout(h_standardlayout, h_tablelayout);*/
-
         orientationListener = new OrientationEventListener(getApplicationContext()) {
             @Override
             public final void onOrientationChanged(int orientation) {
@@ -95,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         };
         if (orientationListener.canDetectOrientation()) {
             orientationListener.enable();
+        }
+        if(((ConstraintLayout)findViewById(R.id.constraintLayout)).getChildCount() == 0) {
+            lastOrientation = -1;
+            orientationListener.onOrientationChanged(getWindowManager().getDefaultDisplay().getRotation() * 90);
         }
     }
 
