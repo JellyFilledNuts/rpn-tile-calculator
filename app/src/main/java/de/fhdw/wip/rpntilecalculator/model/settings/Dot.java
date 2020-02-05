@@ -18,14 +18,15 @@ public class Dot extends Setting {
 
     @Override
     public boolean call() {
-        if(Presenter.INPUT_TERM.toString().equals(Presenter.INPUT_FINALIZED)) {
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getInputTerm().toString().equals(presenter.getInputFinalized())) {
             ODouble oDouble = new ODouble(0);
-            Presenter.resetInputTerm(oDouble);
-            Presenter.OPERAND_STACK.push(oDouble);
+            presenter.resetInputTerm(oDouble);
+            presenter.getOperandStack().push(oDouble);
         }
-        if(!Presenter.INPUT_TERM.toString().contains(".") &&
-                !Presenter.INPUT_TERM.toString().contains(",")) Presenter.INPUT_TERM.append(".");
-        Presenter.updateStack();
+        if(!presenter.getInputTerm().toString().contains(".") &&
+                !presenter.getInputTerm().toString().contains(",")) presenter.getInputTerm().append(".");
+        presenter.updateStack();
         return true;
     }
 }

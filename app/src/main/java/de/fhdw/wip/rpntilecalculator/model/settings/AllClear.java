@@ -20,9 +20,10 @@ public class AllClear extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.OPERAND_STACK.clear();
-        Presenter.resetInputTerm(null);
-        Presenter.updateStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getOperandStack().clear();
+        presenter.resetInputTerm(null);
+        presenter.updateStack();
         return true;
     }
 

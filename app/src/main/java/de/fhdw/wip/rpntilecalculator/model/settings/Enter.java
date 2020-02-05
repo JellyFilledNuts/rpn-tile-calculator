@@ -21,10 +21,11 @@ public class Enter extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.INPUT_TERM = new StringBuilder().append(Presenter.INPUT_FINALIZED);
-        if(Presenter.OPERAND_STACK.size() != 0) {
-            Presenter.add2History(Presenter.OPERAND_STACK.peek());
-            Presenter.updateHistoryStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.setInputTerm(new StringBuilder().append(presenter.getInputFinalized()));
+        if(presenter.getOperandStack().size() != 0) {
+            presenter.add2History(presenter.getOperandStack().peek());
+            presenter.updateHistoryStack();
         }
         return true;
     }

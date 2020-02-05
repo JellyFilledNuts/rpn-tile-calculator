@@ -21,13 +21,14 @@ public class Inverse extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() == 0) return false;
-        Operand operand = Presenter.OPERAND_STACK.peek();
-        Presenter.OPERAND_STACK.pop();
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() == 0) return false;
+        Operand operand = presenter.getOperandStack().peek();
+        presenter.getOperandStack().pop();
         Operand result = operand.inverseValue();
-        Presenter.OPERAND_STACK.push(result);
-        Presenter.resetInputTerm(result);
-        Presenter.updateStack();
+        presenter.getOperandStack().push(result);
+        presenter.resetInputTerm(result);
+        presenter.updateStack();
         return true;
     }
 }

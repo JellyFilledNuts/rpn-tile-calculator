@@ -20,8 +20,9 @@ public class ClearHistory extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.HISTORY_STACK.clear();
-        Presenter.updateHistoryStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getHistoryStack().clear();
+        presenter.updateHistoryStack();
         return true;
     }
 }

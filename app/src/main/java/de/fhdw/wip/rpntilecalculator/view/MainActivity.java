@@ -28,7 +28,6 @@ import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 public class MainActivity extends AppCompatActivity {
 
     private static MainActivity mainActivity = null;
-    private static Presenter presenter = new Presenter();
     private TileLayout tileLayout;
     private OrientationEventListener orientationListener;
     private int lastOrientation = ORIENTATION_PORTRAIT;
@@ -51,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(!loaded) {
             v_standardlayout = TileLayoutFactory.createLayout(this, "v_Standardlayout");
-            v_tablelayout = v_standardlayout.createView(this, presenter);
+            v_tablelayout = v_standardlayout.createView(this);
             h_standardlayout = TileLayoutFactory.createLayout(this, "h_Standardlayout");
-            h_tablelayout = h_standardlayout.createView(this, presenter);
+            h_tablelayout = h_standardlayout.createView(this);
             loaded = true;
         }
 
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Could not load Layout", Toast.LENGTH_LONG).show();
 
         }else{
-           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext(), presenter));
+           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext()));
         }
     }
 
@@ -118,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         if(tableLayout.getParent() != null)
             ((ConstraintLayout)tableLayout.getParent()).removeView(tableLayout);
         constraintLayout.addView(tableLayout);
+        Presenter presenter = Presenter.getInstance();
         presenter.setCurrentLayout(tileLayout);
     }
 

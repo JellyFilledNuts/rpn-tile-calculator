@@ -31,9 +31,10 @@ public class Split extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() == 0) return false;
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() == 0) return false;
 
-        Operand toSplit = Presenter.OPERAND_STACK.peek();
+        Operand toSplit = presenter.getOperandStack().peek();
         List<ODouble> operandList = new ArrayList<>();
 
         if(toSplit instanceof OMatrix) {
@@ -58,16 +59,16 @@ public class Split extends Setting {
         }
 
         if(operandList.size() != 0) {
-            Presenter.OPERAND_STACK.pop();
+            presenter.getOperandStack().pop();
 
             Collections.reverse((operandList));
             for(ODouble oDouble : operandList) {
-                Presenter.add2History(oDouble);
-                Presenter.OPERAND_STACK.push(oDouble);
+                presenter.add2History(oDouble);
+                presenter.getOperandStack().push(oDouble);
             }
 
-            Presenter.updateStack();
-            Presenter.updateHistoryStack();
+            presenter.updateStack();
+            presenter.updateHistoryStack();
         }
         return true;
     }
