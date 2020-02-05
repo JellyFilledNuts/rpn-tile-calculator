@@ -27,8 +27,8 @@ public class MatrixUtil extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, @NotNull OTuple b) {
-        return solveLinearSystem(A, b.getTuple());
+    @Contract(pure = true) @NotNull OTuple on (@NotNull OMatrix A, @NotNull OTuple b) throws CalculationException {
+        return solveLinearSystem(A, b);
     }
     /**
      * On the condition that A*x = b
@@ -36,9 +36,16 @@ public class MatrixUtil extends Action {
      * @param b Solution vector
      * @return Returns the vector 'x'
      */
-    public OTuple solveLinearSystem(@NotNull OMatrix A, double[] b)
+    public OTuple solveLinearSystem(@NotNull OMatrix A, OTuple b) throws CalculationException
     {
-        return new OTuple(solveLGSForX(A.getMatrix().getData(), b));
+        if(A.getMatrix().isSquare()) {
+            if (b.getTuple().length == A.getMatrix().getRowDimension()) {
+                return new OTuple(solveLGSForX(A.getMatrix().getData(), b.getTuple()));
+            }
+            throw new CalculationException("A should have the same number of rows/columns as b values.");
+        }
+        throw new CalculationException("A isn't a square matrix");
+
     }
 
     /**
