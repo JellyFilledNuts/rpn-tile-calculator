@@ -20,7 +20,7 @@ public class ZerosTest {
     public void zeros_isCorrect1() {
         double[] functionValues = new double[] {2, 4};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple(2, 0);
+        OTuple result = new OTuple(-2);
         System.out.println(ZEROS.on(function));
         assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
                 .equalsValue(result));
@@ -28,9 +28,9 @@ public class ZerosTest {
 
     @Test
     public void zeros_isCorrect2() {
-        double[] functionValues = new double[] {3, 4, 6};
+        double[] functionValues = new double[] {2, 4, 0};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        OTuple result = new OTuple();
+        OTuple result = new OTuple(-2, 0);
         System.out.println(ZEROS.on(function));
         assertTrue(ZEROS.on(new OPolynom(new PolynomialFunction(functionValues)))
                 .equalsValue(result));
