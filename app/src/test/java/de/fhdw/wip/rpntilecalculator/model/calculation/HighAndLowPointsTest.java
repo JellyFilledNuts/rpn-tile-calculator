@@ -30,7 +30,7 @@ public class HighAndLowPointsTest {
     public void highAndLowPoints_isCorrect2() {
         double[] functionValues = new double[]{3, 6,-4};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{-1, -1};
+        double[] resultValues = new double[]{-1, -7};
         OTuple extremPoints = new OTuple(resultValues);
         assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
     }
@@ -40,15 +40,6 @@ public class HighAndLowPointsTest {
         double[] functionValues = new double[]{-2, 4, 12};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
         double[] resultValues = new double[]{1, 14};
-        OTuple extremPoints = new OTuple(resultValues);
-        assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
-    }
-
-    @Test
-    public void highAndLowPoints_isCorrect4() {
-        double[] functionValues = new double[]{1, 2, 6, 5};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[]{};
         OTuple extremPoints = new OTuple(resultValues);
         assertEquals(HIGHANDLOWPOINTS.on(function), extremPoints);
     }
