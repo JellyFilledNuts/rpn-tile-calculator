@@ -10,8 +10,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Root click.
- * Author:  Getuart Istogu
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 
 public class Root extends Action{
