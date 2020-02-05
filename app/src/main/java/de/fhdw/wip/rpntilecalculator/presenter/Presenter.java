@@ -1,7 +1,9 @@
 package de.fhdw.wip.rpntilecalculator.presenter;
 
 
+import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +45,7 @@ public class Presenter implements View.OnClickListener {
     private StringBuilder INPUT_TERM = new StringBuilder();
 
     private TileLayout layout;
+    private Context context;
 
     private final String INPUT_FINALIZED = "final";
 
@@ -54,6 +57,7 @@ public class Presenter implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Tile tile = (Tile) v;
+        this.context = v.getContext();
         tile.showAnimation(Tile.buttonClick);
         if(tile.isOperand()) clickOperand(tile);
         else if(tile.isAction()) clickAction(tile);
@@ -139,6 +143,7 @@ public class Presenter implements View.OnClickListener {
     private boolean calculate(@NotNull Action action, @NotNull List<List<Operand>> possibleOperands) throws CalculationException {
         if(possibleOperands.size() == 0) {
             // No calculation has been successful
+            Toast.makeText(context, "Calculation not possible", Toast.LENGTH_LONG).show();
             throw new CalculationException("No calculation could be applied... :(");
         }
         int nextOperandsToTry = possibleOperands.size() - 1;

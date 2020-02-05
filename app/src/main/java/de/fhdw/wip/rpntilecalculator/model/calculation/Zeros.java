@@ -3,8 +3,11 @@ package de.fhdw.wip.rpntilecalculator.model.calculation;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
+import de.fhdw.wip.rpntilecalculator.model.operands.OSet;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
@@ -26,9 +29,11 @@ public class Zeros extends Action {
         return super.with(operands);
     }
 
-    @Contract(pure = true) @NotNull OTuple on(@NotNull OPolynom oPolynom) {
+    @Contract(pure = true) @NotNull OSet on(@NotNull OPolynom oPolynom) throws CalculationException {
         double[] results = calculateZeros(oPolynom);
-        return new OTuple(results);
+        for(double result : results) if(Double.isNaN(result))
+            throw new CalculationException("Could not calculate Zero with " + result);
+        return new OSet(results);
     }
 
     // Function that calculates the zeros when called
@@ -64,7 +69,7 @@ public class Zeros extends Action {
     private double[] zerosTypeOne(double [] functionAsDouble)
     {
         double [] zeros = new double[1];
-        zeros[0] = (functionAsDouble[1] * (-1)) / functionAsDouble[0];
+        zeros[0] = (functionAsDouble[0] * (-1)) / functionAsDouble[1];
         return zeros;
     }
 
@@ -74,9 +79,9 @@ public class Zeros extends Action {
     private double[] zerosTypeTwo(double [] functionAsDouble)
     {
         double [] zeros = new double[2];
-        double part1 = Math.sqrt((Math.pow(functionAsDouble[1], 2) - (4 * functionAsDouble[0] * functionAsDouble[2])));
-        zeros[0] = (-functionAsDouble[1] - part1) / (2 * functionAsDouble[0]);
-        zeros[1] = (-functionAsDouble[1] + part1) / (2 * functionAsDouble[0]);
+        double part1 = Math.sqrt((Math.pow(functionAsDouble[1], 2) - (4 * functionAsDouble[2] * functionAsDouble[0])));
+        zeros[0] = (-functionAsDouble[1] - part1) / (2 * functionAsDouble[2]);
+        zeros[1] = (-functionAsDouble[1] + part1) / (2 * functionAsDouble[2]);
         return zeros;
     }
 }

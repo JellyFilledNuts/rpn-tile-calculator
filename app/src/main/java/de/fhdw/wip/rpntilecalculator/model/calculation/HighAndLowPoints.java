@@ -63,16 +63,13 @@ public class HighAndLowPoints extends Action {
         double [] functionAsDouble = getFunctionAsDouble(oPolynom);
 
         // Calculates the y values of the zeros.
-        double [] valuesXY = new double[] {};
+        double [] valuesXY = new double[2*zeros.length];
         int position = -1;
         for(int counter = 0; counter < zeros.length; counter++)
         {
             double currentZero = zeros[counter];
             double yValue = 0;
-            for(int counter2 = 0; counter < functionAsDouble.length; counter2++)
-            {
-                yValue += functionAsDouble[counter] * Math.pow(currentZero,(functionAsDouble.length - counter2 - 1));
-            }
+            yValue = functionAsDouble[0] + functionAsDouble[1] * currentZero + Math.pow(currentZero, 2) * functionAsDouble[2];
             position++;
             valuesXY[position] = currentZero;
             position++;
