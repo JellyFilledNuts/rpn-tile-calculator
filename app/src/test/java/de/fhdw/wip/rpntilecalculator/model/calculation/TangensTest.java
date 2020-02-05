@@ -1,10 +1,14 @@
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
 import org.junit.Test;
-
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
-
 import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the tangens
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
 
 public class TangensTest {
     private Tangens TANGENS = Tangens.getInstance();
