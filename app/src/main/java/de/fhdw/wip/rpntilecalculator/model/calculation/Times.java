@@ -17,8 +17,7 @@ import java.util.Set;
 
 /*
  * Summary: Defines the Times click. Lets the user Multiplies operands.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 @SuppressWarnings({"unused"})
 public class Times extends Action {
