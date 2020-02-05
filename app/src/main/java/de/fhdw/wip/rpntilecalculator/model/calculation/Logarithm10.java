@@ -6,7 +6,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /*
- * Summary: A Class that can calculate the natural logarithm.
+ * Summary: A Class that can calculate the logarith to the base of 10. 
  * Author:  Jannis Luca Keienburg
  * Date:    2020/01/19
  */
