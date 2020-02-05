@@ -6,6 +6,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 
 import static org.junit.Assert.assertTrue;
 
+/*
+ * Summary: Unit test for the arc tangens function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
 public class ArcTangensTest {
     private ArcTangens ARC_TANGENS = ArcTangens.getInstance();
 
