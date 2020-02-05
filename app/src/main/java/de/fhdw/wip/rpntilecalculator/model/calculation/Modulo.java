@@ -8,8 +8,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Modulo click.
- * Author:  Getuart Istogu
- * Date:    2020/01/05
+ * Author:  Hendrik Falk
  */
 public class Modulo extends Action {
     @NotNull private static final Modulo MODULO = new Modulo();
