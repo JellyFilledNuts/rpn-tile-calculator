@@ -46,15 +46,6 @@ public class DerivationTest {
     }
 
     @Test
-    public void derivation_isCorrect4() {
-        double[] functionValues = new double[] {-3, 4, 12};
-        OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
-        double[] resultValues = new double[] {-6, 4};
-        OPolynom derivation = new OPolynom(new PolynomialFunction(resultValues));
-        assertEquals(DERIVATION.on(function), derivation);
-    }
-
-    @Test
     public void derivation_isCorrect5() {
         double[] functionValues = new double[] {1.5, 2, 7};
         OPolynom function = new OPolynom(new PolynomialFunction(functionValues));
