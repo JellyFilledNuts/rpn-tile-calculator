@@ -14,8 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Defines the Sinus action.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 public class Slash extends Action {
 
