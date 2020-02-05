@@ -6,6 +6,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 
 import static org.junit.Assert.assertTrue;
 
+/*
+ * Summary: Unit test for the arc cosinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
 public class ArcCosinusTest {
     private ArcCosinus ARC_COSINUS = ArcCosinus.getInstance();
 
