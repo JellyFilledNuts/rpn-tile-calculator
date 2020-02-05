@@ -20,9 +20,10 @@ public class DeleteEntry extends Setting {
      */
     @Override
     public boolean call() {
-        Presenter.OPERAND_STACK.pop();
-        Presenter.resetInputTerm(Presenter.OPERAND_STACK.peek());
-        Presenter.updateStack();
+        Presenter presenter = Presenter.getInstance();
+        presenter.getOperandStack().pop();
+        presenter.resetInputTerm(presenter.getOperandStack().peek());
+        presenter.updateStack();
         return true;
     }
 }

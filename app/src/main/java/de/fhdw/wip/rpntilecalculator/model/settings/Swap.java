@@ -21,16 +21,17 @@ public class Swap extends Setting {
      */
     @Override
     public boolean call() {
-        if(Presenter.OPERAND_STACK.size() < 2) return false;
+        Presenter presenter = Presenter.getInstance();
+        if(presenter.getOperandStack().size() < 2) return false;
 
-        Operand one = Presenter.OPERAND_STACK.pop();
-        Operand two = Presenter.OPERAND_STACK.pop();
+        Operand one = presenter.getOperandStack().pop();
+        Operand two = presenter.getOperandStack().pop();
 
-        Presenter.OPERAND_STACK.push(one);
-        Presenter.OPERAND_STACK.push(two);
-        Presenter.resetInputTerm(two);
+        presenter.getOperandStack().push(one);
+        presenter.getOperandStack().push(two);
+        presenter.resetInputTerm(two);
 
-        Presenter.updateStack();
+        presenter.updateStack();
         return true;
     }
 }

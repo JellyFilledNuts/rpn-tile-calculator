@@ -29,11 +29,7 @@ import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 public class MainActivity extends AppCompatActivity {
 
     private static MainActivity mainActivity = null;
-
-    private static Presenter presenter = new Presenter();
-
     private TileLayout tileLayout;
-
     private OrientationEventListener orientationListener;
     private int lastOrientation = ORIENTATION_PORTRAIT;
     private static TileLayout v_standardlayout;
@@ -53,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(!loaded) {
             v_standardlayout = TileLayoutFactory.createLayout(this, "v_Standardlayout");
-            v_tablelayout = v_standardlayout.createView(this, presenter);
+            v_tablelayout = v_standardlayout.createView(this);
             h_standardlayout = TileLayoutFactory.createLayout(this, "h_Standardlayout");
-            h_tablelayout = h_standardlayout.createView(this, presenter);
+            h_tablelayout = h_standardlayout.createView(this);
             loaded = true;
         }
         lastOrientation = -1;
@@ -111,14 +107,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Could not load Layout", Toast.LENGTH_LONG).show();
 
         }else{
-           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext(), presenter));
+           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext()));
         }
     }
 
     public void adoptTileLayout(TileLayout tileLayout, TableLayout tableLayout) {
         this.tileLayout = tileLayout;
-        tileLayout.updateStack(Presenter.OPERAND_STACK);
-        tileLayout.updateHistoryStack(Presenter.HISTORY_STACK);
+        Presenter presenter = Presenter.getInstance();
+        tileLayout.updateStack(presenter.getOperandStack());
+        tileLayout.updateHistoryStack(presenter.getHistoryStack());
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         constraintLayout.removeAllViews();
         constraintLayout.removeAllViewsInLayout();

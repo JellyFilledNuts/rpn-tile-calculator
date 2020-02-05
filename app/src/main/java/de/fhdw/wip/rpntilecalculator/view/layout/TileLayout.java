@@ -51,6 +51,7 @@ public class TileLayout {
      */
     public void updateStack(OperandStack operandStack) {
         @NotNull List<Operand> stackOperands = operandStack.peek(stack.size());
+        Presenter presenter = Presenter.getInstance();
 
         for(int i = 0; i < stack.size(); i++) {
             Tile stackTile = stack.valueAt(i);
@@ -61,8 +62,8 @@ public class TileLayout {
             //Sonderfall erster Stack Tile
             if(i == 0 && operand != null) {
                 if(operand instanceof ODouble)
-                    if(!Presenter.INPUT_TERM.toString().equals(Presenter.INPUT_FINALIZED))
-                        stackTile.setText(Presenter.INPUT_TERM.toString());
+                    if(!presenter.getInputTerm().toString().equals(presenter.getInputFinalized()))
+                        stackTile.setText(presenter.getInputTerm().toString());
             }
         }
     }
@@ -112,10 +113,11 @@ public class TileLayout {
      * Creates the 2d ArrayList of Tiles, the stack list & the history stack list based on
      * the before created TileScheme Layout
      * @param context the context of the application
-     * @param presenter an instance of the presenter to act as listener
      * @return a View object TableLayout that can be added to the screen
      */
-    public TableLayout createView(@NotNull Context context, @NotNull Presenter presenter) {
+    public TableLayout createView(@NotNull Context context) {
+        Presenter presenter = Presenter.getInstance();
+
         //Create table by first creating one column as TableLayout
         TableLayout tableView = new TableLayout(context);
         tableView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -159,9 +161,11 @@ public class TileLayout {
      * Sets the Stack of the Presenter
      */
     private void pushStack2Presenter() {
-        Presenter.OPERAND_STACK.clear();
+        Presenter presenter = Presenter.getInstance();
+
+        presenter.getOperandStack().clear();
         for(int i = stack.size()-1; i >= 0; i--) {
-            Presenter.OPERAND_STACK.push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
+            presenter.getOperandStack().push(((StackTileScheme)stack.valueAt(i).getScheme()).getOperand());
         }
     }
 
@@ -169,11 +173,13 @@ public class TileLayout {
      * Sets the History Stack of the Presenter
      */
     private void pushHistoryStack2Presenter() {
-        Presenter.HISTORY_STACK.clear();
+        Presenter presenter = Presenter.getInstance();
+
+        presenter.getHistoryStack().clear();
         for(int i = 0; i < historyStack.size(); i++) {
             Operand operand = ((HistoryTileScheme) historyStack.valueAt(i).getScheme()).getOperand();
             if(!operand.equalsValue(new OEmpty()))
-                Presenter.HISTORY_STACK.add(operand);
+                presenter.getHistoryStack().add(operand);
         }
     }
 

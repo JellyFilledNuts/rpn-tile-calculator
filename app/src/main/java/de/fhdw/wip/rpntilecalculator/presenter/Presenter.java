@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.presenter;
 
 import android.view.View;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,16 +33,21 @@ import de.fhdw.wip.rpntilecalculator.view.schemes.TileScheme;
  */
 public class Presenter implements View.OnClickListener {
 
-    public static final OperandStack OPERAND_STACK = new OperandStack();
-    public static ArrayList<Operand> HISTORY_STACK = new ArrayList<>();
-    public static StringBuilder INPUT_TERM = new StringBuilder();
+    @Contract(pure = true) @NotNull
+    public static Presenter getInstance() { return presenter; }
 
-    private static TileLayout layout;
+    private static Presenter presenter;
 
-    public static final String INPUT_FINALIZED = "final";
+    private final OperandStack OPERAND_STACK = new OperandStack();
+    private ArrayList<Operand> HISTORY_STACK = new ArrayList<>();
+    private StringBuilder INPUT_TERM = new StringBuilder();
+
+    private TileLayout layout;
+
+    private final String INPUT_FINALIZED = "final";
 
     public Presenter() {
-        HISTORY_STACK = new ArrayList<>();
+        presenter = this;
     }
 
     /**
@@ -193,7 +199,7 @@ public class Presenter implements View.OnClickListener {
      * Try adding an operand to the history stack
      * @param operand the operand ot be added
      */
-    public static void add2History(Operand operand) {
+    public void add2History(Operand operand) {
         boolean add = true;
         for(Operand op : HISTORY_STACK) {
             if(op.equalsValue(operand)) add = false;
@@ -214,7 +220,7 @@ public class Presenter implements View.OnClickListener {
      * Clears the current input term
      * @param operand one operand that should remain in the input term
      */
-    public static void resetInputTerm(@Nullable Operand operand) {
+    public void resetInputTerm(@Nullable Operand operand) {
         INPUT_TERM = new StringBuilder();
         if(operand != null) INPUT_TERM.append(operand);
     }
@@ -224,20 +230,40 @@ public class Presenter implements View.OnClickListener {
      * @param layout current layout
      */
     public void setCurrentLayout(TileLayout layout) {
-        Presenter.layout = layout;
+        this.layout = layout;
     }
 
     /**
      * Lets the layout update its stack
      */
-    public static void updateStack() {
+    public void updateStack() {
         layout.updateStack(OPERAND_STACK);
     }
 
     /**
      * Lets the layout update its history stack
      */
-    public static void updateHistoryStack() {
+    public void updateHistoryStack() {
         layout.updateHistoryStack(HISTORY_STACK);
+    }
+
+    public ArrayList<Operand> getHistoryStack() {
+        return HISTORY_STACK;
+    }
+
+    public StringBuilder getInputTerm () {
+        return INPUT_TERM;
+    }
+
+    public void setInputTerm(StringBuilder inputTerm) {
+        this.INPUT_TERM = inputTerm;
+    }
+
+    public OperandStack getOperandStack() {
+        return OPERAND_STACK;
+    }
+
+    public String getInputFinalized() {
+        return INPUT_FINALIZED;
     }
 }
