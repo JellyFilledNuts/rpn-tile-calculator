@@ -14,8 +14,7 @@ import org.jetbrains.annotations.Contract;
 
 /*
  * Summary: Defines the Power click.
- * Author:  Getuart Istogu
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 
 public class Power extends Action{
