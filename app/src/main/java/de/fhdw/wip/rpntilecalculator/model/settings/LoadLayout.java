@@ -40,7 +40,7 @@ public class LoadLayout extends Setting {
                 @Override
                 public void onClick(View view) {
                     dialog.cancel();
-                    activity.setTileLayout(TileLayoutFactory.createLayout(activity.getBaseContext(), s));
+                    activity.setTileLayout(TileLayoutFactory.createLayout(activity, activity.getTileLayout().getOrientation().getIndicator() + "_" + s));
                 }
             });
             l.addView(b);

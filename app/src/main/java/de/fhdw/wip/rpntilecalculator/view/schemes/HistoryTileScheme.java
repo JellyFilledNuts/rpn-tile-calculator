@@ -29,7 +29,7 @@ public class HistoryTileScheme extends StackTileScheme {
     public String toString() {
         return "H_HISTORY"
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
-                + TileLayoutFactory.VALUE_SEPERATOR + this.getTileType()
+                + TileLayoutFactory.VALUE_SEPERATOR + (this.getContent() == " " ? "O_Empty" : this.getTileType())
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
     }
 

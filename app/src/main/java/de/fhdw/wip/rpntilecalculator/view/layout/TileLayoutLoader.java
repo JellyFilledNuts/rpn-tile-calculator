@@ -47,8 +47,6 @@ public class TileLayoutLoader {
     }
 
     public static ArrayList<String> getSavedLayouts(@NotNull Context context, final ScreenOrientation orientation){
-        System.out.println(orientation);
-        System.out.println(context.getFilesDir().listFiles());
         File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String s) {

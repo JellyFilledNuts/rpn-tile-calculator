@@ -17,6 +17,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 import de.fhdw.wip.rpntilecalculator.view.layout.ScreenOrientation;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
+import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             adoptTileLayout(v_standardlayout, v_tablelayout);
         else
             adoptTileLayout(h_standardlayout, h_tablelayout);*/
-
         orientationListener = new OrientationEventListener(getApplicationContext()) {
             @Override
             public final void onOrientationChanged(int orientation) {
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     curOrientation = ORIENTATION_PORTRAIT;
                 }
+
                 System.out.println(lastOrientation + " - " + curOrientation);
                 if (curOrientation != lastOrientation) {
                     if(curOrientation == ORIENTATION_PORTRAIT) {
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         if (orientationListener.canDetectOrientation()) {
             orientationListener.enable();
         }
+        if(((ConstraintLayout)findViewById(R.id.constraintLayout)).getChildCount() == 0) {
+            lastOrientation = -1;
+            orientationListener.onOrientationChanged(getWindowManager().getDefaultDisplay().getRotation() * 90);
+        }
     }
 
     public static MainActivity getInstance(){
@@ -111,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Could not load Layout", Toast.LENGTH_LONG).show();
 
         }else{
-           adoptTileLayout(tileLayout, tileLayout.createView(getBaseContext(), presenter));
+           adoptTileLayout(tileLayout, tileLayout.createView(this, presenter));
         }
     }
 

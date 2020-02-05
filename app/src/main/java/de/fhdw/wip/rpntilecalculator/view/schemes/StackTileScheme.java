@@ -45,7 +45,7 @@ public class StackTileScheme extends OperandTileScheme {
     public String toString() {
         return "S_STACK"
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getRank()
-                + TileLayoutFactory.VALUE_SEPERATOR + this.getTileType()
+                + TileLayoutFactory.VALUE_SEPERATOR + (this.getContent() == " " ? "O_Empty" : this.getTileType())
                 + TileLayoutFactory.VALUE_SEPERATOR + this.getContent();
     }
 }
