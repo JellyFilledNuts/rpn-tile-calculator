@@ -74,12 +74,9 @@ public class Zeros extends Action {
     private double[] zerosTypeTwo(double [] functionAsDouble)
     {
         double [] zeros = new double[2];
-        zeros[0] = -functionAsDouble[1]
-                - Math.sqrt(((functionAsDouble[1] * functionAsDouble[1]) - (4 * functionAsDouble[0] * functionAsDouble[2])) )
-                / (2 * functionAsDouble[0]);
-        zeros[1] = -functionAsDouble[1]
-                + Math.sqrt(((functionAsDouble[1] * functionAsDouble[1]) - (4 * functionAsDouble[0] * functionAsDouble[2])) )
-                / (2 * functionAsDouble[0]);
+        double part1 = Math.sqrt((Math.pow(functionAsDouble[1], 2) - (4 * functionAsDouble[0] * functionAsDouble[2])));
+        zeros[0] = (-functionAsDouble[1] - part1) / (2 * functionAsDouble[0]);
+        zeros[1] = (-functionAsDouble[1] + part1) / (2 * functionAsDouble[0]);
         return zeros;
     }
 }
