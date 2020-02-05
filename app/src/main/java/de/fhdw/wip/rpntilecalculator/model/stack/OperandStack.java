@@ -12,8 +12,8 @@ import java.util.List;
 
 /*
  * Summary: The Stack for the operands that is used for calculating
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/03 & 2020/01/04
  */
 public final class OperandStack implements StackInterface<Operand> {
 
