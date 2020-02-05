@@ -9,7 +9,7 @@ import java.util.Set;
 /*
  * Summary: Utility to compare Doubles.
  * Author:  Tim Schwenke
- * Date:    2020/01/08
+ * Date:    2019/11/12
  */
 public class DoubleComparator {
 

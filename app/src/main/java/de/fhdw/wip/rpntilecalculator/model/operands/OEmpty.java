@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /*
- * Summary: Wrapper for the Double Operand
+ * Summary: An Empty Operand
  * Author:  Tim Jonas Meinerzhagen
- * Date:    2020/01/04
+ * Date:    2019/09/21
  */
 public class OEmpty extends Operand {
 

@@ -7,8 +7,8 @@ import org.jetbrains.annotations.Nullable;
 
 /*
  * Summary: Wrapper for the Double Operand
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/12
  */
 public class ODouble extends Operand {
 

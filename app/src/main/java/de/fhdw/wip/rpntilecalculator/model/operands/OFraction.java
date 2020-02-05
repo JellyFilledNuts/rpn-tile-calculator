@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Wrapper for the Fraction Operand
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OFraction extends Operand {
 

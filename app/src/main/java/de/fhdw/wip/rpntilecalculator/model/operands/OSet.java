@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 
 /*
  * Summary: Every entry can only exist one time
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OSet extends Operand {
 

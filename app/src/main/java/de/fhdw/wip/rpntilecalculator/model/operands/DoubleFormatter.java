@@ -9,7 +9,7 @@ import java.util.Locale;
 /*
  * Summary: Util for formatting all Double Values
  * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Date:    2019/11/12
  */
 public final class DoubleFormatter {
 

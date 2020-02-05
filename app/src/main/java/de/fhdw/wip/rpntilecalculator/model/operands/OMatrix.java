@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 
 /*
  * Summary: Wrapper for the Matrix Operand
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OMatrix extends Operand {
 

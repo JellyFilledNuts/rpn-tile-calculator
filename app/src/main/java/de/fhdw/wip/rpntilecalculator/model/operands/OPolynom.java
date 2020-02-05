@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 /*
  * Summary: Wrapper for the Polynom Operand
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Tim Jonas Meinerzhagen
+ * Date:    2019/11/13
  */
 public class OPolynom extends Operand {
 

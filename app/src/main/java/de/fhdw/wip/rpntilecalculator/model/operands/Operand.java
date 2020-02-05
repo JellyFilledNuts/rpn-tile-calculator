@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 /*
  * Summary: Main class for all operands that can be used for calculating
  * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Date:    2019/11/12
  */
-public abstract class Operand extends Element {
+public abstract class Operand {
 
     /**
      * Multiplies all values of the {@link Operand} with {@code -1}.
