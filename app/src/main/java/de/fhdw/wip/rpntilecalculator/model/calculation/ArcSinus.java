@@ -18,7 +18,7 @@ public class ArcSinus extends Action {
     private static final ArcSinus ARC_SINUS = new ArcSinus();
 
     /*
-     * Singleton for SINUS
+     * Singleton for ARC SINUS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcSinus getInstance() { return ARC_SINUS; }
