@@ -17,7 +17,7 @@ public class Tangens extends Action {
     private static final Tangens TANGENS = new Tangens();
 
     /*
-     * Singleton for SINUS
+     * Singleton for TANGENS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static Tangens getInstance() { return TANGENS; }
