@@ -14,7 +14,7 @@ public class Logarithm10Test {
     private Logarithm10 LOGARITHM10 = Logarithm10.getInstance();
 
     @Test
-    public void naturalLogarithm_isCorrect1() {
+    public void logarithm10_isCorrect1() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(10)));
         assertTrue(LOGARITHM10.on(
@@ -23,7 +23,7 @@ public class Logarithm10Test {
     }
 
     @Test
-    public void naturalLogarithm_isCorrect2() {
+    public void logarithm10_isCorrect2() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(5)));
         assertTrue(LOGARITHM10.on(
@@ -32,7 +32,7 @@ public class Logarithm10Test {
     }
 
     @Test
-    public void naturalLogarithm_isCorrect3() {
+    public void logarithm10_isCorrect3() {
         System.out.println(LOGARITHM10.on(
                 new ODouble(97)));
         assertTrue(LOGARITHM10.on(
