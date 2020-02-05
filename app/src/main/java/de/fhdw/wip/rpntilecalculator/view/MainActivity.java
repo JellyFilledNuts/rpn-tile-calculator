@@ -3,6 +3,7 @@ package de.fhdw.wip.rpntilecalculator.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,8 +29,11 @@ import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 public class MainActivity extends AppCompatActivity {
 
     private static MainActivity mainActivity = null;
+
     private static Presenter presenter = new Presenter();
+
     private TileLayout tileLayout;
+
     private OrientationEventListener orientationListener;
     private int lastOrientation = ORIENTATION_PORTRAIT;
     private static TileLayout v_standardlayout;
@@ -44,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainActivity = this;
 
-        System.out.println("Create");
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.activity_main);
 
@@ -56,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
             h_tablelayout = h_standardlayout.createView(this, presenter);
             loaded = true;
         }
-
-        adoptTileLayout(v_standardlayout, v_tablelayout);
+        lastOrientation = -1;
+        /*if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+            adoptTileLayout(v_standardlayout, v_tablelayout);
+        else
+            adoptTileLayout(h_standardlayout, h_tablelayout);*/
 
         orientationListener = new OrientationEventListener(getApplicationContext()) {
             @Override
@@ -87,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                     }else {
                         adoptTileLayout(h_standardlayout, h_tablelayout);
                         setRequestedOrientation(ORIENTATION_LANDSCAPE);
-                    }lastOrientation = curOrientation;
+                    }
+                    lastOrientation = curOrientation;
                 }
             }
         };
@@ -111,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void adoptTileLayout(TileLayout tileLayout, TableLayout tableLayout) {
         this.tileLayout = tileLayout;
+        tileLayout.updateStack(Presenter.OPERAND_STACK);
+        tileLayout.updateHistoryStack(Presenter.HISTORY_STACK);
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         constraintLayout.removeAllViews();
         constraintLayout.removeAllViewsInLayout();
