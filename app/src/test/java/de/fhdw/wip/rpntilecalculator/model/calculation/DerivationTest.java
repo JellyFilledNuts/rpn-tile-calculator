@@ -9,6 +9,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/*
+ * Summary: Unit test for the derivation
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
 public class DerivationTest {
     private Derivation DERIVATION = Derivation.getInstance();
 
