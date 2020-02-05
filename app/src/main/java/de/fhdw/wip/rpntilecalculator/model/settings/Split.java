@@ -70,6 +70,7 @@ public class Split extends Setting {
             presenter.resetInputTerm(operandList.get(operandList.size()-1));
             presenter.updateStack();
             presenter.updateHistoryStack();
+            presenter.finalizeInput();
         }
         return true;
     }

@@ -29,6 +29,7 @@ public class Inverse extends Setting {
         presenter.getOperandStack().push(result);
         presenter.resetInputTerm(result);
         presenter.updateStack();
+        presenter.finalizeInput();
         return true;
     }
 }

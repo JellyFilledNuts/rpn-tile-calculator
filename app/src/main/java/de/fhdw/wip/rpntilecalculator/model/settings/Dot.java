@@ -20,7 +20,7 @@ public class Dot extends Setting {
     @Override
     public boolean call() {
         Presenter presenter = Presenter.getInstance();
-        if(presenter.getInputTerm().toString().equals(presenter.getInputFinalized()) ||
+        if(presenter.isInputFinalized() ||
                 presenter.getOperandStack().peek() instanceof OEmpty) {
             ODouble oDouble = new ODouble(0);
             presenter.resetInputTerm(oDouble);

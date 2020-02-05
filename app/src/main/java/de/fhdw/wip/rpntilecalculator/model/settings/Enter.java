@@ -22,7 +22,7 @@ public class Enter extends Setting {
     @Override
     public boolean call() {
         Presenter presenter = Presenter.getInstance();
-        presenter.setInputTerm(new StringBuilder().append(presenter.getInputFinalized()));
+        presenter.finalizeInput();
         if(presenter.getOperandStack().size() != 0) {
             presenter.add2History(presenter.getOperandStack().peek());
             presenter.updateHistoryStack();
