@@ -8,6 +8,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
 
 import static org.junit.Assert.assertEquals;
 
+/*
+ * Summary: Unit test for the calculation of high and low points
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
+
 public class HighAndLowPointsTest {
     private HighAndLowPoints HIGHANDLOWPOINTS = HighAndLowPoints.getInstance();
 
