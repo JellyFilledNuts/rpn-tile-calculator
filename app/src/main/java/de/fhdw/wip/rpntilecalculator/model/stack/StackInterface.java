@@ -7,8 +7,8 @@ import java.util.List;
 
 /**
  * Summary: Stack interface for stacks in this project
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/03 & 2020/01/04
  */
 public interface StackInterface<T> {
 
