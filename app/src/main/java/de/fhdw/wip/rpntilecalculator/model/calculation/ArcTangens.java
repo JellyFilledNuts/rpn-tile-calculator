@@ -18,7 +18,7 @@ public class ArcTangens  extends Action {
     private static final ArcTangens ARC_TANGENS = new ArcTangens();
 
     /*
-     * Singleton for SINUS
+     * Singleton for ARC TANGENS
      * @return singleton object
      */
     @Contract(pure = true) @NotNull public static ArcTangens getInstance() { return ARC_TANGENS; }
