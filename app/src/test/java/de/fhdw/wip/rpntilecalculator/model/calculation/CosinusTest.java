@@ -35,7 +35,7 @@ public class CosinusTest {
         System.out.println(COSINUS.on(
                 new ODouble(-45)));
         assertTrue(COSINUS.on(
-                new ODouble(-45)).equalsValue(new ODouble(-0.7071067811865476))
+                new ODouble(-45)).equalsValue(new ODouble(2.4741354375614093))
         );
     }
 }
