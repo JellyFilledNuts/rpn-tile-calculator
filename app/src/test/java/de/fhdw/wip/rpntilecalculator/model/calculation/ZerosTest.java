@@ -5,8 +5,13 @@ import org.junit.Test;
 import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 import de.fhdw.wip.rpntilecalculator.model.operands.OPolynom;
 import de.fhdw.wip.rpntilecalculator.model.operands.OTuple;
-
 import static org.junit.Assert.assertTrue;
+
+/*
+ * Summary: Unit test for the calculation of the zeros
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/23
+ */
 
 public class ZerosTest {
     private Zeros ZEROS = Zeros.getInstance();
