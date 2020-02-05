@@ -13,8 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 /*
  * Summary: Defines the Minus click. Lets the user subtract operands.
- * Author:  Tim Schwenke
- * Date:    2020/01/04
+ * Author:  Hendrik Falk
  */
 public class Minus extends Action {
 
