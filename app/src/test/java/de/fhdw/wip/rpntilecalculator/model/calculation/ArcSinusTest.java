@@ -6,6 +6,12 @@ import de.fhdw.wip.rpntilecalculator.model.operands.ODouble;
 
 import static org.junit.Assert.assertTrue;
 
+/*
+ * Summary: Unit test for the arc sinus function
+ * Author:  Jannis Luca Keienburg
+ * Date:    2020/01/22
+ */
+
 public class ArcSinusTest {
     private ArcSinus ARC_SINUS = ArcSinus.getInstance();
 
