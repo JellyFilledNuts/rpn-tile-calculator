@@ -32,7 +32,7 @@ public class ArcTangens  extends Action {
         return super.with(operands);
     }
 
-    // Calculates the tangens with a given angle.
+    // Calculates the arc tangens with a given angle.
     @Contract(pure = true) @NotNull ODouble on(@NotNull ODouble angle) {
         return new ODouble(Math.atan(Math.toRadians((angle.getDouble()))));
     }
