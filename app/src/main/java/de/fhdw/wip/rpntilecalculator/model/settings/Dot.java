@@ -23,7 +23,8 @@ public class Dot extends Setting {
             Presenter.resetInputTerm(oDouble);
             Presenter.OPERAND_STACK.push(oDouble);
         }
-        if(!Presenter.INPUT_TERM.toString().contains(".")) Presenter.INPUT_TERM.append(".");
+        if(!Presenter.INPUT_TERM.toString().contains(".") &&
+                !Presenter.INPUT_TERM.toString().contains(",")) Presenter.INPUT_TERM.append(".");
         Presenter.updateStack();
         return true;
     }

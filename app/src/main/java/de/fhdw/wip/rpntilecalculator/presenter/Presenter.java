@@ -176,7 +176,8 @@ public class Presenter implements View.OnClickListener {
             if (operand instanceof ODouble) {
                 ODouble oNew = (ODouble) operand;
                 int points = 0;
-                if(INPUT_TERM.toString().contains(".")) points++;
+                if(INPUT_TERM.toString().contains(".") ||
+                        INPUT_TERM.toString().contains(",")) points++;
                 if(oNew.getDouble() % 1 != 0) points++;
 
                 if(points < 2) {

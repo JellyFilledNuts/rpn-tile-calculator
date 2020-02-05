@@ -3,6 +3,8 @@ package de.fhdw.wip.rpntilecalculator.model.operands;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /*
  * Summary: Util for formatting all Double Values
@@ -12,7 +14,7 @@ import java.text.DecimalFormat;
 public final class DoubleFormatter {
 
     // Decimal Format
-    private static final DecimalFormat DF = new DecimalFormat("#.##");
+    private static final DecimalFormat DF = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
 
     /*
      * Format the given double in the format to a string
