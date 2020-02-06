@@ -52,7 +52,6 @@ public class TileLayoutLoader {
         File[] files = context.getFilesDir().listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File file, String s) {
-                System.out.println(s);
                 return s.endsWith(".csv") && (s.charAt(0) == orientation.getIndicator());
             }
         });

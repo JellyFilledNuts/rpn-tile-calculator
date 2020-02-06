@@ -20,6 +20,8 @@ import de.fhdw.wip.rpntilecalculator.view.layout.TileLayout;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutFactory;
 import de.fhdw.wip.rpntilecalculator.view.layout.TileLayoutLoader;
 
+import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 
@@ -57,14 +59,9 @@ public class MainActivity extends AppCompatActivity {
             loaded = true;
         }
         lastOrientation = -1;
-        /*if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-            adoptTileLayout(v_standardlayout, v_tablelayout);
-        else
-            adoptTileLayout(h_standardlayout, h_tablelayout);*/
         orientationListener = new OrientationEventListener(getApplicationContext()) {
             @Override
             public final void onOrientationChanged(int orientation) {
-                System.out.println(orientation);
                 if (orientation < 0) {
                     return; // Flip screen, Not take account
                 }
@@ -81,14 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     curOrientation = ORIENTATION_PORTRAIT;
                 }
-                System.out.println(lastOrientation + " - " + curOrientation);
                 if (curOrientation != lastOrientation) {
                     if(curOrientation == ORIENTATION_PORTRAIT) {
                         adoptTileLayout(v_standardlayout, v_tablelayout);
-                        setRequestedOrientation(ORIENTATION_PORTRAIT);
+                        setRequestedOrientation(SCREEN_ORIENTATION_PORTRAIT);
                     }else {
                         adoptTileLayout(h_standardlayout, h_tablelayout);
-                        setRequestedOrientation(ORIENTATION_LANDSCAPE);
+                        setRequestedOrientation(SCREEN_ORIENTATION_LANDSCAPE);
                     }
                     lastOrientation = curOrientation;
                 }
