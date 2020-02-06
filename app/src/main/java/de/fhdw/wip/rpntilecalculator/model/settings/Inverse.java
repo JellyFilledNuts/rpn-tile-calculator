@@ -8,7 +8,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Calculates the inverse of an operand
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/29
  */
 public class Inverse extends Setting {

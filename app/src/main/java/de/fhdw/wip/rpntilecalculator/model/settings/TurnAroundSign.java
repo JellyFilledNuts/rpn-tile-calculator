@@ -8,7 +8,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Changes positive operands to negative ones and vice versa
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/30
  */
 public class TurnAroundSign extends Setting {

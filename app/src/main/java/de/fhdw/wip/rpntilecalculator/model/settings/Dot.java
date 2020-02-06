@@ -9,7 +9,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Places a '.' in the input term to create decimal values
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/02/03
  */
 public class Dot extends Setting {

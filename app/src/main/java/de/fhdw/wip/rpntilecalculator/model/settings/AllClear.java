@@ -7,7 +7,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Empties the stack of the presenter
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/26
  */
 public class AllClear extends Setting {

@@ -7,7 +7,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Deletes the last input of the stack
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/26
  */
 public class DeleteEntry extends Setting {

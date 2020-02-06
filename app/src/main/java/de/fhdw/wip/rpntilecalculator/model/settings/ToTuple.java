@@ -14,7 +14,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Loads as many values as possible as Tuple
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/02/04
  */
 public class ToTuple extends Setting {

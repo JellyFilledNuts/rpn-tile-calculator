@@ -18,7 +18,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Splits the current loaded operand into several ODoubles
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/02/03
  */
 public class Split extends Setting {

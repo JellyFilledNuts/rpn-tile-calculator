@@ -8,7 +8,7 @@ import de.fhdw.wip.rpntilecalculator.presenter.Presenter;
 
 /**
  * Summary: Finishes the current input term so that a new input can be created
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/27
  */
 public class Enter extends Setting {

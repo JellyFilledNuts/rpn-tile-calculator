@@ -8,7 +8,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 
 /**
  * Summary: Swaps the last two stack operands
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/30
  */
 public class Swap extends Setting {

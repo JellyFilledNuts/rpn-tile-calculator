@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Contract;
 
 /**
  * Summary: Super class for settings
- * Author:  Hendrik Falk
+ * Author:  Tim Jonas Meinerzhagen
  * Date:    2020/01/26
  */
 public abstract class Setting {
