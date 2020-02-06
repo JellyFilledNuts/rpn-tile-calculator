@@ -1,8 +1,5 @@
 package de.fhdw.wip.rpntilecalculator.model.calculation;
 
-import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
-
-import org.intellij.lang.annotations.JdkConstants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,7 +10,7 @@ import de.fhdw.wip.rpntilecalculator.model.operands.Operand;
 /*
  * Summary: A Class that can calculate the high and the low points of a function( up to third grade)
  * Author:  Jannis Luca Keienburg
- * Date:    2020/01/16, updated on 2020/01/17
+ * Date:    2020/01/16
  */
 
 public class HighAndLowPoints extends Action {
