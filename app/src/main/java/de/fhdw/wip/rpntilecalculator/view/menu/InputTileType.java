@@ -1,5 +1,6 @@
 package de.fhdw.wip.rpntilecalculator.view.menu;
 
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.view.Gravity;
 import android.view.View;
@@ -33,7 +34,7 @@ public class InputTileType extends DialogMenu implements View.OnLongClickListene
         // Special design and location
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.START | Gravity.TOP;
+        wlp.gravity = Gravity.CENTER;
         int[] location = new int[2];
         tile.getLocationInWindow(location);
         wlp.x = location[0];

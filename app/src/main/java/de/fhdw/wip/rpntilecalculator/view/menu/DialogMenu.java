@@ -1,6 +1,7 @@
 package de.fhdw.wip.rpntilecalculator.view.menu;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -43,6 +44,13 @@ public abstract class DialogMenu implements View.OnClickListener {
         window.setAttributes(wlp);
 
         this.tile = displayTile;
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                dismissAll();
+            }
+        });
     }
 
     protected abstract void setContentView();
